@@ -1,0 +1,14 @@
+参考本地的进行以下修改：
+后台添加语言
+添加Admin用户分组
+修改RMB货币代码以及添加CAD货币
+默认货币改为加币
+记得把“网站开发重要事项”传上去
+
+数据库
+category表添加字段：canMix、tax、tax_type、tax_limit、weight_limit、quantity_limit、violation_fee
+order表添加字段：split_strategy
+
+
+规定：
+- 产品不可属于多个二级分类
