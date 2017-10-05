@@ -477,7 +477,7 @@ class ControllerApiOrder extends Controller {
 					$order_data = array();
 
 					// Store Details
-					$order_data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
+					//$order_data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
 					$order_data['store_id'] = $this->config->get('config_store_id');
 					$order_data['store_name'] = $this->config->get('config_name');
 					$order_data['store_url'] = $this->config->get('config_url');
@@ -618,7 +618,7 @@ class ControllerApiOrder extends Controller {
 
                     // 管理员设置的总重
                     if (isset($this->request->post['weight']) && $this->request->post['weight'] > 0) {
-                        $total_data['weight'] = $this->request->post['weight'];
+                        $order_data['weight'] = $this->request->post['weight'];
                     }
 
 					// Order Totals
@@ -664,7 +664,14 @@ class ControllerApiOrder extends Controller {
 
 					// 管理员设置的价格
 					if (isset($this->request->post['total']) && $this->request->post['total'] > 0) {
-                        $total_data['total'] = $this->request->post['total'];
+                        $order_data['total'] = $this->request->post['total'];
+                        foreach ($total_data['totals'] as $key => $total) {
+                            if ($total['code'] == 'total') {
+                                $total_data['totals'][$key]['value'] = $this->request->post['total'];
+                            } else {
+                                $total_data['totals'][$key]['value'] = 0;
+                            }
+                        }
                     }
 
 					$order_data = array_merge($order_data, $total_data);
@@ -810,6 +817,7 @@ class ControllerApiOrder extends Controller {
 			$keys = array(
 				'order_status_id',
 				'weight',
+				'total',
 				'delivery_company',
 				'delivery_number',
 				'storage_id',
@@ -841,7 +849,7 @@ class ControllerApiOrder extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			if ($order_info) {
-				$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override'], $this->request->post['storage_id'], $this->request->post['weight'], $this->request->post['delivery_company'], $this->request->post['delivery_number']);
+				$this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override'], $this->request->post['storage_id'], $this->request->post['weight'], $this->request->post['delivery_company'], $this->request->post['delivery_number'], $this->request->post['total']);
 				
 				$json['success'] = $this->language->get('text_success');
 			} else {

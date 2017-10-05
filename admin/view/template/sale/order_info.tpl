@@ -263,6 +263,12 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-total"><?php echo $entry_final; ?></label>
+                  <div class="col-sm-10">
+                  	<input type="text" name="total" value="<?php echo $final_price; ?>" id="input-total" />
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-delivery-company"><?php echo $entry_delivery_company; ?></label>
                   <div class="col-sm-10">
                   	<input type="text" name="delivery_company" value="<?php echo $delivery_company; ?>" id="input-delivery-company" />
@@ -657,7 +663,7 @@ $('#button-history').on('click', function() {
 		url: '<?php echo $catalog; ?>index.php?route=api/order/history&token=' + token + '&store_id=<?php echo $store_id; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'json',
-		data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&weight=' + encodeURIComponent($('input[name=\'weight\']').val()) + '&delivery_company=' + encodeURIComponent($('input[name=\'delivery_company\']').val()) + '&delivery_number=' + encodeURIComponent($('input[name=\'delivery_number\']').val()) + '&storage_id=' + encodeURIComponent($('select[name=\'storage_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&override=' + ($('input[name=\'override\']').prop('checked') ? 1 : 0) + '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
+		data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&weight=' + encodeURIComponent($('input[name=\'weight\']').val()) + '&total=' + encodeURIComponent($('input[name=\'total\']').val()) + '&delivery_company=' + encodeURIComponent($('input[name=\'delivery_company\']').val()) + '&delivery_number=' + encodeURIComponent($('input[name=\'delivery_number\']').val()) + '&storage_id=' + encodeURIComponent($('select[name=\'storage_id\']').val()) + '&notify=' + ($('input[name=\'notify\']').prop('checked') ? 1 : 0) + '&override=' + ($('input[name=\'override\']').prop('checked') ? 1 : 0) + '&append=' + ($('input[name=\'append\']').prop('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
 		beforeSend: function() {
 			$('#button-history').button('loading');
 		},

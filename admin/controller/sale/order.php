@@ -896,6 +896,7 @@ class ControllerSaleOrder extends Controller {
 			$data['entry_override'] = $this->language->get('entry_override');
 			$data['entry_comment'] = $this->language->get('entry_comment');
 			$data['entry_weight'] = $this->language->get('entry_weight');
+			$data['entry_final'] = $this->language->get('entry_final');
 			$data['entry_delivery_company'] = $this->language->get('entry_delivery_company');
 			$data['entry_delivery_number'] = $this->language->get('entry_delivery_number');
 			
@@ -992,7 +993,7 @@ class ControllerSaleOrder extends Controller {
 			$data['storage_id'] = $order_info['storage_id'];
 			$data['storage_name'] = $order_info['storage_name'];
 			$data['weight'] = $order_info['weight'];
-			//$data['total'] = $order_info['total'];
+			$data['final_price'] = $order_info['total'];
 			$data['delivery_company'] = $order_info['delivery_company'];
 			$data['delivery_number'] = $order_info['delivery_number'];
 				

@@ -924,7 +924,7 @@
                   <label class="col-sm-2 control-label" for="input-weight"><?php echo $entry_weight; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">
-                      <input type="text" name="weight" value="<?php echo $weight; ?>" id="input-weight" class="form-control" />
+                      <input type="text" name="weight" value="<?php echo $weight; ?>" id="input-weight" class="form-control" readonly />
                       <!--<span class="input-group-btn">
                         <button type="button" id="button-weight" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
                       </span>-->
@@ -935,7 +935,7 @@
                   <label class="col-sm-2 control-label" for="input-total"><?php echo $entry_final; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">
-                      <input type="text" name="total" value="<?php echo $total; ?>" id="input-total" class="form-control" />
+                      <input type="text" name="total" value="<?php echo $total; ?>" id="input-total" class="form-control" readonly />
                       <!--<span class="input-group-btn">
                         <button type="button" id="button-weight" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
                       </span>-->
@@ -946,7 +946,7 @@
                   <label class="col-sm-2 control-label" for="input-delivery-company"><?php echo $entry_delivery_company; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">
-                      <input type="text" name="delivery_company" value="<?php echo $delivery_company; ?>" id="input-delivery-company" class="form-control" />
+                      <input type="text" name="delivery_company" value="<?php echo $delivery_company; ?>" id="input-delivery-company" class="form-control" readonly />
                       <!--<span class="input-group-btn">
                         <button type="button" id="button-delivery-company" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
                       </span>-->
@@ -957,7 +957,7 @@
                   <label class="col-sm-2 control-label" for="input-delivery-number"><?php echo $entry_delivery_number; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">
-                      <input type="text" name="delivery_number" value="<?php echo $delivery_number; ?>" id="input-delivery-number" class="form-control" />
+                      <input type="text" name="delivery_number" value="<?php echo $delivery_number; ?>" id="input-delivery-number" class="form-control" readonly />
                       <!--<span class="input-group-btn">
                         <button type="button" id="button-delivery-number" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
                       </span>-->
@@ -2457,7 +2457,7 @@ $('#button-save').on('click', function() {
 	$.ajax({
 		url: url,
 		type: 'post',
-		data: $('select[name=\'payment_method\'] option:selected,  select[name=\'shipping_method\'] option:selected,  #tab-total select[name=\'order_status_id\'], #tab-total select, #tab-total textarea[name=\'comment\'], #tab-total input[name=\'affiliate_id\'], #tab-total input[name="weight"], #tab-total input[name="delivery_company"], #tab-total input[name="delivery_number"]'),
+		data: $('select[name=\'payment_method\'] option:selected,  select[name=\'shipping_method\'] option:selected,  #tab-total select[name=\'order_status_id\'], #tab-total select, #tab-total textarea[name=\'comment\'], #tab-total input[name=\'affiliate_id\'], #tab-total input[name="weight"], #tab-total input[name="total"], #tab-total input[name="delivery_company"], #tab-total input[name="delivery_number"]'),
 		dataType: 'json',
 		crossDomain: true,
 		beforeSend: function() {
