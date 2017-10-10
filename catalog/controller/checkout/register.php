@@ -97,13 +97,13 @@ class ControllerCheckoutRegister extends Controller {
 		}
 		$data['firstname'] = '';
 		$data['email'] = '';
-		$data['phone'] = '';
+		$data['telephone'] = '';
 		$data['company'] = '';
 		$data['address_1'] = '';
 		$data['city'] = '';
-		// $data['postcode'] = '';
-		// $data['country_id'] = '';
-		// $data['zone_id'] = '';
+		$data['postcode'] = '';
+		$data['country_id'] = '';
+		$data['zone_id'] = '';
 		
 		$data['shipping_required'] = $this->cart->hasShipping();
 

@@ -164,7 +164,11 @@
                   <td class="text-left"><?php echo (($order['order_status_id'] < 2) || ($order['order_status_id'] > 5)) ? 'No' : 'Paid'; ?></td>
                   <td class="text-left"><?php echo $order['storage_name']; ?></td>
                   <td class="text-left"><?php echo $order['order_status']; ?></td>
-                  <td class="text-right"><a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a> <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                  <td class="text-right">
+                    <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                    <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                    <a href="<?php echo $order['order_copy']; ?>" data-toggle="tooltip" title="<?php echo $button_order_copy; ?>" class="btn btn-primary" target="_blank"><i class="fa fa-copy"></i></a>
+                  </td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>

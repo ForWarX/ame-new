@@ -124,13 +124,13 @@
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>Name:<span style="color:red">*</span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_firstname" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_firstname" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["name"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>Company:</label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_company" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_company" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["company"]; ?>'></div>
 							</div>
 						</div>
 					</div>
@@ -138,7 +138,7 @@
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>City:<span style="color:red">*</span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
@@ -146,9 +146,14 @@
 								<label class='col-sm-2 control-label' for='shipping-zone-id'>Province:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="shipping_zone_id" id="shipping_zone_id" class="form-control input-sm">
-										<?php $zone_id = empty($user_address) ? 0 : $user_address["zone_id"]; ?>
+										<?php
+											if (!empty($shipping_copy)) $zone_id = $shipping_copy["zone_id"];
+											elseif (!empty($user_address)) $zone_id = $user_address["zone_id"];
+											else $zone_id = 0;
+											if (empty($shipping_zones)) $shipping_zones = $zones;
+										?>
 										<option value="0"> -- Select -- </option>
-										<?php foreach ($zones as $zone) { ?>
+										<?php foreach ($shipping_zones as $zone) { ?>
 											<option value="<?php echo $zone['zone_id']; ?>" <?php echo ($zone['zone_id'] == $zone_id) ? 'selected' : ''; ?>><?php echo $zone['name']; ?></option>
 										<?php } ?>
 									</select>
@@ -160,7 +165,7 @@
 						<div class='col-sm-12'>
 							<div class="row form-group">
 								<label class='col-sm-1 control-label'>Address:<span style="color:red">*</span></label>
-								<div class='col-sm-8'><input class="form-control input-sm" type='text' name="shipping_address_1" value=''></div>
+								<div class='col-sm-8'><input class="form-control input-sm" type='text' name="shipping_address_1" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["address_1"]; ?>'></div>
 							</div>
 						</div>
 					</div>
@@ -168,7 +173,7 @@
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>Postcode:</label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_postcode" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_postcode" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["postcode"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
@@ -176,9 +181,10 @@
 								<label class='col-sm-2 control-label' for='shipping-country-id'>Country:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="shipping_country_id" id='shipping_country_id' class="form-control input-sm">
+										<?php $country_id = empty($shipping_copy) ? 38 : $shipping_copy["country_id"]; ?>
 										<option value="0"> -- Select -- </option>
 										<?php foreach ($countries as $country) { ?>
-											<option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+											<option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $country_id) ? 'selected' : ''; ?>><?php echo $country['name']; ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -189,13 +195,13 @@
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>Email:<span style="color:red"></span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_email" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_email" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["email"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
 								<label class='col-sm-2 control-label'>Phone:<span style="color:red">*</span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_phone" value=''></div>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_phone" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["phone"]; ?>'></div>
 							</div>
 						</div>
 					</div>
@@ -203,7 +209,7 @@
 						<div class='col-sm-4'>
 							<div class="row form-group">
 								<label class='col-sm-3 control-label'>China ID #:<span style="color:red">*</span></label>
-								<div class='col-sm-6'><input class="form-control input-sm" type='text' name="chinaid" value=''></div>
+								<div class='col-sm-6'><input class="form-control input-sm" type='text' name="chinaid" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["chinaid"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-4'>

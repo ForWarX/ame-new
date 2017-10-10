@@ -236,7 +236,8 @@ class ControllerSaleOrder extends Controller {
 				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
 				'shipping_code' => $result['shipping_code'],
 				'view'          => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
-				'edit'          => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true)
+				'edit'          => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
+                'order_copy'    => $result['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $result['order_id']
 			);
 		}
 
@@ -281,6 +282,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_filter'] = $this->language->get('button_filter');
 		$data['button_view'] = $this->language->get('button_view');
 		$data['button_ip_add'] = $this->language->get('button_ip_add');
+		$data['button_order_copy'] = $this->language->get('button_order_copy');
 
 		$data['token'] = $this->session->data['token'];
 
@@ -914,6 +916,7 @@ class ControllerSaleOrder extends Controller {
 			$data['button_commission_remove'] = $this->language->get('button_commission_remove');
 			$data['button_history_add'] = $this->language->get('button_history_add');
 			$data['button_ip_add'] = $this->language->get('button_ip_add');
+			$data['button_order_copy'] = $this->language->get('button_order_copy');
 
 			$data['tab_history'] = $this->language->get('tab_history');
 			$data['tab_additional'] = $this->language->get('tab_additional');
@@ -1442,6 +1445,13 @@ class ControllerSaleOrder extends Controller {
 			$data['header'] = $this->load->controller('common/header');
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['footer'] = $this->load->controller('common/footer');
+
+			// 使用当前订单信息继续下单的链接
+			if ($order_id != 0) {
+                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $order_id;
+            } else {
+                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply';
+            }
 
 			$this->response->setOutput($this->load->view('sale/order_info', $data));
 		} else {

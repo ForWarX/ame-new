@@ -388,6 +388,13 @@ class ModelCatalogProduct extends Model {
             }
         }
 
+        // 若无绑定网店，则绑定到默认网店
+        $query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product_to_store WHERE product_id='" . (int)$product_id . "' LIMIT 1");
+        if (empty($query->row)) {
+            // 默认商店ID
+            $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '0'");
+        }
+
         $this->cache->delete('product');
     }
 

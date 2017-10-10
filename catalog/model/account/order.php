@@ -88,6 +88,8 @@ class ModelAccountOrder extends Model {
 				'shipping_iso_code_3'     => $shipping_iso_code_3,
 				'shipping_address_format' => $order_query->row['shipping_address_format'],
 				'shipping_method'         => $order_query->row['shipping_method'],
+				'shipping_chinaid'        => $order_query->row['shipping_chinaid'],
+				'shipping_phone'          => $order_query->row['shipping_phone'],
 				'comment'                 => $order_query->row['comment'],
 				'total'                   => $order_query->row['total'],
 				'order_status_id'         => $order_query->row['order_status_id'],

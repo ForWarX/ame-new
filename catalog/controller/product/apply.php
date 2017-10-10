@@ -607,6 +607,17 @@ class ControllerProductApply extends Controller {
         }
 
         $this->load->model('account/order');
+        $this->load->model('account/address');
+
+        if ($this->customer->isLogged()) {
+            $addressid = $this->customer->getAddressId();
+            $data['user_address'] = $this->model_account_address->getAddress($addressid);
+            $data['shipping_address_list'] = $this->model_account_address->getAddresses();
+            // unset($data['customer_shipping_address'][$addressid]);
+        } else {
+            $data['user_address'] = array();
+            $data['shipping_address_list'] = array();
+        }
 
         $order_info = $this->model_account_order->getOrder($order_id);
 
@@ -614,7 +625,32 @@ class ControllerProductApply extends Controller {
             $this->load->model('catalog/product');
             $this->load->model('tool/upload');
 
-            $data['shipping_selected'] = $order_info['shipping_firstname'] . ' - ' . $order_info['shipping_address_1'];
+            if ($this->customer->isLogged()) {
+                $data['shipping_selected'] = $order_info['shipping_firstname'] . ' - ' . $order_info['shipping_address_1'];
+            } else {
+                $data['user_address']['address_id'] = '';
+                $data['user_address']['firstname'] = $order_info['payment_firstname'];
+                $data['user_address']['company'] = $order_info['payment_company'];
+                $data['user_address']['city'] = $order_info['payment_city'];
+                $data['user_address']['zone_id'] = $order_info['payment_zone_id'];
+                $data['user_address']['address_1'] = $order_info['payment_address_1'];
+                $data['user_address']['postcode'] = $order_info['payment_postcode'];
+                $data['user_address']['country_id'] = $order_info['payment_country_id'];
+                $data['user_address']['email'] = $order_info['email'];
+                $data['user_address']['phone'] = $order_info['telephone'];
+                $data['shipping_copy'] = array(
+                    'name' => $order_info['shipping_firstname'],
+                    'company' => $order_info['shipping_company'],
+                    'city' => $order_info['shipping_city'],
+                    'zone_id' => $order_info['shipping_zone_id'],
+                    'address_1' => $order_info['shipping_address_1'],
+                    'postcode' => $order_info['shipping_postcode'],
+                    'country_id' => $order_info['shipping_country_id'],
+                    'email' => '',
+                    'phone' => $order_info['shipping_phone'],
+                    'chinaid' => $order_info['shipping_chinaid'],
+                );
+            }
 
             // Products
             $data['products'] = array();
@@ -638,7 +674,6 @@ class ControllerProductApply extends Controller {
             $this->response->redirect($this->url->link('product/apply', '', true));
         }
 
-        $this->load->model('account/address');
         $this->load->model('catalog/apply');
         $this->load->model('catalog/product');
 
@@ -699,18 +734,11 @@ class ControllerProductApply extends Controller {
         $data['button_upload'] = $this->language->get('button_upload');
         $data['button_continue'] = $this->language->get('button_continue');
 
-        if ($this->customer->isLogged()) {
-            $addressid = $this->customer->getAddressId();
-            $data['user_address'] = $this->model_account_address->getAddress($addressid);
-            $data['shipping_address_list'] = $this->model_account_address->getAddresses();
-            // unset($data['customer_shipping_address'][$addressid]);
-        } else {
-            $data['user_address'] = array();
-            $data['shipping_address_list'] = array();
-        }
-
         $data['countries'] = $this->model_localisation_country->getCountries();
         $data['zones'] = $this->model_localisation_zone->getZonesByCountryId(isset($data["user_address"]["country_id"]) ? $data["user_address"]["country_id"] : 38);
+        if (isset($data['shipping_copy'])) {
+            $data['shipping_zones'] = $this->model_localisation_zone->getZonesByCountryId(isset($data["shipping_copy"]["country_id"]) ? $data["shipping_copy"]["country_id"] : 38);
+        }
 
         $data['upcs'] = $this->model_catalog_apply->getProductUPCs();
 

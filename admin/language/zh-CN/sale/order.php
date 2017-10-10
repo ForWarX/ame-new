@@ -184,6 +184,9 @@ $_['entry_total']                             = '总计';
 $_['entry_date_added']                        = '加入日期';
 $_['entry_date_modified']                     = '修改日期';
 
+// Button
+$_['button_order_copy']                       = '继续下单';
+
 // Help
 $_['help_country_match']                      = '国家的 IP 地址是否与帐单地址中的国家/地区相配 (不匹配 = 更高的风险)。';
 $_['help_country_code']                       = 'IP 地址的国家/地区代码。';
