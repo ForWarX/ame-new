@@ -88,7 +88,7 @@ class ControllerCommonHeader extends Controller {
 		// Menu
 		$data['categories'] = array();
 
-		/* 原本的产品导航，留着以后也许有用
+		// 原本的产品导航，留着以后也许有用
 		$this->load->model('catalog/category');
 
 		$this->load->model('catalog/product');
@@ -122,7 +122,7 @@ class ControllerCommonHeader extends Controller {
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}
-		}*/
+		}
 		// 新的文章导航
 		$this->load->model('catalog/information');
 		$data['informations'] = array();
