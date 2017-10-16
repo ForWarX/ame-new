@@ -23,6 +23,9 @@
   <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
   <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+  <!-- Menu3rdLevel >>> -->
+  <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/menu3rdlevel.css" />
+
   <?php foreach ($styles as $style) { ?>
   <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
   <?php } ?>
@@ -106,42 +109,41 @@
   </div>
 </header>-->
 
-
-
 <div class="container">
   <nav id="menu" class="navbar">
     <div class="navbar-header"><span id="category" class="visible-xs"><?php echo $text_category; ?></span>
-      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <i class="fa fa-bars"></i
+             ></button>
     </div>
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="collapse navbar-collapse ">
       <ul class="nav navbar-nav">
         <?php  { ?><!-- 新添加的导航 -->
-        <li class="dropdown"><a href="<?php  ?> "class="dropdown-toggle" data-toggle="dropdown"><?php echo "Category"?></a>
-              <ul class="dropdown-menu ">
+        <li class="dropdown" ><a href="<?php  ?> "class="dropdown-toggle" data-toggle="dropdown"><?php echo "Category"?></a>
+              <ul class="dropdown-menu">
                 <?php if ($categories) { ?>
                  <?php foreach ($categories as $category) { ?>
                   <?php if ($category['children']) { ?>
-                <li class="dropdown"  ><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><?php echo $category['name']; ?><span class="caret"></span></a>
-                      <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-                      <ul class="dropdown-menu-right"  >
+                <li ><a href="<?php echo $category['href']; ?>"   ><?php echo $category['name']; ?></a>
+                  <div class="menu3rdlevel" >
+                    <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
+                      <ul class="list-unstyled" >
                         <?php foreach ($children as $child) { ?>
-                        <li class="dropdown-inner" ><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
+                        <li class="dropdown-inner"><a href="<?php echo $child['href']; ?>" ><?php echo $child['name']; ?></a></li>
                         <?php } ?>
+                        <li class="breadcrumb" >   <a href="<?php echo $category['href']; ?>"><?php echo $text_all; ?> <?php echo $category['name']; ?></a>  </li >
                       </ul>
                       <?php } ?>
-                  <a href="<?php echo $category['href']; ?>"><?php echo $text_all; ?> <?php echo $category['name']; ?></a>
+                  </div>
                 </li>
                 <?php } else { ?>
-                <li class="dropdown"><a href="<?php echo $category['href']; ?>" ><?php echo $category['name']; ?></a></li>
+                <li><a href="<?php echo $category['href']; ?>" ><?php echo $category['name']; ?></a></li>
                      <?php } ?>
                    <?php } ?>
                 <?php } ?>
               </ul>
-
-
         </li>
         <?php } ?>  <!-- 新添加的导航结束 -->
-
         <?php foreach ($informations as $info) { ?><!-- 文章导航 -->
         <li ><a href="<?php echo $info['href']; ?>"><?php echo $info['title']; ?></a></li>
         <?php } ?><!-- 文章导航结束 -->
@@ -168,7 +170,6 @@
       <?php } ?>
       <?php } ?>
       <?php } ?><!-- 产品导航结束 -->
-
       </ul>
     </div>
     <div id="menu-info" class="collapse navbar-collapse navbar-ex1-collapse in">
