@@ -279,14 +279,6 @@
 								<div class='col-sm-12'><input class="form-control input-sm price" type='text' name="price[]" value=''></div>
 							</div>
 						</div>
-						<?php if (isset($admin_customer)) { ?>
-						<div class='col-sm-3'>
-							<div class="row form-group">
-								<label class="col-sm-12 control-label"><b>Category(Admin)</b></label>
-								<div class='col-sm-12'><input class="form-control input-sm" type='text' value=''></div>
-							</div>
-						</div>
-						<?php } ?>
 						<div class='col-sm-3'>
 							<div class="row">
 								<label class='col-sm-12'>&nbsp;</label>
@@ -298,6 +290,34 @@
 						</div>
 					</div>
 				</div>
+				<?php if (isset($admin_customer)) { ?>
+				<div class="row" style="margin-top: 15px;">
+					<div class='col-sm-3'>
+						<div class="row form-group">
+							<label class="col-sm-12 control-label"><b>Category(Admin)</b></label>
+							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-category" type='text' name="admin_category" value='' readonly></div>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<div class="row form-group">
+							<label class="col-sm-12 control-label"><b>Weight(Admin)</b></label>
+							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-weight" type='text' name="admin_weight" value='' placeholder="LB"></div>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<div class="row form-group">
+							<label class="col-sm-12 control-label"><b>Total Price(Admin)</b></label>
+							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-total" type='text' name="admin_total" value='' placeholder="C$"></div>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<div class="row form-group">
+							<label class="col-sm-12 control-label"><b>Comment(Admin)</b></label>
+							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-comment" type='text' name="admin_comment" value=''></div>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
 				<div class="row" style="margin-top: 15px;">
 					<div class='col-sm-6 col-xs-6'>
 						<a href="#" class="btn btn-primary addmore" role="button">Add Item</a>
