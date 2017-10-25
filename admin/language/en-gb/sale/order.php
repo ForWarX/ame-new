@@ -134,6 +134,15 @@ $_['entry_voucher']              = 'Voucher';
 $_['entry_reward']               = 'Reward';
 $_['entry_order_id']             = 'AME order number';
 $_['entry_total']                = 'Total';
+// add entry recipient
+$_['entry_recipient']                = 'Recipient';
+// add entry shipping number
+$_['entry_shipping_number']                = 'Shipping Number';
+// add entry telephone
+$_['entry_telephone']                = 'Telephone';
+// add entry shipping number
+$_['entry_shipping_phone']                = 'Shipping Phone';
+
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';
 $_['entry_weight']               = 'Total Weight (LB)';
