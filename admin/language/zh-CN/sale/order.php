@@ -19,7 +19,7 @@ $_['text_customer_group']                     = '客户群组：';
 $_['text_email']                              = '电子邮件：';
 $_['text_telephone']                          = '电话：';
 $_['text_fax']                                = '传真：';
-$_['text_website']                            = '網址';
+$_['text_website']                            = '网址：';
 $_['text_shipping_method']                    = '货运方式：';
 $_['text_payment_method']                     = '付款方式：';
 $_['text_total']                              = '总计';
@@ -183,9 +183,13 @@ $_['entry_order_id']                          = '订单 ID';
 $_['entry_total']                             = '总计';
 $_['entry_date_added']                        = '加入日期';
 $_['entry_date_modified']                     = '修改日期';
+$_['entry_weight']                            = '重量（LB）';
+$_['entry_category']                          = '品类';
+$_['entry_barcode']                           = '条形码';
 
 // Button
 $_['button_order_copy']                       = '继续下单';
+$_['button_labels_print']                     = '打印小票';
 
 // Help
 $_['help_country_match']                      = '国家的 IP 地址是否与帐单地址中的国家/地区相配 (不匹配 = 更高的风险)。';

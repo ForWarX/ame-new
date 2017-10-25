@@ -140,9 +140,12 @@ $_['entry_weight']               = 'Total Weight (LB)';
 $_['entry_final']                = 'Total Price';
 $_['entry_delivery_company']     = 'Delivery Company';
 $_['entry_delivery_number']      = 'Delivery Number';
+$_['entry_category']             = 'Category';
+$_['entry_barcode']              = 'Barcode';
 
 // Button
 $_['button_order_copy']          = 'Reorder';
+$_['button_labels_print']        = 'Print Label';
 
 // Help
 $_['help_override']              = 'If the customers order is being blocked from changing the order status due to an anti-fraud extension enable override.';

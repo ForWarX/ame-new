@@ -1961,6 +1961,10 @@ class ControllerSaleOrder extends Controller {
 		$data['column_price'] = $this->language->get('column_price');
 		$data['column_total'] = $this->language->get('column_total');
 
+		$data['entry_weight'] = $this->language->get('entry_weight');
+		$data['entry_category'] = $this->language->get('entry_category');
+		$data['entry_barcode'] = $this->language->get('entry_barcode');
+
 		$this->load->model('sale/order');
 
 		$this->load->model('setting/setting');
@@ -1995,7 +1999,7 @@ class ControllerSaleOrder extends Controller {
 					$store_fax = $this->config->get('config_fax');
 				}
 
-				if ($order_info['invoice_no']) {
+				if (false && $order_info['invoice_no']) {
 					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 				} else {
 					$invoice_no = '';
@@ -2038,7 +2042,7 @@ class ControllerSaleOrder extends Controller {
 				if ($order_info['shipping_address_format']) {
 					$format = $order_info['shipping_address_format'];
 				} else {
-					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}' . "\n" . '{phone}' . "\n" . '{china_id}';
 				}
 
 				$find = array(
@@ -2051,7 +2055,9 @@ class ControllerSaleOrder extends Controller {
 					'{postcode}',
 					'{zone}',
 					'{zone_code}',
-					'{country}'
+					'{country}',
+                    '{phone}',
+                    '{china_id}'
 				);
 
 				$replace = array(
@@ -2064,7 +2070,9 @@ class ControllerSaleOrder extends Controller {
 					'postcode'  => $order_info['shipping_postcode'],
 					'zone'      => $order_info['shipping_zone'],
 					'zone_code' => $order_info['shipping_zone_code'],
-					'country'   => $order_info['shipping_country']
+					'country'   => $order_info['shipping_country'],
+					'phone'     => $order_info['shipping_phone'],
+					'china_id'  => $order_info['shipping_chinaid']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
