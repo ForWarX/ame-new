@@ -111,6 +111,24 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$filter_total = null;
 		}
+		// add filter recipient
+		if (isset($this->request->get['filter_recipient'])) {
+			$filter_recipient = $this->request->get['filter_recipient'];
+		} else {
+			$filter_recipient = null;
+		}
+		// add filter telephone
+		if (isset($this->request->get['filter_telephone'])) {
+			$filter_telephone = $this->request->get['filter_telephone'];
+		} else {
+			$filter_telephone = null;
+		}
+		// add filter shipping_phone
+		if (isset($this->request->get['filter_shipping_phone'])) {
+			$filter_shipping_phone = $this->request->get['filter_shipping_phone'];
+		} else {
+			$filter_shipping_phone = null;
+		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$filter_date_added = $this->request->get['filter_date_added'];
@@ -122,6 +140,12 @@ class ControllerSaleOrder extends Controller {
 			$filter_date_modified = $this->request->get['filter_date_modified'];
 		} else {
 			$filter_date_modified = null;
+		}
+		//add filter shipping number
+		if (isset($this->request->get['filter_shipping_number'])) {
+			$filter_shipping_number = $this->request->get['filter_shipping_number'];
+		} else {
+			$filter_shipping_number = null;
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -159,6 +183,18 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_total'])) {
 			$url .= '&filter_total=' . $this->request->get['filter_total'];
 		}
+		//add filter recipient
+		if (isset($this->request->get['filter_recipient'])) {
+			$url .= '&filter_recipient=' . $this->request->get['filter_recipient'];
+		}
+		//add filter telephone
+		if (isset($this->request->get['filter_telephone'])) {
+			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
+		}
+		//add filter shipping phone
+		if (isset($this->request->get['filter_shipping_phone'])) {
+			$url .= '&filter_shipping_phone=' . $this->request->get['filter_shipping_phone'];
+		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -166,6 +202,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['filter_date_modified'])) {
 			$url .= '&filter_date_modified=' . $this->request->get['filter_date_modified'];
+		}
+		//add shipping number
+		if (isset($this->request->get['filter_shipping_number'])) {
+			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -206,8 +246,12 @@ class ControllerSaleOrder extends Controller {
 			'filter_customer'	   => $filter_customer,
 			'filter_order_status'  => $filter_order_status,
 			'filter_total'         => $filter_total,
+			'filter_recipient'         => $filter_recipient,
+			'filter_telephone'         => $filter_telephone,
+			'filter_shipping_phone'         => $filter_shipping_phone,
 			'filter_date_added'    => $filter_date_added,
 			'filter_date_modified' => $filter_date_modified,
+			'filter_shipping_number' => $filter_shipping_number,
 			'sort'                 => $sort,
 			'order'                => $order,
 			'start'                => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -271,6 +315,14 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_total'] = $this->language->get('entry_total');
 		$data['entry_date_added'] = $this->language->get('entry_date_added');
 		$data['entry_date_modified'] = $this->language->get('entry_date_modified');
+		//add $data entry recipient
+		$data['entry_recipient'] = $this->language->get('entry_recipient');
+		//add $data entry shipping number
+		$data['entry_shipping_number'] = $this->language->get('entry_shipping_number');
+		//add $data entry telephone
+		$data['entry_telephone'] = $this->language->get('entry_telephone');
+		//add $data entry shipping phone
+		$data['entry_shipping_phone'] = $this->language->get('entry_shipping_phone');
 
 		$data['button_invoice_print'] = $this->language->get('button_invoice_print');
 		$data['button_shipping_print'] = $this->language->get('button_shipping_print');
@@ -323,6 +375,18 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_total'])) {
 			$url .= '&filter_total=' . $this->request->get['filter_total'];
 		}
+		//add filter recipient
+		if (isset($this->request->get['filter_recipient'])) {
+			$url .= '&filter_recipient=' . $this->request->get['filter_recipient'];
+		}
+		//add filter telephone
+		if (isset($this->request->get['filter_telephone'])) {
+			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
+		}
+		//add filter shipping number
+		if (isset($this->request->get['filter_shipping_number'])) {
+			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
+		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -330,6 +394,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['filter_date_modified'])) {
 			$url .= '&filter_date_modified=' . $this->request->get['filter_date_modified'];
+		}
+       //add shipping number
+		if (isset($this->request->get['filter_shipping_number'])) {
+			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
 
 		if ($order == 'ASC') {
@@ -371,6 +439,18 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_total'])) {
 			$url .= '&filter_total=' . $this->request->get['filter_total'];
 		}
+		// add filter recipient
+		if (isset($this->request->get['filter_recipient'])) {
+			$url .= '&filter_recipient=' . $this->request->get['filter_recipient'];
+		}
+		// add filter telephone
+		if (isset($this->request->get['filter_telephone'])) {
+			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
+		}
+		// add filter shipping_phone
+		if (isset($this->request->get['filter_shipping_phone'])) {
+			$url .= '&filter_shipping_phone=' . $this->request->get['filter_shipping_phone'];
+		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -378,6 +458,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->get['filter_date_modified'])) {
 			$url .= '&filter_date_modified=' . $this->request->get['filter_date_modified'];
+		}
+		//add shipping number
+		if (isset($this->request->get['filter_shipping_number'])) {
+			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -402,8 +486,17 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_customer'] = $filter_customer;
 		$data['filter_order_status'] = $filter_order_status;
 		$data['filter_total'] = $filter_total;
+		//add filter recipient
+		$data['filter_recipient'] = $filter_recipient;
+		//add filter telephone
+		$data['filter_telephone'] = $filter_telephone;
+		//add filter shipping phone
+		$data['filter_shipping_phone'] = $filter_shipping_phone;
+
 		$data['filter_date_added'] = $filter_date_added;
 		$data['filter_date_modified'] = $filter_date_modified;
+		//add filter shipping number
+		$data['filter_shipping_number'] = $filter_shipping_number;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;

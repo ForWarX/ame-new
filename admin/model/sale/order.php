@@ -416,7 +416,7 @@ class ModelSaleOrder extends Model {
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
 		}
-//change the id to Ame order number
+        //change the id to Ame order number
 		if (!empty($data['filter_order_id'])) {
 			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
 		}
@@ -436,6 +436,23 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['filter_total'])) {
 			$sql .= " AND o.total = '" . (float)$data['filter_total'] . "'";
 		}
+		//add filter recipient
+		if (!empty($data['filter_recipient'])) {
+			$sql .= " AND CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) LIKE '%" . $this->db->escape($data['filter_recipient']) . "%'";
+		}
+		//add filter shipping number
+		if (!empty($data['filter_shipping_number'])) {
+			$sql .= " AND o.delivery_number LIKE '%" . $data['filter_shipping_number'] . "%'";
+		}
+		//add filter telephone
+		if (!empty($data['filter_telephone'])) {
+			$sql .= " AND o.telephone LIKE '%" . $data['filter_telephone'] . "%'";
+		}
+		//add filter shipping phone
+		if (!empty($data['filter_shipping_phone'])) {
+			$sql .= " AND o.shipping_phone LIKE '%" . $data['filter_shipping_phone'] . "%'";
+		}
+
 
 		$sort_data = array(
 			'o.order_id',
@@ -517,7 +534,7 @@ class ModelSaleOrder extends Model {
         }
 
         if (!empty($data['filter_total'])) {
-            $sql .= " AND o.total = '" . (float)$data['filter_total'] . "'";
+            $sql .= " AND o.total = '" . (float)$data[''] . "'";
         }
 
         $sort_data = array(

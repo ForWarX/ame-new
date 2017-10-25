@@ -45,7 +45,13 @@
                 <label class="control-label" for="input-customer"><?php echo $entry_customer; ?></label>
                 <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_customer; ?>" id="input-customer" class="form-control" />
               </div>
+              <!-- add phone number search -->
+              <div class="form-group">
+                <label class="control-label" for="input-telephone"><?php echo $entry_telephone; ?></label>
+                <input type="text" name="filter_telephone" value="<?php echo $filter_telephone; ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-telephone" class="form-control" />
+              </div>
             </div>
+
             <div class="col-sm-4">
               <div class="form-group">
                 <label class="control-label" for="input-order-status"><?php echo $entry_order_status; ?></label>
@@ -65,9 +71,15 @@
                   <?php } ?>
                 </select>
               </div>
+              <!-- Change search total to search recipient -->
               <div class="form-group">
-                <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
-                <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
+                <label class="control-label" for="input-recipient"><?php echo $entry_recipient; ?></label>
+                <input type="text" name="filter_recipient" value="<?php echo $filter_recipient; ?>" placeholder="<?php echo $entry_recipient; ?>" id="input-total" class="form-control" />
+              </div>
+              <!-- add search search shipping phone number -->
+              <div class="form-group">
+                <label class="control-label" for="input-shipping-phone"><?php echo $entry_shipping_phone; ?></label>
+                <input type="text" name="filter_shipping_phone" value="<?php echo $filter_shipping_phone; ?>" placeholder="<?php echo $entry_shipping_phone; ?>" id="input-shipping-phone" class="form-control" />
               </div>
             </div>
             <div class="col-sm-4">
@@ -79,13 +91,10 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
+              <!-- Change search date modified to shipping number-->
               <div class="form-group">
-                <label class="control-label" for="input-date-modified"><?php echo $entry_date_modified; ?></label>
-                <div class="input-group date">
-                  <input type="text" name="filter_date_modified" value="<?php echo $filter_date_modified; ?>" placeholder="<?php echo $entry_date_modified; ?>" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
-                  <span class="input-group-btn">
-                  <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                  </span></div>
+                <label class="control-label" for="input-shipping-number"><?php echo $entry_shipping_number; ?></label>
+                <input type="text" name="filter_shipping_number" value="<?php echo $filter_shipping_number; ?>" placeholder="<?php echo $entry_shipping_number; ?>" id="input-shipping-number" class="form-control" />
               </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
@@ -211,9 +220,29 @@ $('#button-filter').on('click', function() {
 
 	var filter_total = $('input[name=\'filter_total\']').val();
 
-	if (filter_total) {
-		url += '&filter_total=' + encodeURIComponent(filter_total);
-	}
+  if (filter_total) {
+    url += '&filter_total=' + encodeURIComponent(filter_total);
+  }
+  //add filter recipient
+  var filter_recipient = $('input[name=\'filter_recipient\']').val();
+
+  if (filter_recipient) {
+    url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
+  }
+
+  //add filter telephone
+  var filter_telephone = $('input[name=\'filter_telephone\']').val();
+
+  if (filter_telephone) {
+    url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+  }
+
+  //add filter shipping phone
+  var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
+
+  if (filter_shipping_phone) {
+    url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
+  }
 
 	var filter_date_added = $('input[name=\'filter_date_added\']').val();
 
@@ -226,6 +255,12 @@ $('#button-filter').on('click', function() {
 	if (filter_date_modified) {
 		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
 	}
+//add filter shipping number
+  var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
+
+  if (filter_shipping_number) {
+    url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+  }
 
 	location = url;
 });
