@@ -2,6 +2,7 @@
 /system/storage/logs/*
 /image/cache/*
 /image/upload/*
+/image/barcode/*
 /.buildpath
 /.project
 /.settings/*
