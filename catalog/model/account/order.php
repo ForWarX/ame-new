@@ -108,7 +108,15 @@ class ModelAccountOrder extends Model {
 		}
 	}
 
-	public function getOrders($start = 0, $limit = 20) {
+	public function getOrders($data = array(),$start = 0, $limit = 20 ) {
+
+
+		$sql="SELECT o.order_id, o.invoice_prefix, o.firstname, o.lastname, os.name as status, o.date_added, o.total, o.currency_code, o.currency_value, o.shipping_firstname, o.shipping_lastname FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') ;
+		if (!empty($data['filter_customer'])) {
+
+			//$sql .= "AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+
+		}
 		if ($start < 0) {
 			$start = 0;
 		}
@@ -116,9 +124,9 @@ class ModelAccountOrder extends Model {
 		if ($limit < 1) {
 			$limit = 1;
 		}
+		$sql .= "' ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit;
 
-		$query = $this->db->query("SELECT o.order_id, o.invoice_prefix, o.firstname, o.lastname, os.name as status, o.date_added, o.total, o.currency_code, o.currency_value, o.shipping_firstname, o.shipping_lastname FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit);
-
+		$query = $this->db->query($sql);
 		return $query->rows;
 	}
 

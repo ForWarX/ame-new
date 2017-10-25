@@ -198,7 +198,7 @@ class ControllerSaleOrder extends Controller {
 		$data['delete'] = $this->url->link('sale/order/delete', 'token=' . $this->session->data['token'], true);
 		$data['import'] = $this->url->link('sale/order/import', 'token=' . $this->session->data['token'], true);
         $data['export'] = $this->url->link('sale/order/export', 'token=' . $this->session->data['token'] . $url, true);
-		
+
 		$data['orders'] = array();
 
 		$filter_data = array(
@@ -264,7 +264,7 @@ class ControllerSaleOrder extends Controller {
 		$data['column_custom_pass'] = $this->language->get('column_custom_pass');
 		$data['column_paid'] = $this->language->get('column_paid');
 		$data['column_storage'] = $this->language->get('column_storage');
-		
+
 		$data['entry_order_id'] = $this->language->get('entry_order_id');
 		$data['entry_customer'] = $this->language->get('entry_customer');
 		$data['entry_order_status'] = $this->language->get('entry_order_status');
@@ -891,7 +891,7 @@ class ControllerSaleOrder extends Controller {
 			$data['column_price'] = $this->language->get('column_price');
 			$data['column_total'] = $this->language->get('column_total');
 			$data['column_custom_pass'] = $this->language->get('column_custom_pass');
-				
+
 			$data['entry_order_status'] = $this->language->get('entry_order_status');
 			$data['entry_storage'] = $this->language->get('entry_storage');
 			$data['entry_notify'] = $this->language->get('entry_notify');
@@ -901,7 +901,7 @@ class ControllerSaleOrder extends Controller {
 			$data['entry_final'] = $this->language->get('entry_final');
 			$data['entry_delivery_company'] = $this->language->get('entry_delivery_company');
 			$data['entry_delivery_number'] = $this->language->get('entry_delivery_number');
-			
+
 			$data['help_override'] = $this->language->get('help_override');
 
 			$data['button_labels_print'] = $this->language->get('button_labels_print');
@@ -991,7 +991,7 @@ class ControllerSaleOrder extends Controller {
 			}
 
 			$this->load->model('localisation/storage');
-			
+
 			$data['storage_list'] = $this->model_localisation_storage->getStorages();
 			$data['storage_id'] = $order_info['storage_id'];
 			$data['storage_name'] = $order_info['storage_name'];
@@ -999,7 +999,7 @@ class ControllerSaleOrder extends Controller {
 			$data['final_price'] = $order_info['total'];
 			$data['delivery_company'] = $order_info['delivery_company'];
 			$data['delivery_number'] = $order_info['delivery_number'];
-				
+
 			if ($order_info['invoice_no']) {
 				$data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 			} else {
@@ -1423,10 +1423,10 @@ class ControllerSaleOrder extends Controller {
 					}
 				}
 			}
-			
+
 			// The URL we send API requests to
 			$data['catalog'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG : HTTP_CATALOG;
-			
+
 			// API login
 			$this->load->model('user/api');
 
