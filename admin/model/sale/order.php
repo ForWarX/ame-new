@@ -14,8 +14,8 @@ class ModelSaleOrder extends Model {
 		// Delete voucher data as well
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "voucher` WHERE order_id = '" . (int)$order_id . "'");
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "voucher_history` WHERE order_id = '" . (int)$order_id . "'");
-	}	
-	
+	}
+
 	public function getOrder($order_id) {
 		//$order_query = $this->db->query("SELECT *, (SELECT CONCAT(c.firstname, ' ', c.lastname) FROM " . DB_PREFIX . "customer c WHERE c.customer_id = o.customer_id) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS order_status FROM `" . DB_PREFIX . "order` o WHERE o.order_id = '" . (int)$order_id . "'");
         $order_query = $this->db->query("SELECT *, (SELECT c.firstname FROM " . DB_PREFIX . "customer c WHERE c.customer_id = o.customer_id) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS order_status FROM `" . DB_PREFIX . "order` o WHERE o.order_id = '" . (int)$order_id . "'");
@@ -64,7 +64,7 @@ class ModelSaleOrder extends Model {
 			foreach ($order_product_query->rows as $product) {
 				$reward += $product['reward'];
 			}
-			
+
 			if ($order_query->row['affiliate_id']) {
 				$affiliate_id = $order_query->row['affiliate_id'];
 			} else {
@@ -94,15 +94,15 @@ class ModelSaleOrder extends Model {
 			}
 
 			$this->load->model('localisation/storage');
-			
+
 			$storage = $this->model_localisation_storage->getStorage($order_query->row['storage_id']);
-			
+
 			if ($storage) {
 				$storage_name= $storage['name'];
 			} else {
 				$storage_name= '';
 			}
-			
+
 			return array(
 				'order_id'                => $order_query->row['order_id'],
 				'invoice_no'              => $order_query->row['invoice_no'],
@@ -228,7 +228,7 @@ class ModelSaleOrder extends Model {
 
 		if ($order_query->num_rows) {
 			$order_id = $order_query->row['order_id'];
-			
+
 			$country_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int)$order_query->row['payment_country_id'] . "'");
 
 			if ($country_query->num_rows) {
@@ -272,7 +272,7 @@ class ModelSaleOrder extends Model {
 			foreach ($order_product_query->rows as $product) {
 				$reward += $product['reward'];
 			}
-			
+
 			if ($order_query->row['affiliate_id']) {
 				$affiliate_id = $order_query->row['affiliate_id'];
 			} else {
@@ -302,15 +302,15 @@ class ModelSaleOrder extends Model {
 			}
 
 			$this->load->model('localisation/storage');
-			
+
 			$storage = $this->model_localisation_storage->getStorage($order_query->row['storage_id']);
-			
+
 			if ($storage) {
 				$storage_name= $storage['name'];
 			} else {
 				$storage_name= '';
 			}
-			
+
 			return array(
 				'order_id'                => $order_query->row['order_id'],
 				'invoice_no'              => $order_query->row['invoice_no'],
@@ -395,7 +395,7 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getOrders($data = array()) {
-		$sql = "SELECT 	o.order_id, CONCAT(o.firstname, ' ', o.lastname) AS customer, CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) AS shipping_name, 
+		$sql = "SELECT 	o.order_id, CONCAT(o.firstname, ' ', o.lastname) AS customer, CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) AS shipping_name,
 						(SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS order_status,
 						(SELECT st.name FROM " . DB_PREFIX . "storage st WHERE st.storage_id = o.storage_id) AS storage_name,
 						o.order_status_id, o.invoice_prefix, o.shipping_code, o.total, o.weight, o.delivery_company, o.delivery_number, o.currency_code, o.currency_value, o.date_added, o.date_modified, o.store_url
@@ -416,9 +416,9 @@ class ModelSaleOrder extends Model {
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
 		}
-
+//change the id to Ame order number
 		if (!empty($data['filter_order_id'])) {
-			$sql .= " AND o.order_id = '" . (int)$data['filter_order_id'] . "'";
+			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
 		}
 
 		if (!empty($data['filter_customer'])) {

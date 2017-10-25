@@ -16,6 +16,42 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <?php if ($orders) { ?>
+        <!--add a filter-->
+        <!--<div class="well">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label" for="input-order-id"><?php echo $column_order_no; ?></label>
+                        <input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" placeholder="<?php echo $entry_order_id; ?>" id="input-order-id" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label" for="input-customer"><?php echo $column_receiver ?></label>
+                        <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_receiver; ?>" id="input-customer" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label class="control-label" for="input-total"><?php echo $column_status; ?></label>
+                        <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_order_status; ?>" id="input-total" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label class="control-label" for="input-date-added"><?php echo $column_date_added; ?></label>
+                        <div class="input-group date">
+                            <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                  </span></div>
+                    </div>
+                    <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+                </div>
+            </div>
+        </div>-->
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead>
@@ -83,6 +119,119 @@
 
         return false;
     });
+
+
 </script>
+
+<!--add the javascript for filter-->
+<script type="text/javascript"><!--
+    $('#button-filter').on('click', function() {
+        url = 'index.php?route=account/order&token=<?php echo $token; ?>';
+
+        var filter_order_id = $('input[name=\'filter_order_id\']').val();
+
+        if (filter_order_id) {
+            url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+        }
+
+        var filter_customer = $('input[name=\'filter_customer\']').val();
+
+        if (filter_customer) {
+            url += '&filter_customer=' + encodeURIComponent(filter_customer);
+        }
+
+        var filter_order_status = $('select[name=\'filter_order_status\']').val();
+
+        if (filter_order_status != '*') {
+            url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+        }
+
+        var filter_total = $('input[name=\'filter_total\']').val();
+
+        if (filter_total) {
+            url += '&filter_total=' + encodeURIComponent(filter_total);
+        }
+
+        var filter_date_added = $('input[name=\'filter_date_added\']').val();
+
+        if (filter_date_added) {
+            url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+        }
+
+        var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+
+        if (filter_date_modified) {
+            url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+        }
+
+        location = url;
+    });
+    //--></script>
+<script type="text/javascript"><!--
+    $('input[name=\'filter_customer\']').autocomplete({
+        'source': function(request, response) {
+            $.ajax({
+                url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+                dataType: 'json',
+                success: function(json) {
+                    response($.map(json, function(item) {
+                        return {
+                            label: item['name'],
+                            value: item['customer_id']
+                        }
+                    }));
+                }
+            });
+        },
+        'select': function(item) {
+            $('input[name=\'filter_customer\']').val(item['label']);
+        }
+    });
+    //--></script>
+<script type="text/javascript"><!--
+    $('input[name^=\'selected\']').on('change', function() {
+        $('#button-shipping, #button-invoice').prop('disabled', true);
+
+        var selected = $('input[name^=\'selected\']:checked');
+
+        if (selected.length) {
+            $('#button-invoice').prop('disabled', false);
+        }
+
+        for (i = 0; i < selected.length; i++) {
+            if ($(selected[i]).parent().find('input[name^=\'shipping_code\']').val()) {
+                $('#button-shipping').prop('disabled', false);
+
+                break;
+            }
+        }
+    });
+
+    $('#button-shipping, #button-invoice').prop('disabled', true);
+
+    $('input[name^=\'selected\']:first').trigger('change');
+
+    // IE and Edge fix!
+    $('#button-shipping, #button-invoice').on('click', function(e) {
+        $('#form-order').attr('action', this.getAttribute('formAction'));
+    });
+
+    $('#button-delete').on('click', function(e) {
+        $('#form-order').attr('action', this.getAttribute('formAction'));
+
+        if (confirm('<?php echo $text_confirm; ?>')) {
+            $('#form-order').submit();
+        } else {
+            return false;
+        }
+    });
+    //--></script>
+<script src="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<link href="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
+<script src="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"><!--
+    $('.date').datetimepicker({
+        pickTime: false
+    });
+    //--></script>
 
 <?php echo $footer; ?>

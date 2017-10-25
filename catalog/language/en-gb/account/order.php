@@ -35,7 +35,17 @@ $_['column_date_added']     = 'Date Added';
 $_['column_status']         = 'Status';
 $_['column_comment']        = 'Comment';
 $_['column_receiver']       = 'Receiver';
+//button filter
+$_['button_filter']         = 'Filter';
+//add filter elements
+$_['entry_order_id']                 = 'Order NO';
+$_['entry_receiver']                 = 'Receiver';
+$_['entry_order_status']             = 'Status';
+$_['entry_date_added']               = 'Date Added';
+
 
 // Error
 $_['error_reorder']         = '%s is not currently available to be reordered.';
 $_['error_track']           = 'This order is pending.';
+
+

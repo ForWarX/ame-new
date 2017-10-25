@@ -32,6 +32,8 @@ $_['column_action']         = '操作';
 $_['column_date_added']     = '加入日期';
 $_['column_status']         = '订单状态';
 $_['column_comment']        = '评论';
+//button filter
+$_['button_filter']       = '筛选';
 
 // Error
 $_['error_reorder']         = '%s 现在不能再次订购。';
