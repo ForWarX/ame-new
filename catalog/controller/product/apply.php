@@ -618,7 +618,7 @@ class ControllerProductApply extends Controller {
                 $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 1); // 订单的pending状态
 
                 // 跳转到成功界面
-                //$this->response->redirect($this->url->link('checkout/success'));
+                $this->response->redirect($this->url->link('checkout/success'));
 
                 // ============== 直接保存订单 结束 ==============
 			}

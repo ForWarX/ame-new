@@ -568,9 +568,14 @@ class ModelSaleOrder extends Model {
 	}
 
 	// 取出所有订单的商品信息，附带详细商品信息
-    public function getOrderProductsAllInfo($order_id) {
+    public function getOrderProductsAllInfo($order_id, $lang_id=null) {
         //$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product AS op LEFT JOIN (SELECT * FROM " . DB_PREFIX . "product LEFT JOIN " . DB_PREFIX . "product_description ON product.product_id=product_description.product_id) AS p ON op.product_id=p.product_id WHERE order_id = '" . (int)$order_id . "'");
-        $query = $this->db->query("SELECT * FROM (SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "') AS op LEFT JOIN " . DB_PREFIX . "product AS p ON op.product_id=p.product_id LEFT JOIN " . DB_PREFIX . "product_description AS pd ON p.product_id=pd.product_id");
+
+        $sql = "SELECT * FROM (SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "') AS op LEFT JOIN " . DB_PREFIX . "product AS p ON op.product_id=p.product_id LEFT JOIN " . DB_PREFIX . "product_description AS pd ON p.product_id=pd.product_id";
+        if (!empty($lang_id)) {
+            $sql .= " AND language_id='" . $lang_id . "'";
+        }
+        $query = $this->db->query($sql);
         return $query->rows;
     }
 
