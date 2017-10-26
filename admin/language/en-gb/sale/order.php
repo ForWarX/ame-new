@@ -36,7 +36,7 @@ $_['text_ip']                    = 'IP Address';
 $_['text_forwarded_ip']          = 'Forwarded IP';
 $_['text_user_agent']            = 'User Agent';
 $_['text_accept_language']       = 'Accept Language';
-$_['text_order_id']              = 'Order ID:';
+$_['text_order_id']              = 'Order ID';
 $_['text_fax']                   = 'Fax:';
 $_['text_website']               = 'Web Site:';
 $_['text_invoice_no']            = 'Invoice No.:';
@@ -64,6 +64,7 @@ $_['text_upload']                = 'Your file was successfully uploaded!';
 $_['text_custom_pass']           = 'Success: Custome checking information has benn added!';
 $_['text_picklist']              = 'Dispatch Note';
 $_['text_select_storage']        = '-- Select Storage --';
+$_['text_admin_name']            = 'Operator Name';
 
 // Column
 $_['column_order_id']            = 'Order ID';

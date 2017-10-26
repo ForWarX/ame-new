@@ -157,6 +157,8 @@ class ModelSaleOrder extends Model {
 				'shipping_custom_field'   => json_decode($order_query->row['shipping_custom_field'], true),
 				'shipping_method'         => $order_query->row['shipping_method'],
 				'shipping_code'           => $order_query->row['shipping_code'],
+				'shipping_phone'          => $order_query->row['shipping_phone'],
+				'shipping_chinaid'        => $order_query->row['shipping_chinaid'],
 				'comment'                 => $order_query->row['comment'],
 				'total'                   => $order_query->row['total'],
 				'weight'                  => $order_query->row['weight'],
@@ -179,7 +181,8 @@ class ModelSaleOrder extends Model {
 				'user_agent'              => $order_query->row['user_agent'],
 				'accept_language'         => $order_query->row['accept_language'],
 				'date_added'              => $order_query->row['date_added'],
-				'date_modified'           => $order_query->row['date_modified']
+				'date_modified'           => $order_query->row['date_modified'],
+				'admin_name'              => $order_query->row['admin_name']
 			);
 		} else {
 			return;

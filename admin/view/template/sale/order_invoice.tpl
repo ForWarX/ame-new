@@ -47,6 +47,9 @@
           <?php if ($order['shipping_method']) { ?>
           <b><?php echo $text_shipping_method; ?></b> <?php echo $order['shipping_method']; ?><br />
           <?php } ?>
+          <?php if ($order['admin_name']) { ?>
+          <b><?php echo $text_admin_name; ?></b> <?php echo $order['admin_name']; ?>
+          <?php } ?>
         </td>
       </tr>
       </tbody>

@@ -262,6 +262,8 @@ class ControllerSaleOrder extends Controller {
 
 		$results = $this->model_sale_order->getOrders($filter_data);
 
+		$admin_name = $this->user->getUserRealName(); // 管理员名字
+
 		foreach ($results as $result) {
 			$data['orders'][] = array(
 				'order_id'      => $result['order_id'],
@@ -281,7 +283,7 @@ class ControllerSaleOrder extends Controller {
 				'shipping_code' => $result['shipping_code'],
 				'view'          => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
 				'edit'          => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
-                'order_copy'    => $result['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $result['order_id']
+                'order_copy'    => $result['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $result['order_id'] . "&token=" . $this->session->data['token'] ."&admin_name=" . $admin_name
 			);
 		}
 
@@ -1539,11 +1541,13 @@ class ControllerSaleOrder extends Controller {
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['footer'] = $this->load->controller('common/footer');
 
+            $admin_name = $this->user->getUserRealName(); // 管理员名字
+
 			// 使用当前订单信息继续下单的链接
 			if ($order_id != 0) {
-                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $order_id;
+                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $order_id . "&token=" . $this->session->data['token'] ."&admin_name=" . $admin_name;
             } else {
-                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply';
+                $data['order_copy'] = $order_info['store_url'] . 'index.php?route=product/apply' . "&token=" . $this->session->data['token'] ."&admin_name=" . $admin_name;
             }
 
 			$this->response->setOutput($this->load->view('sale/order_info', $data));
@@ -2047,6 +2051,7 @@ class ControllerSaleOrder extends Controller {
 		$data['text_payment_method'] = $this->language->get('text_payment_method');
 		$data['text_shipping_method'] = $this->language->get('text_shipping_method');
 		$data['text_comment'] = $this->language->get('text_comment');
+		$data['text_admin_name'] = $this->language->get('text_admin_name');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
@@ -2275,7 +2280,8 @@ class ControllerSaleOrder extends Controller {
 					'product'          => $product_data,
 					'voucher'          => $voucher_data,
 					'total'            => $total_data,
-					'comment'          => nl2br($order_info['comment'])
+					'comment'          => nl2br($order_info['comment']),
+					'admin_name'       => $order_info['admin_name']
 				);
 			}
 		}

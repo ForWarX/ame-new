@@ -123,6 +123,7 @@ $_['text_maxmind_id']                         = 'Maxmind ID：';
 $_['text_error']                              = '错误:';
 $_['text_picklist']                           = '发货说明';
 $_['text_history']                            = '添加订单历史记录';
+$_['text_admin_name']                         = '操作员：';
 
 // Column
 $_['column_order_id']                         = '订单 ID';

@@ -3,6 +3,7 @@ namespace Cart;
 class User {
 	private $user_id;
 	private $username;
+	private $user_real_name;
 	private $permission = array();
 
 	public function __construct($registry) {
@@ -17,6 +18,7 @@ class User {
 				$this->user_id = $user_query->row['user_id'];
 				$this->username = $user_query->row['username'];
 				$this->user_group_id = $user_query->row['user_group_id'];
+				$this->user_real_name = $user_query->row['firstname'] . " " . $user_query->row['lastname'];
 
 				$this->db->query("UPDATE " . DB_PREFIX . "user SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE user_id = '" . (int)$this->session->data['user_id'] . "'");
 
@@ -66,6 +68,7 @@ class User {
 
 		$this->user_id = '';
 		$this->username = '';
+		$this->user_real_name = "";
 	}
 
 	public function hasPermission($key, $value) {
@@ -91,4 +94,8 @@ class User {
 	public function getGroupId() {
 		return $this->user_group_id;
 	}
+
+	public function getUserRealName() {
+	    return $this->user_real_name;
+    }
 }

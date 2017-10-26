@@ -28,6 +28,8 @@ class ControllerCheckoutSuccess extends Controller {
 				}
 			}
 
+            $order_id = $this->session->data['order_id']; // 临时记录订单ID，下面要用
+
 			unset($this->session->data['shipping_method']);
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
@@ -73,6 +75,13 @@ class ControllerCheckoutSuccess extends Controller {
 		} else {
 			$data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
 		}
+
+        // 如果有token，则是后台操作员进行下单，可以从前端使用后台打印功能
+        if (!empty($this->request->get['token']) && !empty($order_id)) {
+            $token = $this->request->get['token'];
+            $text_print = $this->language->get('text_print');
+            $data['text_message'] = sprintf($data['text_message'] . $text_print, "admin/index.php?route=sale/order/invoice&token=" . $token . "&order_id=" . $order_id, "admin/index.php?route=sale/order/lables&token=" . $token . "&order_id=" . $order_id);
+        }
 
 		$data['button_continue'] = $this->language->get('button_continue');
 

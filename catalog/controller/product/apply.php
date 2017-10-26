@@ -611,14 +611,23 @@ class ControllerProductApply extends Controller {
                     $order_data['split_strategy'] = $this->session->data['split_strategy'];
                 }
 
+                // 保存下单操作员
+                if (isset($this->request->get['admin_name'])) {
+                    $order_data['admin_name'] = $this->request->get['admin_name'];
+                }
+
                 $this->load->model('checkout/order');
 
                 // 数据库添加订单
                 $this->session->data['order_id'] = $this->model_checkout_order->addOrder($order_data);
-                $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 1); // 订单的pending状态
+                $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 1); // 将订单从无状态修改为pending
 
                 // 跳转到成功界面
-                $this->response->redirect($this->url->link('checkout/success'));
+                if (empty($this->request->get['token'])) {
+                    $this->response->redirect($this->url->link('checkout/success'));
+                } else {
+                    $this->response->redirect($this->url->link('checkout/success&token=' . $this->request->get['token']));
+                }
 
                 // ============== 直接保存订单 结束 ==============
 			}
@@ -1073,7 +1082,11 @@ class ControllerProductApply extends Controller {
 
         $data['upcs'] = $this->model_catalog_apply->getProductUPCs();
 
-        $data['action_url'] = $this->url->link('product/apply');
+        if (!empty($this->request->get['token'])) {
+            $data['action_url'] = $this->url->link('product/apply', 'token=' . $this->request->get['token'] . "&admin_name=" . $this->request->get['admin_name'], true);
+        } else {
+            $data['action_url'] = $this->url->link('product/apply');
+        }
 
         // Captcha
         if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
