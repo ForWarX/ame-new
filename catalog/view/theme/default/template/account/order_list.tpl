@@ -17,7 +17,7 @@
       <h1><?php echo $heading_title; ?></h1>
       <?php if ($orders) { ?>
         <!--add a filter-->
-        <!--<div class="well">
+        <div class="well">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
@@ -27,15 +27,20 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label class="control-label" for="input-customer"><?php echo $column_receiver ?></label>
-                        <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_receiver; ?>" id="input-customer" class="form-control" />
+                        <label class="control-label" for="input-receiver"><?php echo $column_receiver ?></label>
+                        <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_receiver; ?>" id="input-receiver" class="form-control" />
                     </div>
                 </div>
                 <div class="col-sm-3">
 
                     <div class="form-group">
-                        <label class="control-label" for="input-total"><?php echo $column_status; ?></label>
-                        <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_order_status; ?>" id="input-total" class="form-control" />
+                        <label class="control-label" for="input-status"><?php echo $column_status; ?></label>
+                        <select id="input-status" class="form-control" name="filter_status">
+                            <option></option>
+                            <?php foreach($order_status as $status) { ?>
+                            <option value="<?php echo $status['order_status_id']; ?>" <?php if (!empty($filter_status) && $filter_status == $status['order_status_id']) { ?>selected<?php } ?>><?php echo $status['name']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -43,15 +48,13 @@
                     <div class="form-group">
                         <label class="control-label" for="input-date-added"><?php echo $column_date_added; ?></label>
                         <div class="input-group date">
-                            <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
-                  <span class="input-group-btn">
-                  <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
-                  </span></div>
+                            <input type="date" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                          </div>
                     </div>
                     <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
                 </div>
             </div>
-        </div>-->
+        </div>
       <div class="table-responsive">
         <table class="table table-bordered table-hover">
           <thead>
@@ -126,7 +129,7 @@
 <!--add the javascript for filter-->
 <script type="text/javascript"><!--
     $('#button-filter').on('click', function() {
-        url = 'index.php?route=account/order&token=<?php echo $token; ?>';
+        url = 'index.php?route=account/order';
 
         var filter_order_id = $('input[name=\'filter_order_id\']').val();
 
@@ -140,16 +143,10 @@
             url += '&filter_customer=' + encodeURIComponent(filter_customer);
         }
 
-        var filter_order_status = $('select[name=\'filter_order_status\']').val();
+        var filter_status = $('select[name=\'filter_status\']').val();
 
-        if (filter_order_status != '*') {
-            url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
-        }
-
-        var filter_total = $('input[name=\'filter_total\']').val();
-
-        if (filter_total) {
-            url += '&filter_total=' + encodeURIComponent(filter_total);
+        if (filter_status != '*') {
+            url += '&filter_status=' + encodeURIComponent(filter_status);
         }
 
         var filter_date_added = $('input[name=\'filter_date_added\']').val();
@@ -226,12 +223,6 @@
         }
     });
     //--></script>
-<script src="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<link href="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="admin/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"><!--
-    $('.date').datetimepicker({
-        pickTime: false
-    });
-    //--></script>
+
 
 <?php echo $footer; ?>

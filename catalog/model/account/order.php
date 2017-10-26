@@ -109,13 +109,24 @@ class ModelAccountOrder extends Model {
 	}
 
 	public function getOrders($data = array(),$start = 0, $limit = 20 ) {
+		$sql="SELECT o.order_id, o.invoice_prefix, o.firstname, o.lastname, os.name as status, o.date_added, o.total, o.currency_code, o.currency_value, o.shipping_firstname, o.shipping_lastname FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "'" ;
 
 
-		$sql="SELECT o.order_id, o.invoice_prefix, o.firstname, o.lastname, os.name as status, o.date_added, o.total, o.currency_code, o.currency_value, o.shipping_firstname, o.shipping_lastname FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "' AND os.language_id = '" . (int)$this->config->get('config_language_id') ;
+
+		if (!empty($data['filter_order_id'])) {
+			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
+		}
+
 		if (!empty($data['filter_customer'])) {
+			$sql .= " AND CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) LIKE '%". $this->db->escape($data['filter_customer']) . "%'";
+		}
 
-			//$sql .= "AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+		if (!empty($data['filter_status'])) {
+			$sql .= " AND o.order_status_id = '" .$data['filter_status'] . "'";
+		}
 
+		if (!empty($data['filter_date_added'])) {
+			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 		if ($start < 0) {
 			$start = 0;
@@ -124,7 +135,7 @@ class ModelAccountOrder extends Model {
 		if ($limit < 1) {
 			$limit = 1;
 		}
-		$sql .= "' ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit;
+		$sql .= " ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit;
 
 		$query = $this->db->query($sql);
 		return $query->rows;
@@ -166,9 +177,25 @@ class ModelAccountOrder extends Model {
 		return $query->rows;
 	}
 
-	public function getTotalOrders() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` o WHERE customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+	public function getTotalOrders($data = array()) {
+		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` o WHERE customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
+		if (!empty($data['filter_order_id'])) {
+			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
+		}
+
+		if (!empty($data['filter_customer'])) {
+			$sql .= " AND CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) LIKE '%". $this->db->escape($data['filter_customer']) . "%'";
+		}
+
+		if (!empty($data['filter_status'])) {
+			$sql .= " AND o.order_status_id = '" .$data['filter_status'] . "'";
+		}
+
+		if (!empty($data['filter_date_added'])) {
+			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+		}
+		$query = $this->db->query($sql);
 		return $query->row['total'];
 	}
 
@@ -182,5 +209,11 @@ class ModelAccountOrder extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order_voucher` WHERE order_id = '" . (int)$order_id . "'");
 
 		return $query->row['total'];
+	}
+
+	public function getOrderAllStatus() {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE language_id='" . (int)$this->config->get("config_language_id") . "'");
+
+		return $query->rows;
 	}
 }

@@ -32,10 +32,10 @@ class ControllerAccountOrder extends Controller {
 			$filter_order_status = null;
 		}
 
-		if (isset($this->request->get['filter_total'])) {
-			$filter_total = $this->request->get['filter_total'];
+		if (isset($this->request->get['filter_status'])) {
+			$filter_status = $this->request->get['filter_status'];
 		} else {
-			$filter_total = null;
+			$filter_status = null;
 		}
 
 		if (isset($this->request->get['filter_date_added'])) {
@@ -82,8 +82,8 @@ class ControllerAccountOrder extends Controller {
 			$url .= '&filter_order_status=' . $this->request->get['filter_order_status'];
 		}
 
-		if (isset($this->request->get['filter_total'])) {
-			$url .= '&filter_total=' . $this->request->get['filter_total'];
+		if (isset($this->request->get['filter_status'])) {
+			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
 
 		if (isset($this->request->get['filter_date_added'])) {
@@ -112,6 +112,9 @@ class ControllerAccountOrder extends Controller {
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
+
+		// 获取所有订单状态
+		$data['order_status'] = $this->model_account_order->getOrderAllStatus();
 		
 		$data['breadcrumbs'] = array();
 
@@ -153,8 +156,7 @@ class ControllerAccountOrder extends Controller {
 		$data['entry_receiver'] = $this->language->get('entry_receiver');
 		$data['entry_order_status'] = $this->language->get('entry_order_status');
 		$data['entry_date_added'] = $this->language->get('entry_date_added');
-		//add token for filter
-		$data['token'] = $this->session->data['token'];
+
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -168,7 +170,7 @@ class ControllerAccountOrder extends Controller {
 			'filter_order_id'      => $filter_order_id,
 			'filter_customer'	   => $filter_customer,
 			'filter_order_status'  => $filter_order_status,
-			'filter_total'         => $filter_total,
+			'filter_status'         => $filter_status,
 			'filter_date_added'    => $filter_date_added,
 			'filter_date_modified' => $filter_date_modified,
 			'sort'                 => $sort,
@@ -216,7 +218,7 @@ class ControllerAccountOrder extends Controller {
 		$data['filter_order_id'] = $filter_order_id;
 		$data['filter_customer'] = $filter_customer;
 		$data['filter_order_status'] = $filter_order_status;
-		$data['filter_total'] = $filter_total;
+		$data['filter_status'] = $filter_status;
 		$data['filter_date_added'] = $filter_date_added;
 		$data['filter_date_modified'] = $filter_date_modified;
 		//end of filter data
