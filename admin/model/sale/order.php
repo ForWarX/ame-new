@@ -643,7 +643,7 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_order_id'])) {
-			$sql .= " AND order_id = '" . (int)$data['filter_order_id'] . "'";
+			$sql .= " AND invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
 		}
 
 		if (!empty($data['filter_customer'])) {
@@ -660,6 +660,22 @@ class ModelSaleOrder extends Model {
 
 		if (!empty($data['filter_total'])) {
 			$sql .= " AND total = '" . (float)$data['filter_total'] . "'";
+		}
+		//add filter recipient
+		if (!empty($data['filter_recipient'])) {
+			$sql .= " AND CONCAT(shipping_firstname, ' ', shipping_lastname) LIKE '%" . $this->db->escape($data['filter_recipient']) . "%'";
+		}
+		//add filter shipping number
+		if (!empty($data['filter_shipping_number'])) {
+			$sql .= " AND delivery_number LIKE '%" . $data['filter_shipping_number'] . "%'";
+		}
+		//add filter telephone
+		if (!empty($data['filter_telephone'])) {
+			$sql .= " AND telephone LIKE '%" . $data['filter_telephone'] . "%'";
+		}
+		//add filter shipping phone
+		if (!empty($data['filter_shipping_phone'])) {
+			$sql .= " AND shipping_phone LIKE '%" . $data['filter_shipping_phone'] . "%'";
 		}
 
 		$query = $this->db->query($sql);
