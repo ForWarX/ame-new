@@ -459,6 +459,8 @@ class ControllerProductApply extends Controller {
                     $order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
                     $order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
                     $order_data['shipping_country_id'] = $this->session->data['shipping_address']['country_id'];
+                    $order_data['shipping_chinaid'] = $this->session->data['shipping_address']['chinaid'];
+                    $order_data['shipping_phone'] = $this->session->data['shipping_address']['phone'];
                     $order_data['shipping_address_format'] = isset($this->session->data['shipping_address']['address_format']) ? $this->session->data['shipping_address']['address_format'] : "";
                     $order_data['shipping_custom_field'] = (isset($this->session->data['shipping_address']['custom_field']) ? $this->session->data['shipping_address']['custom_field'] : array());
 
@@ -489,6 +491,8 @@ class ControllerProductApply extends Controller {
                     $order_data['shipping_custom_field'] = array();
                     $order_data['shipping_method'] = '';
                     $order_data['shipping_code'] = '';
+                    $order_data['shipping_chinaid'] = '';
+                    $order_data['shipping_phone'] = '';
                 }
 
                 $order_data['products'] = array();
