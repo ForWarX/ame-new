@@ -65,6 +65,9 @@ $_['text_custom_pass']           = 'Success: Custome checking information has be
 $_['text_picklist']              = 'Dispatch Note';
 $_['text_select_storage']        = '-- Select Storage --';
 $_['text_admin_name']            = 'Operator Name';
+//add text for signature
+$_['text_signature']            = 'Signature: ';
+
 
 // Column
 $_['column_order_id']            = 'Order ID';
@@ -91,7 +94,8 @@ $_['column_delivery_number']     = 'Shipping Number';
 $_['column_custom_pass']         = 'Pass Custom Check';
 $_['column_paid']                = 'Paid';
 $_['column_storage']             = 'Storage';
-
+//add column upc
+$_['column_upc']             = 'UPC';
 // Entry
 $_['entry_store']                = 'Store';
 $_['entry_customer']             = 'Customer';
