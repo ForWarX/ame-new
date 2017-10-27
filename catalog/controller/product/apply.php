@@ -842,6 +842,7 @@ class ControllerProductApply extends Controller {
                     // 判官订单的混单品类是否正确
                     // 1. 可混单与不可混单不能混合
                     // 2. 不可混单的品类是否相同
+                    /*
                     $mix = $canMixs[$key];
                     if ($mix == 0 && $category_id == -1) { // 记下首个不可混单的品类
                         $category_id = $category_ids[$key];
@@ -862,11 +863,12 @@ class ControllerProductApply extends Controller {
                         $txt .= $upc1 . " must shipping in different package, please remove one and place it in different order";
                         $data['err_message'] = $txt;
                         break;
-                    }
+                    }*/
 				}
+				/*
 				if (empty($data['err_message']) && $total_price > 330) {
                     $data['err_message'] = "Total price can't be over $330, please make another order.";
-                }
+                }*/
 			}
 			
 			if (empty($data['err_message'])) {
