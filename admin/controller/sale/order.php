@@ -2054,12 +2054,16 @@ class ControllerSaleOrder extends Controller {
 		$data['text_shipping_method'] = $this->language->get('text_shipping_method');
 		$data['text_comment'] = $this->language->get('text_comment');
 		$data['text_admin_name'] = $this->language->get('text_admin_name');
+		//add text signature
+		$data['text_signature'] = $this->language->get('text_signature');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
 		$data['column_quantity'] = $this->language->get('column_quantity');
 		$data['column_price'] = $this->language->get('column_price');
 		$data['column_total'] = $this->language->get('column_total');
+		//add column upc
+		$data['column_upc'] = $this->language->get('column_upc');
 
 		$data['entry_weight'] = $this->language->get('entry_weight');
 		$data['entry_category'] = $this->language->get('entry_category');
@@ -2213,6 +2217,7 @@ class ControllerSaleOrder extends Controller {
 					$product_data[] = array(
 						'name'     => $product['name'],
 						'model'    => $product['model'],
+						'upc'    => $oproduct['upc'],
 						'tag'      => $oproduct['tag'], // Spec
 						'mpn'      => $oproduct['mpn'], // Brand
 						'meta_title' => $oproduct['meta_title'], // English name

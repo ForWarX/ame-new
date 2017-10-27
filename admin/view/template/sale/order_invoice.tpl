@@ -94,7 +94,7 @@
       <thead>
       <tr>
         <td><b><?php echo $column_product; ?></b></td>
-        <td><b><?php echo $column_model; ?></b></td>
+        <td><b><?php echo $column_upc; ?></b></td>
         <td class="text-right"><b><?php echo $column_quantity; ?></b></td>
         <td class="text-right"><b><?php echo $column_price; ?></b></td>
         <td class="text-right"><b><?php echo $column_total; ?></b></td>
@@ -108,7 +108,7 @@
           <br />
           &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
           <?php } ?></td>
-        <td><?php echo $product['model']; ?></td>
+        <td><?php echo $product['upc']; ?></td>
         <td class="text-right"><?php echo $product['quantity']; ?></td>
         <td class="text-right"><?php echo $product['price']; ?></td>
         <td class="text-right"><?php echo $product['total']; ?></td>
@@ -137,6 +137,7 @@
       <?php } ?>
       </tbody>
     </table>
+    <h2><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h2>
   </div>
   <?php } ?>
 </div>
