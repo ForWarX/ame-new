@@ -191,6 +191,7 @@ $_['entry_barcode']                           = '条形码';
 // Button
 $_['button_order_copy']                       = '继续下单';
 $_['button_labels_print']                     = '打印小票';
+$_['button_new_order']                        = '下单';
 
 // Help
 $_['help_country_match']                      = '国家的 IP 地址是否与帐单地址中的国家/地区相配 (不匹配 = 更高的风险)。';

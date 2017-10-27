@@ -156,6 +156,7 @@ $_['entry_barcode']              = 'Barcode';
 // Button
 $_['button_order_copy']          = 'Reorder';
 $_['button_labels_print']        = 'Print Label';
+$_['button_new_order']           = 'New Order';
 
 // Help
 $_['help_override']              = 'If the customers order is being blocked from changing the order status due to an anti-fraud extension enable override.';
@@ -165,6 +166,3 @@ $_['error_warning']              = 'Warning: Please check the form carefully for
 $_['error_permission']           = 'Warning: You do not have permission to modify orders!';
 $_['error_action']               = 'Warning: Could not complete this action!';
 $_['error_filetype']			 = 'Invalid file type!';
-
-// Button
-$_['button_export']			     = 'Order Export';

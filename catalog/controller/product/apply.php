@@ -706,8 +706,12 @@ class ControllerProductApply extends Controller {
 		$data['zones'] = $this->model_localisation_zone->getZonesByCountryId(isset($data["user_address"]["country_id"]) ? $data["user_address"]["country_id"] : 38);
 		
 		$data['upcs'] = $this->model_catalog_apply->getProductUPCs();
-		
-		$data['action_url'] = $this->url->link('product/apply');
+
+        if (!empty($this->request->get['token'])) {
+            $data['action_url'] = $this->url->link('product/apply', 'token=' . $this->request->get['token'] . "&admin_name=" . $this->request->get['admin_name'], true);
+        } else {
+            $data['action_url'] = $this->url->link('product/apply');
+        }
 		
 		// Captcha
 		if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {

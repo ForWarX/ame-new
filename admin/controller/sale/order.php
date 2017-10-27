@@ -235,6 +235,7 @@ class ControllerSaleOrder extends Controller {
 		$data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'], true);
 		$data['shipping'] = $this->url->link('sale/order/shipping', 'token=' . $this->session->data['token'], true);
 		$data['add'] = $this->url->link('sale/order/add', 'token=' . $this->session->data['token'], true);
+		$data['new_order'] = '../index.php?route=product/apply&token=' . $this->session->data['token'] . "&admin_name=" . $this->user->getUserRealName();
 		$data['delete'] = $this->url->link('sale/order/delete', 'token=' . $this->session->data['token'], true);
 		$data['import'] = $this->url->link('sale/order/import', 'token=' . $this->session->data['token'], true);
         $data['export'] = $this->url->link('sale/order/export', 'token=' . $this->session->data['token'] . $url, true);
@@ -337,6 +338,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_view'] = $this->language->get('button_view');
 		$data['button_ip_add'] = $this->language->get('button_ip_add');
 		$data['button_order_copy'] = $this->language->get('button_order_copy');
+		$data['button_new_order'] = $this->language->get('button_new_order');
 
 		$data['token'] = $this->session->data['token'];
 

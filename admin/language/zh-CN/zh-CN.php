@@ -40,6 +40,7 @@ $_['text_home']                     = '首页';
 $_['text_confirm']                  = '删除/卸载操作无法撤消 ！确定要执行操作？';
 
 // Button
+$_['button_add']                    = '新增';
 $_['button_insert']                 = '添加';
 $_['button_delete']                 = '删除';
 $_['button_save']                   = '保存';
@@ -109,6 +110,8 @@ $_['button_payment']                = '申请付款方法';
 $_['button_coupon']                 = '申请优惠券';
 $_['button_voucher']                = '使用礼品卷';
 $_['button_reward']                 = '应用点数';
+$_['button_import']                 = '导入';
+$_['button_export']                 = '导出';
 
 
 // Tab
