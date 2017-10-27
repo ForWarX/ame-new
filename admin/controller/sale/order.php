@@ -2610,12 +2610,12 @@ class ControllerSaleOrder extends Controller {
                     }
 					$invoice_prefix = $para[0];		// AME1704075988
 					if (empty($invoice_prefix)) {
-						$data['error'] = "Unknow ame order number at line : " . $i;
+						$data['error'] = "Unknow ame order number at line : " . $row;
 						break;
 					}
 					$sku = $para[11];		// 货物sku编码
 					if (empty($sku)) {
-						$data['error'] = "Unknow sku : " . $invoice_prefix . " at line : " . $i;
+						$data['error'] = "Unknow sku : " . $invoice_prefix . " at line : " . $row;
 						break;
 					}
 				}
