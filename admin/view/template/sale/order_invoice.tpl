@@ -75,16 +75,14 @@
     <table class="table table-bordered">
       <tbody>
       <tr>
-        <td><?php echo $entry_weight; ?></td>
-        <td><?php echo $order['weight'];?></td>
-      </tr>
-      <tr>
-        <td><?php echo $entry_category; ?></td>
-        <td><?php echo $order['category_name']; ?></td>
+        <td style="width: 25%;"><?php echo $entry_category; ?></td>
+        <td style="width: 25%;"><?php echo $order['category_name']; ?></td>
+        <td style="width: 25%;"><?php echo $entry_weight; ?></td>
+        <td style="width: 25%;"><?php echo $order['weight'];?></td>
       </tr>
       <tr>
         <td><?php echo $entry_barcode; ?></td>
-        <td>
+        <td colspan="3">
           <img src='<?php echo $order['barcode_url']; ?>'>
           <br>
           <span style="margin-left: 15px; font-size: 18px;"><?php echo $order['invoice_prefix'];?></span>
