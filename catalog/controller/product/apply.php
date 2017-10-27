@@ -211,7 +211,7 @@ class ControllerProductApply extends Controller {
                     $this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->request->post['shipping_address_id']);
                 }
 			}
-			
+
 			if (empty($data['err_message'])) {
 				// Check upload production
 				$upcs = $this->request->post['upc'];

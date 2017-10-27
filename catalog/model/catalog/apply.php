@@ -75,7 +75,11 @@ class ModelCatalogApply extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '1', name = '" . $this->db->escape($data['name']) . "', description = '', tag = '" . $this->db->escape($data['tag']) . "', meta_title = '" . $this->db->escape($data['meta_title']) . "', meta_description = '', meta_keyword = ''");
+        $this->load->model('localisation/language');
+		$lang_cn_id = $this->model_localisation_language->getLanguageByCode("zh-CN")['language_id'];
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '1', name = '" . $this->db->escape($data['meta_title']) . "', description = '', tag = '" . $this->db->escape($data['tag']) . "', meta_title = '" . $this->db->escape($data['meta_title']) . "', meta_description = '', meta_keyword = ''");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . $lang_cn_id . "', name = '" . $this->db->escape($data['name']) . "', description = '', tag = '" . $this->db->escape($data['tag']) . "', meta_title = '" . $this->db->escape($data['name']) . "', meta_description = '', meta_keyword = ''");
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '0'");
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '59'");
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '0', layout_id = '0'");
