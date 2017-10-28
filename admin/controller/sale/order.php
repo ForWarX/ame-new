@@ -243,21 +243,30 @@ class ControllerSaleOrder extends Controller {
 		$data['orders'] = array();
 
 		$filter_data = array(
-			'filter_order_id'      => $filter_order_id,
-			'filter_customer'	   => $filter_customer,
-			'filter_order_status'  => $filter_order_status,
-			'filter_total'         => $filter_total,
-			'filter_recipient'         => $filter_recipient,
-			'filter_telephone'         => $filter_telephone,
-			'filter_shipping_phone'         => $filter_shipping_phone,
-			'filter_date_added'    => $filter_date_added,
-			'filter_date_modified' => $filter_date_modified,
+			'filter_order_id'        => $filter_order_id,
+			'filter_customer'	     => $filter_customer,
+			'filter_order_status'    => $filter_order_status,
+			'filter_total'           => $filter_total,
+			'filter_recipient'       => $filter_recipient,
+			'filter_telephone'       => $filter_telephone,
+			'filter_shipping_phone'  => $filter_shipping_phone,
+			'filter_date_added'      => $filter_date_added,
+			'filter_date_modified'   => $filter_date_modified,
 			'filter_shipping_number' => $filter_shipping_number,
-			'sort'                 => $sort,
-			'order'                => $order,
-			'start'                => ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit'                => $this->config->get('config_limit_admin')
+			'sort'                   => $sort,
+			'order'                  => $order,
+			'start'                  => ($page - 1) * $this->config->get('config_limit_admin'),
+			'limit'                  => $this->config->get('config_limit_admin')
 		);
+
+		// 更换订单用户
+        if (isset($this->request->get['change_customer'])) {
+            if (isset($this->request->post['selected'])) {
+                $this->model_sale_order->changeOrderCustomer($this->request->get['change_customer'], null, $this->request->post['selected']);
+            } else {
+                $this->model_sale_order->changeOrderCustomer($this->request->get['change_customer'], $filter_data);
+            }
+        }
 
 		$order_total = $this->model_sale_order->getTotalOrders($filter_data);
 
@@ -339,6 +348,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_ip_add'] = $this->language->get('button_ip_add');
 		$data['button_order_copy'] = $this->language->get('button_order_copy');
 		$data['button_new_order'] = $this->language->get('button_new_order');
+		$data['button_change_customer'] = $this->language->get('button_change_customer');
 
 		$data['token'] = $this->session->data['token'];
 

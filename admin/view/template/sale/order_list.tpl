@@ -98,6 +98,7 @@
                 <input type="text" name="filter_shipping_number" value="<?php echo $filter_shipping_number; ?>" placeholder="<?php echo $entry_shipping_number; ?>" id="input-shipping-number" class="form-control" />
               </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
+              <button type="button" id="button-change-customer" class="btn btn-primary"><i class="fa fa-user"></i> <?php echo $button_change_customer; ?></button>
             </div>
           </div>
         </div>
@@ -197,75 +198,144 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript"><!--
-$('#button-filter').on('click', function() {
-	url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
+  <script type="text/javascript">
+      $('#button-filter').on('click', function() {
+          url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
 
-	var filter_order_id = $('input[name=\'filter_order_id\']').val();
+          var filter_order_id = $('input[name=\'filter_order_id\']').val();
+          if (filter_order_id) {
+              url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+          }
 
-	if (filter_order_id) {
-		url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
-	}
+          var filter_customer = $('input[name=\'filter_customer\']').val();
+          if (filter_customer) {
+              url += '&filter_customer=' + encodeURIComponent(filter_customer);
+          }
 
-	var filter_customer = $('input[name=\'filter_customer\']').val();
+          var filter_order_status = $('select[name=\'filter_order_status\']').val();
+          if (filter_order_status != '*') {
+              url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+          }
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+          var filter_total = $('input[name=\'filter_total\']').val();
+          if (filter_total) {
+              url += '&filter_total=' + encodeURIComponent(filter_total);
+          }
+          //add filter recipient
+          var filter_recipient = $('input[name=\'filter_recipient\']').val();
 
-	var filter_order_status = $('select[name=\'filter_order_status\']').val();
+          if (filter_recipient) {
+              url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
+          }
 
-	if (filter_order_status != '*') {
-		url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
-	}
+          //add filter telephone
+          var filter_telephone = $('input[name=\'filter_telephone\']').val();
 
-	var filter_total = $('input[name=\'filter_total\']').val();
+          if (filter_telephone) {
+              url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+          }
 
-  if (filter_total) {
-    url += '&filter_total=' + encodeURIComponent(filter_total);
-  }
-  //add filter recipient
-  var filter_recipient = $('input[name=\'filter_recipient\']').val();
+          //add filter shipping phone
+          var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
 
-  if (filter_recipient) {
-    url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
-  }
+          if (filter_shipping_phone) {
+              url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
+          }
 
-  //add filter telephone
-  var filter_telephone = $('input[name=\'filter_telephone\']').val();
+          var filter_date_added = $('input[name=\'filter_date_added\']').val();
 
-  if (filter_telephone) {
-    url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
-  }
+          if (filter_date_added) {
+              url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+          }
 
-  //add filter shipping phone
-  var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
+          var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
 
-  if (filter_shipping_phone) {
-    url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
-  }
+          if (filter_date_modified) {
+              url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+          }
+          //add filter shipping number
+          var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
 
-	var filter_date_added = $('input[name=\'filter_date_added\']').val();
+          if (filter_shipping_number) {
+              url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+          }
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+          location = url;
+      });
+  </script>
+  <script type="text/javascript">
+      // 更换订单用户
+      $('#button-change-customer').on('click', function() {
+          if (!confirm("Confirm?")) return;
 
-	var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+          url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
 
-	if (filter_date_modified) {
-		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
-	}
-//add filter shipping number
-  var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
+          var filter_order_id = $('input[name=\'filter_order_id\']').val();
+          if (filter_order_id) {
+              url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+          }
 
-  if (filter_shipping_number) {
-    url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
-  }
+          var filter_customer = '<?php echo $filter_customer; ?>';
+          if (filter_customer) {
+              url += '&filter_customer=' + encodeURIComponent(filter_customer);
+          }
 
-	location = url;
-});
-//--></script> 
+          var filter_order_status = $('select[name=\'filter_order_status\']').val();
+          if (filter_order_status != '*') {
+              url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+          }
+
+          var filter_total = $('input[name=\'filter_total\']').val();
+          if (filter_total) {
+              url += '&filter_total=' + encodeURIComponent(filter_total);
+          }
+          //add filter recipient
+          var filter_recipient = $('input[name=\'filter_recipient\']').val();
+
+          if (filter_recipient) {
+              url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
+          }
+
+          //add filter telephone
+          var filter_telephone = $('input[name=\'filter_telephone\']').val();
+
+          if (filter_telephone) {
+              url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+          }
+
+          //add filter shipping phone
+          var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
+
+          if (filter_shipping_phone) {
+              url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
+          }
+
+          var filter_date_added = $('input[name=\'filter_date_added\']').val();
+
+          if (filter_date_added) {
+              url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+          }
+
+          var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+
+          if (filter_date_modified) {
+              url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+          }
+          //add filter shipping number
+          var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
+
+          if (filter_shipping_number) {
+              url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+          }
+
+          var change_customer = $('input[name=\'filter_customer\']').data('id');
+          if (change_customer) {
+              url += '&change_customer=' + change_customer;
+          }
+
+          $('#form-order').attr('action', url).submit();
+      });
+  </script>
   <script type="text/javascript"><!--
 $('input[name=\'filter_customer\']').autocomplete({
 	'source': function(request, response) {
@@ -283,7 +353,7 @@ $('input[name=\'filter_customer\']').autocomplete({
 		});
 	},
 	'select': function(item) {
-		$('input[name=\'filter_customer\']').val(item['label']);
+        $('input[name=\'filter_customer\']').val(item['label']).data("id", item['value']);
 	}
 });
 //--></script>

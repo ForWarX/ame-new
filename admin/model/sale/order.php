@@ -810,4 +810,72 @@ class ModelSaleOrder extends Model {
 
 		return $query->row['email'];
 	}
+
+	// 更换订单用户
+	public function changeOrderCustomer($customer_id=null, $filter=null, $order_ids=null) {
+	    if (!empty($customer_id)) {
+	        $this->load->model("customer/customer");
+	        $customer = $this->model_customer_customer->getCustomer($customer_id);
+	        if (!empty($order_ids)) {
+	            foreach ($order_ids as $order_id) {
+                    $this->db->query("UPDATE `" . DB_PREFIX . "order` SET customer_id = '" . (int)$customer['customer_id'] . "', customer_group_id = '" . (int)$customer['customer_group_id'] . "', firstname = '" . $this->db->escape($customer['firstname']) . "', lastname = '" . $this->db->escape($customer['lastname']) . "' WHERE order_id = '" . (int)$order_id . "'");
+                }
+            } else if (!empty($filter)) {
+                $sql = "UPDATE `" . DB_PREFIX . "order` SET customer_id = '" . (int)$customer['customer_id'] . "', customer_group_id = '" . (int)$customer['customer_group_id'] . "', firstname = '" . $this->db->escape($customer['firstname']) . "', lastname = '" . $this->db->escape($customer['lastname']) . "' ";
+                if (isset($filter['filter_order_status'])) {
+                    $implode = array();
+
+                    $order_statuses = explode(',', $filter['filter_order_status']);
+
+                    foreach ($order_statuses as $order_status_id) {
+                        $implode[] = "order_status_id = '" . (int)$order_status_id . "'";
+                    }
+
+                    if ($implode) {
+                        $sql .= " WHERE (" . implode(" OR ", $implode) . ")";
+                    }
+                } else {
+                    $sql .= " WHERE order_status_id > '0'";
+                }
+
+                if (!empty($filter['filter_order_id'])) {
+                    $sql .= " AND invoice_prefix LIKE '%" .$filter['filter_order_id'] . "%'";
+                }
+
+                if (!empty($filter['filter_customer'])) {
+                    $sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($filter['filter_customer']) . "%'";
+                }
+
+                if (!empty($filter['filter_date_added'])) {
+                    $sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($filter['filter_date_added']) . "')";
+                }
+
+                if (!empty($filter['filter_date_modified'])) {
+                    $sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape($filter['filter_date_modified']) . "')";
+                }
+
+                if (!empty($filter['filter_total'])) {
+                    $sql .= " AND total = '" . (float)$filter['filter_total'] . "'";
+                }
+                //add filter recipient
+                if (!empty($filter['filter_recipient'])) {
+                    $sql .= " AND CONCAT(shipping_firstname, ' ', shipping_lastname) LIKE '%" . $this->db->escape($filter['filter_recipient']) . "%'";
+                }
+                //add filter shipping number
+                if (!empty($filter['filter_shipping_number'])) {
+                    $sql .= " AND delivery_number LIKE '%" . $filter['filter_shipping_number'] . "%'";
+                }
+                //add filter telephone
+                if (!empty($filter['filter_telephone'])) {
+                    $sql .= " AND telephone LIKE '%" . $filter['filter_telephone'] . "%'";
+                }
+                //add filter shipping phone
+                if (!empty($filter['filter_shipping_phone'])) {
+                    $sql .= " AND shipping_phone LIKE '%" . $filter['filter_shipping_phone'] . "%'";
+                }
+
+                $this->db->query($sql);
+            }
+        }
+    }
 }

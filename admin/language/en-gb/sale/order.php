@@ -161,6 +161,7 @@ $_['entry_barcode']              = 'Barcode';
 $_['button_order_copy']          = 'Reorder';
 $_['button_labels_print']        = 'Print Label';
 $_['button_new_order']           = 'New Order';
+$_['button_change_customer']     = 'Change Customer';
 
 // Help
 $_['help_override']              = 'If the customers order is being blocked from changing the order status due to an anti-fraud extension enable override.';
