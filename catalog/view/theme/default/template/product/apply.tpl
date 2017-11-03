@@ -105,7 +105,7 @@
 						</div>
 					</div>
 				</div>
-				<?php if (!empty($shipping_address_list)) {?>
+				<?php if (!empty($shipping_address_list)) { ?>
 				<div class="form-group">
 					<select name='shipping_select' id='select_shipping_address' class="form-control input-sm">
 						<option value=0>--Select Reciptient--</option>
@@ -135,10 +135,19 @@
 						</div>
 					</div>
 					<div class="row">
+
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>City:<span style="color:red">*</span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
+								<label class='col-sm-2 control-label' for='shipping-country-id'>Country:<span style="color:red">*</span></label>
+								<div class='col-sm-4'>
+									<select name="shipping_country_id" id='shipping_country_id' class="form-control input-sm">
+										<?php $country_id = empty($shipping_copy) ? 38 : $shipping_copy["country_id"]; ?>
+										<option value="0"> -- Select -- </option>
+										<?php foreach ($countries as $country) { ?>
+										<option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $country_id) ? 'selected' : ''; ?>><?php echo $country['name']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
@@ -178,16 +187,16 @@
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label' for='shipping-country-id'>Country:<span style="color:red">*</span></label>
-								<div class='col-sm-4'>
-									<select name="shipping_country_id" id='shipping_country_id' class="form-control input-sm">
-										<?php $country_id = empty($shipping_copy) ? 38 : $shipping_copy["country_id"]; ?>
-										<option value="0"> -- Select -- </option>
-										<?php foreach ($countries as $country) { ?>
-											<option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $country_id) ? 'selected' : ''; ?>><?php echo $country['name']; ?></option>
-										<?php } ?>
-									</select>
-								</div>
+								<label class='col-sm-2 control-label'>City:<span style="color:red">*</span></label>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class='col-sm-6'>
+							<div class="row form-group">
+								<label class='col-sm-2 control-label'>District:<span style="color:red">*</span></label>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
 							</div>
 						</div>
 					</div>

@@ -2646,18 +2646,28 @@ class ControllerSaleOrder extends Controller {
 
                         $invoice_prefix = $para[0];		// AME1704075988
                         $order = $this->model_sale_order->getOrderByPrefix($invoice_prefix);
+						//ADD PAYMENT INFORMATION
+						$payment_firstname = $para[1];
+						$payment_address = $para[3];
+						$payment_phone = $para[4];
+						$payment_city = $para[6];
+						$payment_province =$para[2];
+						$payment_country = $para[5];
+						$payment_postcode =$para[27];
+						$payment_email = $para[28];
+
 
                         $shipping_firstname = $para[7];		// full name
                         $shipping_lastname = '';
                         $shipping_company = '';
                         $shipping_address_1 = $para[9];		// 详细地址
                         $shipping_address_2 = '';
-                        $shipping_city = '';
-                        $shipping_country = 'China';				// China
+                        $shipping_city = $para[29];
+						$shipping_country = 'China';				// China
                         $shipping_country_id = 44;					// China
-                        $shipping_postcode = '';
-                        $shipping_zone = '';
-                        $shipping_zone_id = 0;
+                        $shipping_postcode = $para[31];
+						$shipping_zone = $para[30];
+						$shipping_zone_id ='';
                         $shipping_method = 'import';
                         $shipping_code = 'import';
                         $shipping_phone = $para[10];		// 收件人电话
@@ -2683,7 +2693,7 @@ class ControllerSaleOrder extends Controller {
                         }
                         if (empty($order)) {
                             // Add order
-                            $order_id = $this->model_sale_order->addOrder($customer, $invoice_prefix, $shipping_firstname, $shipping_lastname, $shipping_company, $shipping_address_1, $shipping_address_2, $shipping_city, $shipping_country, $shipping_country_id, $shipping_postcode, $shipping_zone, $shipping_zone_id, $shipping_method, $shipping_code, $shipping_phone, $shipping_chinaid, $currency_code);
+                            $order_id = $this->model_sale_order->addOrder($customer, $invoice_prefix,$payment_firstname,$payment_province ,$payment_address,$payment_phone,$payment_country,$payment_city,$payment_postcode, $shipping_firstname, $shipping_lastname, $shipping_company, $shipping_address_1, $shipping_address_2, $shipping_city, $shipping_country, $shipping_country_id, $shipping_postcode, $shipping_zone, $shipping_zone_id, $shipping_method, $shipping_code, $shipping_phone, $shipping_chinaid, $currency_code);
                             $order = $this->model_sale_order->getOrderByPrefix($invoice_prefix);
                         } else {
                             $order_id = $order['order_id'];
