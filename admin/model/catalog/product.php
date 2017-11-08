@@ -125,7 +125,7 @@ class ModelCatalogProduct extends Model {
 
 		return $product_id;
 	}
-
+/* 原有 导入下单产品
 	public function addProductImport($data) {
         $sql = "INSERT INTO " . DB_PREFIX . "product SET model = 'imported', sku = '', upc = '" . $this->db->escape($data['upc']) . "', ean = '', jan = '', isbn = '', mpn = '', location = '', quantity = '" . (int)$data['quantity'] . "', minimum = '1', subtract = '0', stock_status_id = '7', date_available = NOW(), shipping = '1', price = '" . (float)$data['price'] . "', points = '0', weight = '" . (float)$data['weight'] . "', weight_class_id = '1', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '1', status = '1', tax_class_id = '0', sort_order = '0', date_added = NOW()";
 
@@ -179,7 +179,61 @@ class ModelCatalogProduct extends Model {
 
 		return $product_id;
 	}
-	
+	*/
+
+	public function addProductImport($upc, $name, $name_short, $tag, $meta_title, $hscode, $taxnumber, $price, $weight, $currency_code, $unit) {
+		$sql = "INSERT INTO " . DB_PREFIX . "product SET model = 'imported', sku = '', upc = '" . $this->db->escape($upc) . "', ean = '', jan = '', isbn = '', mpn = '" . $this->db->escape($name) . "', location = '', quantity = '100', minimum = '1', subtract = '0', stock_status_id = '7', date_available = NOW(), shipping = '1', price = '" . (float)$price . "', points = '0', weight = '0', weight_class_id = '1', length = '0', width = '0', height = '0', length_class_id = '1', status = '1', tax_class_id = '0', sort_order = '0', date_added = NOW()";
+
+		// 品牌
+		if (!empty($name)) {
+			$this->load->model("catalog/manufacturer");
+			$query = $this->model_catalog_manufacturer->getManufacturerByName($name);
+			if (!empty($query)) {
+				$sql .= ", manufacturer_id='" . $query['manufacturer_id'] . "'";
+			} else {
+				$sql .= ", manufacturer_id='0'";
+			}
+		} else {
+			$sql .= ", manufacturer_id='0'";
+		}
+
+		$this->db->query($sql);
+
+		$product_id = $this->db->getLastId();
+
+		$meta_description = json_encode(array('hscode' => $hscode, 'taxnumber' =>  $taxnumber));
+
+		// 英文名和描述
+		if (!empty($meta_title)) {
+
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '1', name = '" . $this->db->escape($meta_title) . "', description = '" . $meta_title . "', tag = '" . $this->db->escape($meta_title) . "', meta_title = '" . $this->db->escape($meta_title) . "', meta_description = '" . $this->db->escape($meta_description) . "', meta_keyword = ''");
+		}
+		// 中文名和描述
+		if (!empty($name)) {
+			$this->load->model('localisation/language');
+			$language = $this->model_localisation_language->getLanguageByCode('zh-CN');
+			$language_id = $language['language_id'];
+			$meta_title = $name;
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . $language_id ."', name = '" . $this->db->escape($name) . "', description = '" . $name. "', tag = '" . $this->db->escape($name) . "', meta_title = '" . $this->db->escape($meta_title) . "', meta_description = '" . $this->db->escape($meta_description) . "', meta_keyword = ''");
+		}
+
+		// 品类
+		if (!empty($data['category'])) {
+			$this->load->model("catalog/category");
+			$query = $this->model_catalog_category->getCategoryByName($data['category']);
+			if (!empty($query)) {
+				$category_id = $query['category_id'];
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . $category_id . "'");
+			}
+		}
+
+		// 默认商店ID
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '0'");
+
+		$this->cache->delete('product');
+
+		return $product_id;
+	}
 	public function editProduct($product_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_available = '" . $this->db->escape($data['date_available']) . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', shipping = '" . (int)$data['shipping'] . "', price = '" . (float)$data['price'] . "', points = '" . (int)$data['points'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 

@@ -2700,7 +2700,7 @@ class ControllerSaleOrder extends Controller {
                         }
 
                         // Add order products
-                        $this->model_sale_order->addOrderProduct($order_id, $product, $quantity);
+                        $this->model_sale_order->addOrderProduct($order_id, $product, $quantity,$price);
                     }
 				}
 
