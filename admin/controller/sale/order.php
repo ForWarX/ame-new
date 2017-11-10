@@ -2570,8 +2570,13 @@ class ControllerSaleOrder extends Controller {
 		);
 		*/
 		$data = array();
-		
+           //上传时将此|url 该成 server root url
+			$store_url = "http://www.superpolarbear.com/";
+
+			//$store_url= HTTP_SERVER;
+
 		$customer_id = $this->request->post['customer_id'];
+
 		if (!empty($this->request->files['file']['name'])) {
 			$name = $this->request->files['file']['name'];
 			$type = $this->request->files['file']['type'];
@@ -2595,7 +2600,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('sale/order');
 		$this->load->model('catalog/product');
 		$this->load->model('customer/customer');
-		
+
 		$customer = array();
 		if (empty($data['error'])) {
 			$customer = $this->model_customer_customer->getCustomer($customer_id);
@@ -2693,7 +2698,7 @@ class ControllerSaleOrder extends Controller {
                         }
                         if (empty($order)) {
                             // Add order
-                            $order_id = $this->model_sale_order->addOrder($customer, $invoice_prefix,$payment_firstname,$payment_province ,$payment_address,$payment_phone,$payment_country,$payment_city,$payment_postcode, $shipping_firstname, $shipping_lastname, $shipping_company, $shipping_address_1, $shipping_address_2, $shipping_city, $shipping_country, $shipping_country_id, $shipping_postcode, $shipping_zone, $shipping_zone_id, $shipping_method, $shipping_code, $shipping_phone, $shipping_chinaid, $currency_code);
+                            $order_id = $this->model_sale_order->addOrder($store_url, $invoice_prefix,$payment_firstname,$payment_province ,$payment_address,$payment_phone,$payment_country,$payment_city,$payment_postcode, $shipping_firstname, $shipping_lastname, $shipping_company, $shipping_address_1, $shipping_address_2, $shipping_city, $shipping_country, $shipping_country_id, $shipping_postcode, $shipping_zone, $shipping_zone_id, $shipping_method, $shipping_code, $shipping_phone, $shipping_chinaid, $currency_code);
                             $order = $this->model_sale_order->getOrderByPrefix($invoice_prefix);
                         } else {
                             $order_id = $order['order_id'];
