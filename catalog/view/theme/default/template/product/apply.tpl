@@ -141,7 +141,7 @@
 								<label class='col-sm-2 control-label' for='shipping-country-id'>Country:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="shipping_country_id" id='shipping_country_id' class="form-control input-sm">
-										<?php $country_id = empty($shipping_copy) ? 38 : $shipping_copy["country_id"]; ?>
+										<?php $country_id = empty($shipping_copy) ? 44 : $shipping_copy["country_id"]; ?>
 										<option value="0"> -- Select -- </option>
 										<?php foreach ($countries as $country) { ?>
 										<option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $country_id) ? 'selected' : ''; ?>><?php echo $country['name']; ?></option>
@@ -214,7 +214,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row" id='china_div' style="display:none;">
+					<div class="row" id='china_div'>
 						<div class='col-sm-4'>
 							<div class="row form-group">
 								<label class='col-sm-3 control-label'>China ID #:<span style="color:red">*</span></label>
