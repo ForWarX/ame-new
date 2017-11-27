@@ -99,8 +99,8 @@
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Phone:</label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="phone" value='<?php echo empty($user_address) ? '647-498-8891' : $user_address['phone']; ?>'></div>
+								<label class='col-sm-2 control-label'>Phone:<span style="color:red">*</span></label>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="payment_phone" value='<?php echo empty($user_address) ? '647-498-8891' : $user_address['payment_phone']; ?>'></div>
 							</div>
 						</div>
 					</div>
@@ -195,8 +195,8 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>District:<span style="color:red">*</span></label>
-								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
+								<label class='col-sm-2 control-label'>District:</label>
+								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_district" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["shipping_district"]; ?>'></div>
 							</div>
 						</div>
 					</div>
@@ -450,6 +450,7 @@ $('#select_shipping_address').change(function(e) {
 		$('input[name=shipping_company]').val(addresslist[idx]['company']);
 		$('input[name=shipping_city]').val(addresslist[idx]['city']);
 		$('input[name=shipping_address_1]').val(addresslist[idx]['address_1']);
+		$('input[name=shipping_district]').val(addresslist[idx]['shipping_district']);
 		$('input[name=shipping_postcode]').val(addresslist[idx]['postcode']);
 		$('input[name=shipping_email]').val(addresslist[idx]['email']);
 		$('input[name=shipping_phone]').val(addresslist[idx]['phone']);
@@ -468,6 +469,7 @@ $('#select_shipping_address').change(function(e) {
 		$('input[name=shipping_company]').val('');
 		$('input[name=shipping_city]').val('');
 		$('input[name=shipping_address_1]').val('');
+		$('input[name=shipping_district]').val('');
 		$('input[name=shipping_postcode]').val('');
 		$('input[name=shipping_email]').val('');
 		$('input[name=shipping_phone]').val('');
@@ -541,11 +543,11 @@ $('#country_id').change(function(e) {
 	change_country('zone_id', country_id);
 });
 
-$('input[name=firstname],input[name=company],input[name=city],select[name=zone_id],input[name=address_1],input[name=postcode],select[name=country_id],input[name=email],input[name=phone]').on('change', function() {
+$('input[name=firstname],input[name=company],input[name=city],select[name=zone_id],input[name=address_1],input[name=postcode],select[name=country_id],input[name=email],input[name=payment_phone]').on('change', function() {
 	$('input[name=address_id]').val(0);
 });
 
-$('input[name=chinaid_back],input[name=chinaid_front],input[name=chinaid], input[name=shipping_firstname],input[name=shipping_company],input[name=shipping_city],select[name=shipping_zone_id],input[name=shipping_address_1],input[name=shipping_postcode],select[name=shipping_country_id],input[name=shipping_email],input[name=shipping_phone]').on('change', function() {
+$('input[name=chinaid_back],input[name=chinaid_front],input[name=chinaid], input[name=shipping_firstname],input[name=shipping_company],input[name=shipping_city],select[name=shipping_zone_id],input[name=shipping_address_1],input[name=shipping_district],input[name=shipping_postcode],select[name=shipping_country_id],input[name=shipping_email],input[name=shipping_phone]').on('change', function() {
 	$('input[name=shipping_address_id]').val(0);
 	var shipping_list = $('#select_shipping_address');
 	if (shipping_list.is(":visible")) {

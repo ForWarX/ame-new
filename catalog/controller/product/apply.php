@@ -27,7 +27,7 @@ class ControllerProductApply extends Controller {
 				$para = array();
 				$para['address_id'] = 0;
 				$para['email'] = $this->request->post['email'];
-				$para['phone'] = $this->request->post['phone'];
+				$para['payment_phone'] = $this->request->post['payment_phone'];
 				$para['firstname'] = $this->request->post['firstname'];
 				$para['lastname'] = '';
 				$para['company'] = $this->request->post['company'];
@@ -35,6 +35,7 @@ class ControllerProductApply extends Controller {
 				$para['address_2'] = '';
 				$para['postcode'] = $this->request->post['postcode'];
 				$para['city'] = $this->request->post['city'];
+				$para['shipping_district'] = $this->request->post['shipping_district'];
 				$para['zone_id'] = $this->request->post['zone_id'];
 				$para['zone'] = $this->model_localisation_zone->getZone($para['zone_id'])['name'];
 				$para['country_id'] = $this->request->post['country_id'];
@@ -78,6 +79,7 @@ class ControllerProductApply extends Controller {
 					$para['lastname'] = '';
 					$para['company'] = $this->request->post['shipping_company'];
 					$para['address_1'] = $this->request->post['shipping_address_1'];
+					$para['shipping_district'] = $this->request->post['shipping_district'];
 					$para['address_2'] = '';
 					$para['postcode'] = $this->request->post['shipping_postcode'];
 					$para['city'] = $this->request->post['shipping_city'];
@@ -427,6 +429,7 @@ class ControllerProductApply extends Controller {
                 $order_data['payment_address_1'] = $this->session->data['payment_address']['address_1'];
                 $order_data['payment_address_2'] = $this->session->data['payment_address']['address_2'];
                 $order_data['payment_city'] = $this->session->data['payment_address']['city'];
+				$order_data['payment_phone'] = $this->session->data['payment_address']['payment_phone'];
                 $order_data['payment_postcode'] = $this->session->data['payment_address']['postcode'];
                 $order_data['payment_zone'] = $this->session->data['payment_address']['zone'];
                 $order_data['payment_zone_id'] = $this->session->data['payment_address']['zone_id'];
@@ -455,7 +458,8 @@ class ControllerProductApply extends Controller {
                     $order_data['shipping_address_2'] = $this->session->data['shipping_address']['address_2'];
                     $order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
                     $order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
-                    $order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
+					$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
+                    $order_data['shipping_district'] = $this->session->data['shipping_address']['shipping_district'];
                     $order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
                     $order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
                     $order_data['shipping_country_id'] = $this->session->data['shipping_address']['country_id'];
@@ -484,6 +488,7 @@ class ControllerProductApply extends Controller {
                     $order_data['shipping_city'] = '';
                     $order_data['shipping_postcode'] = '';
                     $order_data['shipping_zone'] = '';
+					$order_data['shipping_district'] = '';
                     $order_data['shipping_zone_id'] = '';
                     $order_data['shipping_country'] = '';
                     $order_data['shipping_country_id'] = '';
@@ -747,8 +752,8 @@ class ControllerProductApply extends Controller {
 			} else {
 				if (false && empty($this->request->post['email'])) {
 					$data['err_message'] = "Unknown sender email";
-				} else if (empty($this->request->post['phone'])) {
-					$data['err_message'] = "Unknown sender phone";
+				} else if (empty($this->request->post['payment_phone'])) {
+					$data['err_message'] = "Unknown sender payment_phone";
 				} else if (empty($this->request->post['firstname'])) {
 					$data['err_message'] = "Unknown sender name";
 				} else if (empty($this->request->post['address_1'])) {
@@ -983,17 +988,20 @@ class ControllerProductApply extends Controller {
                 $data['user_address']['company'] = $order_info['payment_company'];
                 $data['user_address']['city'] = $order_info['payment_city'];
                 $data['user_address']['zone_id'] = $order_info['payment_zone_id'];
+				$data['user_address']['zone_name'] = $order_info['payment_zone'];
                 $data['user_address']['address_1'] = $order_info['payment_address_1'];
                 $data['user_address']['postcode'] = $order_info['payment_postcode'];
                 $data['user_address']['country_id'] = $order_info['payment_country_id'];
                 $data['user_address']['email'] = $order_info['email'];
-                $data['user_address']['phone'] = $order_info['telephone'];
+                $data['user_address']['payment_phone'] = $order_info['payment_phone'];
                 $data['shipping_copy'] = array(
                     'name' => $order_info['shipping_firstname'],
                     'company' => $order_info['shipping_company'],
                     'city' => $order_info['shipping_city'],
                     'zone_id' => $order_info['shipping_zone_id'],
+					'zone_name' => $order_info['shipping_zone'],
                     'address_1' => $order_info['shipping_address_1'],
+					'shipping_district' => $order_info['shipping_district'],
                     'postcode' => $order_info['shipping_postcode'],
                     'country_id' => $order_info['shipping_country_id'],
                     'email' => '',
