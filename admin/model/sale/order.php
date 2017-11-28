@@ -149,6 +149,7 @@ class ModelSaleOrder extends Model {
 				'shipping_city'           => $order_query->row['shipping_city'],
 				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
 				'shipping_zone'           => $order_query->row['shipping_zone'],
+				'shipping_district'           => $order_query->row['shipping_district'],
 				'shipping_zone_code'      => $shipping_zone_code,
 				'shipping_country_id'     => $order_query->row['shipping_country_id'],
 				'shipping_country'        => $order_query->row['shipping_country'],

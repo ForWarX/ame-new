@@ -1184,7 +1184,7 @@ class ControllerSaleOrder extends Controller {
 				$format = $order_info['shipping_address_format'];
 			} else {
 				//$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-                $format = '收件人姓名/Name: {firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{address_2}'  . '{city} '  . '{zone} '  . '{country} '. "\n" . '邮政编码/Postcode: {postcode}'. "\n".'寄件人电话/Phone: {phone}'. "\n".'身份证/China ID: {ID}' ;
+                $format = '收件人姓名/Name: {firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{district}'  . '{city} '  . '{zone} '  . '{country} '. "\n" . '邮政编码/Postcode: {postcode}'. "\n".'收件人电话/Phone: {phone}'. "\n".'身份证/China ID: {ID}' ;
 			}
 
 			$find = array(
@@ -1192,7 +1192,7 @@ class ControllerSaleOrder extends Controller {
 				'{lastname}',
 				'{company}',
 				'{address_1}',
-				'{address_2}',
+				'{district}',
 				'{city}',
 				'{postcode}',
 				'{zone}',
@@ -1208,7 +1208,7 @@ class ControllerSaleOrder extends Controller {
 				'lastname'  => $order_info['shipping_lastname'],
 				'company'   => $order_info['shipping_company'],
 				'address_1' => $order_info['shipping_address_1'],
-				'address_2' => $order_info['shipping_address_2'],
+				'district' => $order_info['shipping_district'],
 				'city'      => $order_info['shipping_city'],
 				'postcode'  => $order_info['shipping_postcode'],
 				'zone'      => $order_info['shipping_zone'],
