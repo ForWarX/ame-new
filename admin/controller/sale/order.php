@@ -1145,7 +1145,7 @@ class ControllerSaleOrder extends Controller {
 				$format = $order_info['payment_address_format'];
 			} else {
 				//$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-                $format = '{firstname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+                $format = '寄件人姓名/Name:{firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{address_2}' . " " . '{city}' . " " . '{zone}' . " " . '{country}'. "\n".'邮政编码/Postcode: {postcode}' . "\n".'寄件人电话/Phone: {phone}';
 			}
 
 			$find = array(
@@ -1158,7 +1158,8 @@ class ControllerSaleOrder extends Controller {
 				'{postcode}',
 				'{zone}',
 				'{zone_code}',
-				'{country}'
+				'{country}',
+				'{phone}'
 			);
 
 			$replace = array(
@@ -1171,7 +1172,9 @@ class ControllerSaleOrder extends Controller {
 				'postcode'  => $order_info['payment_postcode'],
 				'zone'      => $order_info['payment_zone'],
 				'zone_code' => $order_info['payment_zone_code'],
-				'country'   => $order_info['payment_country']
+				'country'   => $order_info['payment_country'],
+				'phone'   => $order_info['payment_phone']
+
 			);
 
 			$data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -1181,7 +1184,7 @@ class ControllerSaleOrder extends Controller {
 				$format = $order_info['shipping_address_format'];
 			} else {
 				//$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-                $format = '{firstname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+                $format = '收件人姓名/Name: {firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{address_2}'  . '{city} '  . '{zone} '  . '{country} '. "\n" . '邮政编码/Postcode: {postcode}'. "\n".'寄件人电话/Phone: {phone}'. "\n".'身份证/China ID: {ID}' ;
 			}
 
 			$find = array(
@@ -1194,7 +1197,10 @@ class ControllerSaleOrder extends Controller {
 				'{postcode}',
 				'{zone}',
 				'{zone_code}',
-				'{country}'
+				'{country}',
+				'{phone}',
+				'{ID}'
+
 			);
 
 			$replace = array(
@@ -1207,7 +1213,9 @@ class ControllerSaleOrder extends Controller {
 				'postcode'  => $order_info['shipping_postcode'],
 				'zone'      => $order_info['shipping_zone'],
 				'zone_code' => $order_info['shipping_zone_code'],
-				'country'   => $order_info['shipping_country']
+				'country'   => $order_info['shipping_country'],
+			    'phone'     => $order_info['shipping_phone'],
+			    'ID'         => $order_info['shipping_chinaid']
 			);
 
 			$data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
