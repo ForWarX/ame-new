@@ -2733,7 +2733,7 @@ class ControllerSaleOrder extends Controller {
 
 	// 订单导出
 	public function export() {
-        set_time_limit(600);
+        set_time_limit(60);
 
         if (isset($this->request->get['filter_order_id'])) {
             $filter_order_id = $this->request->get['filter_order_id'];
@@ -2798,20 +2798,18 @@ class ControllerSaleOrder extends Controller {
         $this->load->model('localisation/language');
 
         $results = $this->model_sale_order->getOrdersAllInfo($filter_data);
-        $output = "客户单号,起运地,发件人,发件地址,发件人电话,发件人国别,发件人城市,收件人,收件人证件号,详细地址,收件人电话,货物sku编码,货物数量,货物品名,品名简称,英文名称,商品规格,HS编码,行邮税号,单品货值,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,总重（lb）,总价（C\$）,采用建议价格\r\n";
+        $output = "客户单号,起运地,发件人,发件地址,发件人电话,发件人国别,发件人城市,收件人,收件人证件号,详细地址,收件人电话,货物sku编码,货物数量,货物品名,品名简称,英文名称,商品规格,HS编码,行邮税号,单品货值,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,总重（lb）,总价（CAD）,采用建议价格\r\n";
 
         $lang_id = $this->model_localisation_language->getLanguageByCode('zh-CN')['language_id'];
 
         foreach ($results as $key => $result) {
             $products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
-			//$products2 = $this->model_sale_order->getOrderProducts($result['order_id']);
-			//$products['quantity']=$products2['quantity'];
             foreach ($products as $product) {
-                $line = $result['invoice_prefix'] . ',加拿大,AME,"3445 Sheppard Ave E, Scarborough",647-498-8891,加拿大,多伦多,' . $result['shipping_firstname']
-                    . ',' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" . $result['shipping_city'] . "（市）". $result['shipping_district'] . "（区）" . $result['shipping_address_1']
-                    . ',' . $result['shipping_phone'] . ',' . $product['upc'] . ',' . $product['quantity'] . ',' . $product['name'] . ',,'
-                    . $product['name'] . ',' . $product['tag'] . ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total']. ','."否";
-                $output .= $line . "\r\n";
+              $line = $result['invoice_prefix'] . ',加拿大,AME,"3445 Sheppard Ave E, Scarborough",647-498-8891,加拿大,多伦多,' . $result['shipping_firstname']
+              . ',' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" . $result['shipping_city'] . "（市）". $result['shipping_district'] . "（区）" . $result['shipping_address_1']
+               . ',' . $result['shipping_phone'] . ',' . $product['upc'] . ',' . $product['quantity'] . ',' . $product['name'] . ',,'
+        . $product['name']  . ',,' /* . $product['tag'] */. ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total']. ','."否";
+              $output .= $line . "\r\n";
             }
         }
 
