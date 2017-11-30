@@ -142,7 +142,13 @@ $_['column_location']                         = '位置';
 $_['column_reference']                        = '参考';
 $_['column_action']                           = '操作';
 $_['column_weight']                           = '商品重量';
-
+//新增
+$_['column_ame']                              = 'AME 订单号';
+$_['column_sender']                           = '寄件人';
+$_['column_shipper']                          = '收件人';
+$_['column_shipperphone']                    = '收件人电话';
+$_['column_shipperid']                        = '身份证';
+$_['column_paid']                             = '已支付';
 // Entry
 $_['entry_store']                             = '网店';
 $_['entry_customer']                          = '客户';
@@ -187,6 +193,15 @@ $_['entry_date_modified']                     = '修改日期';
 $_['entry_weight']                            = '重量（LB）';
 $_['entry_category']                          = '品类';
 $_['entry_barcode']                           = '条形码';
+// add entry recipient
+$_['entry_recipient']                         = '收件人';
+// add entry shipping number
+$_['entry_shipping_number']                  = '邮寄号';
+// add entry telephone
+$_['entry_telephone']                         = '网店客户电话';
+// add entry shipping phone
+$_['entry_shipping_phone']                    = '收件人电话';
+// add entry shipping phone
 
 // Button
 $_['button_order_copy']                       = '继续下单';
