@@ -279,8 +279,11 @@ class ControllerSaleOrder extends Controller {
 				'order_id'      => $result['order_id'],
 				'customer'      => $result['customer'],
 				'invoice_prefix' => $result['invoice_prefix'],
+				'payment_firstname' => $result['payment_firstname'],
 				'shipping_name' => $result['shipping_name'],
 				'weight'        => $result['weight'],
+				'shipping_phone' => $result['shipping_phone'],
+				'shipping_chinaid' => $result['shipping_chinaid'],
 				'delivery_company' => $result['delivery_company'],
 				'delivery_number' => $result['delivery_number'],
 				'custome_pass'  => $this->model_sale_order->get_custome_pass($result['order_id']) . " / " . sizeof($this->model_sale_order->getOrderProducts($result['order_id'])),
@@ -313,8 +316,11 @@ class ControllerSaleOrder extends Controller {
 		$data['column_date_modified'] = $this->language->get('column_date_modified');
 		$data['column_action'] = $this->language->get('column_action');
 		$data['column_ame'] = $this->language->get('column_ame');
+		$data['column_sender'] = $this->language->get('column_sender');
 		$data['column_shipper'] = $this->language->get('column_shipper');
 		$data['column_weight'] = $this->language->get('column_weight');
+		$data['column_shipperid'] = $this->language->get('column_shipperid');
+		$data['column_shipperphone'] = $this->language->get('column_shipperphone');
 		$data['column_delivery_company'] = $this->language->get('column_delivery_company');
 		$data['column_delivery_number'] = $this->language->get('column_delivery_number');
 		$data['column_custom_pass'] = $this->language->get('column_custom_pass');

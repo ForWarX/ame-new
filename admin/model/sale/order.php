@@ -403,7 +403,7 @@ class ModelSaleOrder extends Model {
 		$sql = "SELECT 	o.order_id, CONCAT(o.firstname, ' ', o.lastname) AS customer, CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) AS shipping_name,
 						(SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS order_status,
 						(SELECT st.name FROM " . DB_PREFIX . "storage st WHERE st.storage_id = o.storage_id) AS storage_name,
-						o.order_status_id, o.invoice_prefix, o.shipping_code, o.total, o.weight, o.delivery_company, o.delivery_number, o.currency_code, o.currency_value, o.date_added, o.date_modified, o.store_url
+						o.order_status_id, o.invoice_prefix,o.payment_firstname, o.shipping_code, o.total, o.weight, o.shipping_phone,o.shipping_chinaid,o.delivery_company, o.delivery_number, o.currency_code, o.currency_value, o.date_added, o.date_modified, o.store_url
 				FROM `" . DB_PREFIX . "order` o";
 
 		if (isset($data['filter_order_status'])) {

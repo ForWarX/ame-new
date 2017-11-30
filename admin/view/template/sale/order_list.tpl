@@ -123,22 +123,28 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_customer; ?>"><?php echo $column_customer; ?></a>
                     <?php } ?></td>
+                    <td class="text-left"><?php echo $column_sender; ?></td>
                   <td class="text-left"><?php if ($sort == 'shipping_name') { ?>
                     <a href="<?php echo $sort_shipper; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_shipper; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_shipper; ?>"><?php echo $column_shipper; ?></a>
                     <?php } ?></td>
                   <td class="text-left"><?php echo $column_weight; ?></td>
+                    <td class="text-left"><?php echo $column_shipperphone; ?></td>
+                    <td class="text-left"><?php echo $column_shipperid; ?></td>
+                    <!--
                   <td class="text-left"><?php if ($sort == 'o.delivery_company') { ?>
                     <a href="<?php echo $sort_delivery_company; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_delivery_company; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_delivery_company; ?>"><?php echo $column_delivery_company; ?></a>
                     <?php } ?></td>
+
                   <td class="text-left"><?php if ($sort == 'o.order_delivery_number') { ?>
                     <a href="<?php echo $sort_delivery_number; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_delivery_number; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_delivery_number; ?>"><?php echo $column_delivery_number; ?></a>
                     <?php } ?></td>
+                      -->
                   <td class="text-left"><?php echo $column_custom_pass; ?></td>
                   <td class="text-left"><?php echo $column_paid; ?></td>
                   <td class="text-left"><?php if ($sort == 'storage_name') { ?>
@@ -167,10 +173,16 @@
                   <td class="text-right"><?php echo $order['invoice_prefix']; ?></td>
                   <td class="text-left"><?php echo $order['date_added']; ?></td>
                   <td class="text-left"><?php echo $order['customer']; ?></td>
+                    <td class="text-left"><?php echo $order['payment_firstname']; ?></td>
                   <td class="text-left"><?php echo $order['shipping_name']; ?></td>
                   <td class="text-left"><?php echo $order['weight']; ?></td>
+                    <td class="text-left"><?php echo $order['shipping_phone']; ?></td>
+                    <td class="text-left"><?php echo $order['shipping_chinaid']; ?></td>
+                    <!--
                   <td class="text-left"><?php echo $order['delivery_company']; ?></td>
+
                   <td class="text-left"><?php echo $order['delivery_number']; ?></td>
+                   -->
                   <td class="text-left"><?php echo $order['custome_pass']; ?></td>
                   <td class="text-left"><?php echo (($order['order_status_id'] < 2) || ($order['order_status_id'] > 5)) ? 'No' : 'Paid'; ?></td>
                   <td class="text-left"><?php echo $order['storage_name']; ?></td>
