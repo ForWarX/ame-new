@@ -87,15 +87,15 @@
               <div class="form-group">
                 <label class="control-label" for="input-date-added"><?php echo $entry_date_added; ?></label>
                 <div class="input-group date">
-                  <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
+                      <input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" placeholder="<?php echo $entry_date_added; ?>" data-date-format="YYYY-MM-DD" id="input-date-added" class="form-control" />
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
               <!-- Change search date modified to shipping number-->
               <div class="form-group">
-                <label class="control-label" for="input-shipping-number"><?php echo $entry_shipping_number; ?></label>
-                <input type="text" name="filter_shipping_number" value="<?php echo $filter_shipping_number; ?>" placeholder="<?php echo $entry_shipping_number; ?>" id="input-shipping-number" class="form-control" />
+                <label class="control-label" for="input-sender"><?php echo $entry_sender; ?></label>
+                <input type="text" name="filter_sender" value="<?php echo $filter_sender; ?>" placeholder="<?php echo $entry_sender; ?>" id="input-sender" class="form-control" />
               </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
               <button type="button" id="button-change-customer" class="btn btn-primary"><i class="fa fa-user"></i> <?php echo $button_change_customer; ?></button>
@@ -270,6 +270,12 @@
 
           if (filter_shipping_number) {
               url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+          }
+          //add filter Sender
+          var filter_sender = $('input[name=\'filter_sender\']').val();
+
+          if (filter_sender) {
+              url += '&filter_sender=' + encodeURIComponent(filter_sender);
           }
 
           location = url;

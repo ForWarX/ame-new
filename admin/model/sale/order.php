@@ -457,6 +457,10 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['filter_shipping_phone'])) {
 			$sql .= " AND o.shipping_phone LIKE '%" . $data['filter_shipping_phone'] . "%'";
 		}
+		//add filter sender
+		if (!empty($data['filter_sender'])) {
+			$sql .= " AND o.payment_firstname LIKE '%" . $this->db->escape($data['filter_sender']) . "%'";
+		}
 
 
 		$sort_data = array(
@@ -626,6 +630,7 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getTotalOrders($data = array()) {
+		1111111111111111111111111111111111111111111111111111;
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order`";
 
 		if (isset($data['filter_order_status'])) {
@@ -678,6 +683,9 @@ class ModelSaleOrder extends Model {
 		//add filter shipping phone
 		if (!empty($data['filter_shipping_phone'])) {
 			$sql .= " AND shipping_phone LIKE '%" . $data['filter_shipping_phone'] . "%'";
+		}
+		if (!empty($data['filter_sender'])) {
+			$sql .= " AND CONCAT(payment_firstname, ' ', payment_lastname) LIKE '%" . $this->db->escape($data['filter_sender']) . "%'";
 		}
 
 		$query = $this->db->query($sql);

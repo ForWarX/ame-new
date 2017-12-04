@@ -201,7 +201,8 @@ $_['entry_shipping_number']                  = '邮寄号';
 $_['entry_telephone']                         = '网店客户电话';
 // add entry shipping phone
 $_['entry_shipping_phone']                    = '收件人电话';
-// add entry shipping phone
+// add entry recipient
+$_['entry_sender']                             = '寄件人';
 
 // Button
 $_['button_order_copy']                       = '继续下单';

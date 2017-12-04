@@ -147,7 +147,12 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$filter_shipping_number = null;
 		}
-
+		//add filter sender
+		if (isset($this->request->get['filter_sender'])) {
+			$filter_sender = $this->request->get['filter_sender'];
+		} else {
+			$filter_sender = null;
+		}
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -207,6 +212,11 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_shipping_number'])) {
 			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
+		//add sender
+		if (isset($this->request->get['filter_sender'])) {
+			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
+		}
+
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -244,7 +254,7 @@ class ControllerSaleOrder extends Controller {
 
 		$filter_data = array(
 			'filter_order_id'        => $filter_order_id,
-			'filter_customer'	     => $filter_customer,
+			'filter_customer'	       => $filter_customer,
 			'filter_order_status'    => $filter_order_status,
 			'filter_total'           => $filter_total,
 			'filter_recipient'       => $filter_recipient,
@@ -253,10 +263,11 @@ class ControllerSaleOrder extends Controller {
 			'filter_date_added'      => $filter_date_added,
 			'filter_date_modified'   => $filter_date_modified,
 			'filter_shipping_number' => $filter_shipping_number,
-			'sort'                   => $sort,
-			'order'                  => $order,
-			'start'                  => ($page - 1) * $this->config->get('config_limit_admin'),
-			'limit'                  => $this->config->get('config_limit_admin')
+			'filter_sender'           => $filter_sender,
+			'sort'                     => $sort,
+			'order'                    => $order,
+			'start'                    => ($page - 1) * $this->config->get('config_limit_admin'),
+			'limit'                    => $this->config->get('config_limit_admin')
 		);
 
 		// 更换订单用户
@@ -335,6 +346,8 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_date_modified'] = $this->language->get('entry_date_modified');
 		//add $data entry recipient
 		$data['entry_recipient'] = $this->language->get('entry_recipient');
+		//add $data entry sender
+		$data['entry_sender'] = $this->language->get('entry_sender');
 		//add $data entry shipping number
 		$data['entry_shipping_number'] = $this->language->get('entry_shipping_number');
 		//add $data entry telephone
@@ -407,6 +420,11 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_shipping_number'])) {
 			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
+		//add filter sender
+		if (isset($this->request->get['filter_sender'])) {
+			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
+		}
+
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
@@ -484,6 +502,10 @@ class ControllerSaleOrder extends Controller {
 			$url .= '&filter_shipping_number=' . $this->request->get['filter_shipping_number'];
 		}
 
+		//add sender
+		if (isset($this->request->get['filter_sender'])) {
+			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
+		}
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -517,6 +539,8 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_date_modified'] = $filter_date_modified;
 		//add filter shipping number
 		$data['filter_shipping_number'] = $filter_shipping_number;
+		//add filter shipping number
+		$data['filter_sender'] = $filter_sender;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;

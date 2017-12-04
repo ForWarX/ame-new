@@ -144,6 +144,8 @@ $_['entry_order_id']             = 'AME order number';
 $_['entry_total']                = 'Total';
 // add entry recipient
 $_['entry_recipient']            = 'Recipient';
+// add entry recipient
+$_['entry_sender']                = 'Sender';
 // add entry shipping number
 $_['entry_shipping_number']      = 'Shipping Number';
 // add entry telephone
