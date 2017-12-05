@@ -531,11 +531,8 @@ $('#shipping_country_id').change(function(e) {
 	zone.data("zone_id", null);
 	var country_id = $('#shipping_country_id').val();
 	change_country('shipping_zone_id', country_id, cur_province_id);
-	if (country_id == 44) {
 		$('#china_div').show();
-	} else {
-		$('#china_div').hide();
-	}
+
 });
 
 $('#country_id').change(function(e) {
