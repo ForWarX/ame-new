@@ -592,6 +592,15 @@ class ModelSaleOrder extends Model {
 
 		return $query->rows;
 	}
+	//新增订单产品描述 （服务器系统无法识别SPEC 导致无法导出SPEC）
+	public function getOrderProductsDescription($order_id, $lang_id=null) {
+		$sql = "SELECT * FROM (SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "') AS op LEFT JOIN " . DB_PREFIX . "product_description AS p ON op.product_id=p.product_id" ;
+		if (!empty($lang_id)) {
+			$sql .= " AND language_id='" . $lang_id . "'";
+		}
+		$query = $this->db->query($sql);
+		return $query->rows;
+	}
 
 	// 取出所有订单的商品信息，附带详细商品信息
     public function getOrderProductsAllInfo($order_id, $lang_id=null) {
@@ -630,7 +639,6 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getTotalOrders($data = array()) {
-		1111111111111111111111111111111111111111111111111111;
 		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order`";
 
 		if (isset($data['filter_order_status'])) {
