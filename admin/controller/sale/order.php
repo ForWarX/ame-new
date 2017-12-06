@@ -1820,8 +1820,6 @@ class ControllerSaleOrder extends Controller {
 
 		$this->response->setOutput($this->load->view('sale/order_history', $data));
 	}
-	
-	
 
 	private function getPng($code) {
 		$filename = "barcode/" . $code . ".png";
@@ -2834,19 +2832,21 @@ class ControllerSaleOrder extends Controller {
         $lang_id = $this->model_localisation_language->getLanguageByCode('zh-CN')['language_id'];
 
 		  foreach ($results as $key => $result) {
-			  $products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id']);
-			  $products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
-			  $products4 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
-			  //数字确定导出行数
-			  if($outputline<300)
-			  foreach ($products as $product)
-			  { foreach ($products2 as $product3) foreach ($products4 as $product5)
-				  $line = $result['invoice_prefix'] . ',加拿大,AME,"3445 Sheppard Ave E, Scarborough",647-498-8891,加拿大,多伦多,' . $result['shipping_firstname']
-					  . ',' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" . $result['shipping_city'] . "（市）" . $result['shipping_district'] . "（区）" . $result['shipping_address_1']
-					  . ',' . $result['shipping_phone'] . ',' . $product['upc'] . ',' . $product3['quantity'] . ',' . $product['name'] . ',,'
-					  . $product3['name'] . ',' . $product5['tag'] . ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total'] . ',' . "否";
-				  $output .= $line . "\r\n";
-				  $outputline++;
+			  if($result['order_status_id']>=2&&$result['order_status_id']<=5) {
+				  $products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
+				  $products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
+				  $products4 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+				  //数字确定导出行数
+				  if ($outputline < 300)
+					  foreach ($products as $product) {
+						  foreach ($products2 as $product3) foreach ($products4 as $product5)
+							  $line = $result['invoice_prefix'] . ',加拿大,AME,"3445 Sheppard Ave E, Scarborough",647-498-8891,加拿大,多伦多,' . $result['shipping_firstname']
+								  . ',' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" . $result['shipping_city'] . "（市）" . $result['shipping_district'] . "（区）" . $result['shipping_address_1']
+								  . ',' . $result['shipping_phone'] . ',' . $product['upc'] . ',' . $product3['quantity'] . ',' . $product['name'] . ',,'
+								  . $product3['name'] . ',' . $product5['tag'] . ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total'] . ',' . "否";
+						  $output .= $line . "\r\n";
+						  $outputline++;
+					  }
 			  }
 		  }
 
