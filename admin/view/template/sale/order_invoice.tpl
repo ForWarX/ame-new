@@ -28,19 +28,10 @@
       </thead>
       <tbody>
       <tr>
-        <td style="width: 50%; vertical-align: initial;">
-          <address>
-            <strong><?php echo $order['store_name']; ?></strong><br />
-            <?php echo $order['store_address']; ?>
-          </address>
-          <b><?php echo $text_telephone; ?></b> <?php echo $order['store_telephone']; ?><br />
-          <?php if ($order['store_fax']) { ?>
-          <b><?php echo $text_fax; ?></b> <?php echo $order['store_fax']; ?><br />
-          <?php } ?>
-          <b><?php echo $text_email; ?></b> <?php echo $order['store_email']; ?><br />
-          <b><?php echo $text_website; ?></b> <?php echo $order['store_url']; ?>
-        </td>
-        <td style="width: 50%; vertical-align: initial;">
+        <div style="width: 50%; display: inline-block; float: left; text-align:center">
+          <img src="http://www.americoexpress.ca/ame/App/Home/View/Default/img/web/about_us_logo.png" style="width: 308px;">
+        </div>
+        <div style="width: 50%; display: inline-block; margin-top:12px; ">
           <b><?php echo $text_order_id; ?></b> <?php echo $order['invoice_prefix']; ?><br />
           <b><?php echo $text_date_added; ?></b> <?php echo $order['date_added']; ?><br />
           <b><?php echo $text_payment_method; ?></b> <?php echo $order['payment_method']; ?><br />
@@ -50,6 +41,21 @@
           <?php if ($order['admin_name']) { ?>
           <b><?php echo $text_admin_name; ?></b> <?php echo $order['admin_name']; ?>
           <?php } ?>
+        </div>
+        <td style="width: 50%; vertical-align: initial;">
+          <address>
+            <strong><?php echo $order['store_name']; ?></strong><br />
+            <?php echo $order['store_address']; ?>
+          </address>
+        </td>
+        <td style="width: 50%; vertical-align: initial;">
+          <b><?php echo $text_telephone; ?></b> <?php echo $order['store_telephone']; ?><br />
+          <?php if ($order['store_fax']) { ?>
+          <b><?php echo $text_fax; ?></b> <?php echo $order['store_fax']; ?><br />
+          <?php } ?>
+          <b><?php echo $text_email; ?></b> <?php echo $order['store_email']; ?><br />
+          <b><?php echo $text_website; ?></b> <?php echo $order['store_url']; ?>
+
         </td>
       </tr>
       </tbody>
@@ -137,7 +143,14 @@
       <?php } ?>
       </tbody>
     </table>
-    <h2><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h2>
+    <h4><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h4>
+    <p>1.根據中國有關規定,海外包裹快遞進入中國大陸需要提供收件人身份證正反兩面複印件。<br>2.托運物品按實際裝箱情況填寫，我公司對任何因為包裹清單填寫错误造成的延遲清關，退關等不負責任。<br>
+      3.根據中國海關與本國航空要求，我公司有權對快件開包檢查，對於中國海關要求包裹徵稅，我公司會通知寄件人<br>支付該部分稅款，並会在收到寄件人稅款後才予以清關。一切以中國海關核計為準以及做最後決定。<br>4.由於海關清關的不確定性，我公司不對包裹抵達收件人手裡的時間做任何承諾，一般7-10天送達。<br>
+      5.如未購買保險，本包裹丟失賠償上限為100加元整。<br>6.保證上述向海關申報內容真實性，如出現虛假申報，一切後果需本人承擔。<br>7.掃一掃右側的二維碼查詢訂單
+    </p>
+    <div style="position: absolute; bottom: 0; right: 0;">
+      <img style="max-height: 108px;" src="http://www.americoexpress.ca/ame/Home/QRCode/create.html?code=http%3A%2F%2Fwww.americoexpress.ca%2Fame%2FHome%2FTrack%2Ftrack%2Fame_no%2FAME1712061270.html">
+    </div>
   </div>
   <?php } ?>
 </div>

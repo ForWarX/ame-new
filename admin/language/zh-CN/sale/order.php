@@ -124,6 +124,8 @@ $_['text_error']                              = '错误:';
 $_['text_picklist']                           = '发货说明';
 $_['text_history']                            = '添加订单历史记录';
 $_['text_admin_name']                         = '操作员：';
+//add text for signature
+$_['text_signature']                         = '寄件人签名/Signature :  ';
 
 // Column
 $_['column_order_id']                         = '订单 ID';
