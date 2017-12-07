@@ -152,6 +152,8 @@ $_['entry_shipping_number']      = 'Shipping Number';
 $_['entry_telephone']            = 'Telephone';
 // add entry shipping phone
 $_['entry_shipping_phone']       = 'Shipping Phone';
+// add entry shipping phone
+$_['entry_payment_phone']       = 'Sender Phone';
 
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';

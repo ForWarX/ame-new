@@ -205,7 +205,8 @@ $_['entry_telephone']                         = '网店客户电话';
 $_['entry_shipping_phone']                    = '收件人电话';
 // add entry recipient
 $_['entry_sender']                             = '寄件人';
-
+// add entry sender phone
+$_['entry_payment_phone']                      = '寄件人电话';
 // Button
 $_['button_order_copy']                       = '继续下单';
 $_['button_labels_print']                     = '打印小票';

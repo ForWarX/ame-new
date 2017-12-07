@@ -48,8 +48,8 @@
               </div>
               <!-- add phone number search -->
               <div class="form-group">
-                <label class="control-label" for="input-telephone"><?php echo $entry_telephone; ?></label>
-                <input type="text" name="filter_telephone" value="<?php echo $filter_telephone; ?>" placeholder="<?php echo $entry_telephone; ?>" id="input-telephone" class="form-control" />
+                <label class="control-label" for="input-payment_phone"><?php echo $entry_payment_phone; ?></label>
+                <input type="text" name="filter_payment_phone" value="<?php echo $filter_payment_phone; ?>" placeholder="<?php echo $entry_payment_phone; ?>" id="input-payment_phone" class="form-control" />
               </div>
             </div>
 
@@ -245,6 +245,12 @@
 
           if (filter_telephone) {
               url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+          }
+          //add filter payment phone
+          var filter_payment_phone = $('input[name=\'filter_payment_phone\']').val();
+
+          if (filter_payment_phone) {
+              url += '&filter_payment_phone=' + encodeURIComponent(filter_payment_phone);
           }
 
           //add filter shipping phone

@@ -123,6 +123,12 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$filter_telephone = null;
 		}
+		// add filter payment phone
+		if (isset($this->request->get['filter_payment_phone'])) {
+			$filter_payment_phone = $this->request->get['filter_payment_phone'];
+		} else {
+			$filter_payment_phone = null;
+		}
 		// add filter shipping_phone
 		if (isset($this->request->get['filter_shipping_phone'])) {
 			$filter_shipping_phone = $this->request->get['filter_shipping_phone'];
@@ -196,6 +202,10 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_telephone'])) {
 			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
 		}
+		//add filter payment phone
+		if (isset($this->request->get['filter_payment_phone'])) {
+			$url .= '&filter_payment_phone=' . $this->request->get['filter_payment_phone'];
+		}
 		//add filter shipping phone
 		if (isset($this->request->get['filter_shipping_phone'])) {
 			$url .= '&filter_shipping_phone=' . $this->request->get['filter_shipping_phone'];
@@ -259,6 +269,7 @@ class ControllerSaleOrder extends Controller {
 			'filter_total'           => $filter_total,
 			'filter_recipient'       => $filter_recipient,
 			'filter_telephone'       => $filter_telephone,
+			'filter_payment_phone'   => $filter_payment_phone,
 			'filter_shipping_phone'  => $filter_shipping_phone,
 			'filter_date_added'      => $filter_date_added,
 			'filter_date_modified'   => $filter_date_modified,
@@ -354,6 +365,8 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
 		//add $data entry shipping phone
 		$data['entry_shipping_phone'] = $this->language->get('entry_shipping_phone');
+		//add $data entry shipping phone
+		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
 
 		$data['button_invoice_print'] = $this->language->get('button_invoice_print');
 		$data['button_shipping_print'] = $this->language->get('button_shipping_print');
@@ -415,6 +428,10 @@ class ControllerSaleOrder extends Controller {
 		//add filter telephone
 		if (isset($this->request->get['filter_telephone'])) {
 			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
+		}
+		//add filter payment_phone
+		if (isset($this->request->get['filter_payment_phone'])) {
+			$url .= '&filter_payment_phone=' . $this->request->get['filter_payment_phone'];
 		}
 		//add filter shipping number
 		if (isset($this->request->get['filter_shipping_number'])) {
@@ -485,6 +502,10 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_telephone'])) {
 			$url .= '&filter_telephone=' . $this->request->get['filter_telephone'];
 		}
+		// add filter telephone
+		if (isset($this->request->get['filter_payment_phone'])) {
+			$url .= '&filter_payment_phone=' . $this->request->get['filter_payment_phone'];
+		}
 		// add filter shipping_phone
 		if (isset($this->request->get['filter_shipping_phone'])) {
 			$url .= '&filter_shipping_phone=' . $this->request->get['filter_shipping_phone'];
@@ -532,6 +553,8 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_recipient'] = $filter_recipient;
 		//add filter telephone
 		$data['filter_telephone'] = $filter_telephone;
+		//add filter telephone
+		$data['filter_payment_phone'] = $filter_payment_phone;
 		//add filter shipping phone
 		$data['filter_shipping_phone'] = $filter_shipping_phone;
 

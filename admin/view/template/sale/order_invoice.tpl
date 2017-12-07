@@ -146,11 +146,9 @@
     <h4><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h4>
     <p>1.根據中國有關規定,海外包裹快遞進入中國大陸需要提供收件人身份證正反兩面複印件。<br>2.托運物品按實際裝箱情況填寫，我公司對任何因為包裹清單填寫错误造成的延遲清關，退關等不負責任。<br>
       3.根據中國海關與本國航空要求，我公司有權對快件開包檢查，對於中國海關要求包裹徵稅，我公司會通知寄件人<br>支付該部分稅款，並会在收到寄件人稅款後才予以清關。一切以中國海關核計為準以及做最後決定。<br>4.由於海關清關的不確定性，我公司不對包裹抵達收件人手裡的時間做任何承諾，一般7-10天送達。<br>
-      5.如未購買保險，本包裹丟失賠償上限為100加元整。<br>6.保證上述向海關申報內容真實性，如出現虛假申報，一切後果需本人承擔。<br>7.掃一掃右側的二維碼查詢訂單
+      5.如未購買保險，本包裹丟失賠償上限為100加元整。<br>6.保證上述向海關申報內容真實性，如出現虛假申報，一切後果需本人承擔。<br>
     </p>
-    <div style="position: absolute; bottom: 0; right: 0;">
-      <img style="max-height: 108px;" src="http://www.americoexpress.ca/ame/Home/QRCode/create.html?code=http%3A%2F%2Fwww.americoexpress.ca%2Fame%2FHome%2FTrack%2Ftrack%2Fame_no%2FAME1712061270.html">
-    </div>
+
   </div>
   <?php } ?>
 </div>
