@@ -692,6 +692,10 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['filter_telephone'])) {
 			$sql .= " AND telephone LIKE '%" . $data['filter_telephone'] . "%'";
 		}
+		//add filter payment phone
+		if (!empty($data['filter_payment_phone'])) {
+			$sql .= " AND payment_phone LIKE '%" . $data['filter_payment_phone'] . "%'";
+		}
 		//add filter shipping phone
 		if (!empty($data['filter_shipping_phone'])) {
 			$sql .= " AND shipping_phone LIKE '%" . $data['filter_shipping_phone'] . "%'";
