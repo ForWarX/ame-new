@@ -98,7 +98,8 @@
                 <input type="text" name="filter_sender" value="<?php echo $filter_sender; ?>" placeholder="<?php echo $entry_sender; ?>" id="input-sender" class="form-control" />
               </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
-              <button type="button" id="button-change-customer" class="btn btn-primary"><i class="fa fa-user"></i> <?php echo $button_change_customer; ?></button>
+            <!--  <button type="button" id="button-change-customer" class="btn btn-primary"><i class="fa fa-user"></i> <?php echo $button_change_customer; ?></button>
+           -->
             </div>
           </div>
         </div>
