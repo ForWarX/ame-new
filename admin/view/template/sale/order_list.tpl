@@ -185,7 +185,7 @@
                   <td class="text-left"><?php echo $order['delivery_number']; ?></td>
                    -->
                   <td class="text-left"><?php echo $order['custome_pass']; ?></td>
-                  <td class="text-left"><?php echo ( ($order['order_status_id'] = 2)||($order['order_status_id'] = 3)||($order['order_status_id'] = 5)||($order['order_status_id'] = 15)) ? 'Paid' : 'No'; ?></td>
+                  <td class="text-left"><?php echo ( ($order['order_status_id'] == 2)||($order['order_status_id'] == 3)||($order['order_status_id'] == 5)||($order['order_status_id'] == 15)) ? 'Paid' : 'No'; ?></td>
                   <td class="text-left"><?php echo $order['storage_name']; ?></td>
                   <td class="text-left"><?php echo $order['order_status']; ?></td>
                   <td class="text-right">
