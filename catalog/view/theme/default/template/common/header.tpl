@@ -175,6 +175,12 @@
     <div id="menu-info" class="collapse navbar-collapse navbar-ex1-collapse in">
       <ul class="nav navbar-nav">
         <li>
+          <a href="<?php echo $track; ?>">
+
+            <span><?php echo $text_track; ?></span>
+          </a>
+        </li>
+        <li>
           <a href="<?php echo $contact; ?>">
             <i class="fa fa-phone"></i>
             <span><?php echo $telephone; ?></span>

@@ -21,14 +21,15 @@ $('#slideshow<?php echo $module; ?>').owlCarousel({
 --></script>
 
 <!--首页订单查询-->
+<!--
 <div id="track">
   <form id="order_track">
     <div class="form-group">
       <label for="OrderNO"><?php echo $text_track_label; ?></label>
-      <input type="text" class="form-control input-lg" id="OrderNO" name="order_no" placeholder="<?php echo $text_track_placeholder; ?>">
+      <input type="text" class="form-control input-lg" id="ame_no" name="ame_no" placeholder="<?php echo $text_track_placeholder; ?>">
     </div>
     <button type="submit" class="btn btn-primary btn-lg" id="OrderTrackBTN">
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> <?php echo $text_track_btn; ?>
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> <a href="<?php echo 'index.php?route=information/track'; ?>"   ><?php echo $text_track_btn; ?></a>
     </button>
   </form>
   <div id="track_ad" class="col-sm-12 hidden-xs">
@@ -37,6 +38,7 @@ $('#slideshow<?php echo $module; ?>').owlCarousel({
     <p><?php echo $text_track_ad4; ?></p>
   </div>
 </div>
+-->
 
 <!-- 首页中间四个按钮：服务流程、联系客服、网上下单、会员中心 -->
 <div id="home_mid_btns" class="container text-center">
@@ -76,6 +78,53 @@ $('#slideshow<?php echo $module; ?>').owlCarousel({
   </div>
 </div>
 
+
+<script>
+    $('#OrderTrackBTN').bind('click', function() {
+        url = 'index.php?route=information/track';
+
+        var search = $('#content input[name=\'search\']').prop('value');
+
+        if (search) {
+            url += '&search=' + encodeURIComponent(search);
+        }
+
+        var category_id = $('#content select[name=\'category_id\']').prop('value');
+
+        if (category_id > 0) {
+            url += '&category_id=' + encodeURIComponent(category_id);
+        }
+
+        var sub_category = $('#content input[name=\'sub_category\']:checked').prop('value');
+
+        if (sub_category) {
+            url += '&sub_category=true';
+        }
+
+        var filter_description = $('#content input[name=\'description\']:checked').prop('value');
+
+        if (filter_description) {
+            url += '&description=true';
+        }
+
+        var ame_no = $('#content input[name=\'ame_no\']').prop('value');
+
+
+        if (ame_no) {
+            url += '&ame_no='+ame_no;
+        }
+
+        location = url;
+    });
+
+    $('#content input[name=\'ame_no\']').bind('keydown', function(e) {
+        if (e.keyCode == 13) {
+            $('#button-search').trigger('click');
+        }
+    });
+</script>
+
+<!--
 <script>
       $("#OrderTrackBTN").click(function () {
           $.ajax({
@@ -99,3 +148,4 @@ $('#slideshow<?php echo $module; ?>').owlCarousel({
           return false;
       });
 </script>
+-->

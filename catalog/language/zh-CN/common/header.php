@@ -14,3 +14,4 @@ $_['text_logout']        = '退出';
 $_['text_checkout']      = '结帐';
 $_['text_search']        = '搜索';
 $_['text_all']           = '查看所有';
+$_['text_track']         = '查询包裹状态';
