@@ -2895,7 +2895,7 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->post['selected']) && $this->validate()) {
 			foreach ($this->request->post['selected'] as $order_id) {
 				$result = $this->model_sale_order->getOrder($order_id);
-				if($result['order_status_id']>=2&&$result['order_status_id']<=5) {
+				if($result['order_status_id']=2||$result['order_status_id']=3||$result['order_status_id']=5||$result['order_status_id']=15) {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
 					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
 					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
