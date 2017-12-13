@@ -34,12 +34,16 @@ $_['column_date_added']     = 'Date Added';
 $_['column_status']         = 'Status';
 $_['column_comment']        = 'Comment';
 $_['column_receiver']       = 'Receiver';
+$_['column_track']          = 'If shipped';
 
 // Email
 $_['email_subject']  = 'Enquiry %s';
 
 // Errors
-$_['error_name']     = 'Name must be between 3 and 32 characters!';
-$_['error_email']    = 'E-Mail Address does not appear to be valid!';
-$_['error_enquiry']  = 'Enquiry must be between 10 and 3000 characters!';
-$_['error_track']    = 'No result, please enter the correct Order Number! For an example: AME1711010187' ;
+$_['error_name']          = 'Name must be between 3 and 32 characters!';
+$_['error_email']         = 'E-Mail Address does not appear to be valid!';
+$_['error_enquiry']       = 'Enquiry must be between 10 and 3000 characters!';
+$_['error_track']         = 'No result, please enter the correct Order Number! For an example: AME1711010187' ;
+$_['error_not_found']     = 'Pending';
+//button
+$_['button_track']  = 'Click here for tracking';

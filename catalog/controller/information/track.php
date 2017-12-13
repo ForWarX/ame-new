@@ -58,6 +58,7 @@ class ControllerInformationTrack extends Controller {
 		$data['entry_enquiry'] = $this->language->get('entry_enquiry');
 
 		$data['button_map'] = $this->language->get('button_map');
+		$data['button_track'] = $this->language->get('button_track');
 
 		if (isset($this->error['name'])) {
 			$data['error_name'] = $this->error['name'];
@@ -169,7 +170,9 @@ class ControllerInformationTrack extends Controller {
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
 		$data['column_receiver'] = $this->language->get('column_receiver');
+		$data['column_track'] = $this->language->get('column_track');
 		$data['error_track'] = $this->language->get('error_track');
+		$data['error_not_found'] = $this->language->get('error_not_found');
 
 //添加AME号
 		if (isset($this->request->get['ame_no'])) {
@@ -270,5 +273,56 @@ class ControllerInformationTrack extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 
 		$this->response->setOutput($this->load->view('common/success', $data));
+	}
+	public function get_order_track() {
+		$json = array();
+
+		$this->load->model('account/order');
+		$this->load->language('information/track');
+
+		if (isset($this->request->post['order_no'])) {
+			$order_no = $this->request->post['order_no'];
+		} else {
+			$order_no = 0;
+		}
+
+		$order_info = $this->model_account_order->getOrder(0, $order_no);
+
+		if ($order_info) {
+			if ($order_info['delivery_company'] != '' && $order_info['delivery_number'] != '') {
+				$AppKey = 'd76521a8f1cf17d2';
+				$typeCom = $order_info['delivery_company']; // 需要转成快递100的代号
+				$typeNu = $order_info['delivery_number'];
+
+				$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=' . $typeCom . '&nu=' . $typeNu;
+
+				$curl = curl_init();
+				curl_setopt($curl, CURLOPT_URL, $url);
+				curl_setopt($curl, CURLOPT_HEADER, 0);
+				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+				curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+				$result = curl_exec($curl);
+				curl_close($curl);
+
+				$json['result'] = $result;
+				$json['success'] = $this->language->get('text_success');
+			} else {
+				$this->load->language('account/order');
+				$json['error'] = $this->language->get('error_track');
+			}
+		} else {
+			$json['error'] = $this->language->get('error_not_found');
+		}
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }

@@ -117,7 +117,7 @@
             <td class="text-left"><?php echo $column_status; ?></td>
             <td class="text-right"><?php echo $column_total; ?></td>
             <td class="text-left"><?php echo $column_date_added; ?></td>
-            <td></td>
+            <td class="text-left"><?php echo $column_track; ?></td>
           </tr>
           </thead>
 
@@ -226,4 +226,30 @@ if (e.keyCode == 13) {
 $('#button-search').trigger('click');
 }
 });
+</script>
+<script>
+  // ¶©µ¥×·×Ù
+  $("#OrderTrackBTN").click(function () {
+    $.ajax({
+      async: false, // ·ÀÖ¹window.open±»À¹½Ø
+      url: 'index.php?route=information/track/get_order_track',
+      type: "POST",
+      data: "order_no=" + $(this).data("order_no"),
+      dataType: 'json',
+      success: function (json) {
+        if (json.success) {
+          window.open(json.result);
+        } else {
+          alert(json.error);
+        }
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+      }
+    });
+
+    return false;
+  });
+
+
 </script>

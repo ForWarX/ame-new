@@ -28,6 +28,7 @@ $_['column_date_added']     = '下单日期';
 $_['column_status']         = '邮包状态';
 $_['column_comment']        = '备注';
 $_['column_receiver']       = '收件人';
+$_['column_track']          = '如果包裹已邮寄';
 
 // Entry
 $_['entry_name']     = '您的姓名';
@@ -44,3 +45,6 @@ $_['error_email']    = '电子邮件地址无效 ！';
 $_['error_enquiry']  = '查询必须 10 个和 3000 个字符之间 ！';
 $_['error_captcha']  = '验证码与图像不匹配 ！';
 $_['error_track']    = '系统未查询到账单， 请输入正确的订单号码！格式例如: AME1711010187';
+$_['error_not_found']    = '您的邮包还未寄出，请稍后查询';
+//button
+$_['button_track']  = '点击这里查询您的包裹状态';
