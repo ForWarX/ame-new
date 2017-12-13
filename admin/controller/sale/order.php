@@ -2887,7 +2887,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('sale/order');
 		$this->load->model('localisation/language');
 
-		$output = "客户单号,起运地,发件人,发件地址,发件人电话,发件人国别,发件人城市,收件人,收件人证件号,详细地址,收件人电话,货物sku编码,货物数量,货物品名,品名简称,英文名称,商品规格,HS编码,行邮税号,单品货值,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,总重（lb）,总价（CAD）,采用建议价格\r\n";
+		$output = "客户单号,分单号（非必填）,寄件人,寄件人电话,寄件人地址,寄件人国家代码,寄件人城市,收件人,收件人电话,收件人证件类型,收件人证件,收件人省,收件人市,收件人区,收件人详细地址,货物sku编码,货物数量,货物品名,品名简称,英文名称,商品规格,HS编码,行邮税号,单品货值,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,总重（lb）,总价（CAD）,采用建议价格\r\n";
 		//记录导出行数
 		$outputline=0;
 		$lang_id = $this->model_localisation_language->getLanguageByCode('zh-CN')['language_id'];
@@ -2903,9 +2903,9 @@ class ControllerSaleOrder extends Controller {
 					if ($outputline < 300)
 						foreach ($products as $product) {
 							foreach ($products2 as $product2) foreach ($products3 as $product3)
-								$line = $result['invoice_prefix'] . ',加拿大,AME,"3445 Sheppard Ave E, Scarborough",647-498-8891,加拿大,多伦多,' . $result['shipping_firstname']
-									. ',' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" . $result['shipping_city'] . "（市）" . $result['shipping_district'] . "（区）" . $result['shipping_address_1']
-									. ',' . $result['shipping_phone'] . ',' . $product['upc'] . ',' . $product2['quantity'] . ',' . $product['name'] . ',,'
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+									.',' . $result['shipping_phone'] .  ',身份证,' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" .',' . $result['shipping_city'] . "（市）" .',' . $result['shipping_district'] . "（区）" .',' . $result['shipping_address_1']
+									. ',' . $product['upc'] . ',' . $product2['quantity'] . ',' . $product['name'] . ',,'
 									. $product2['name'] . ',' . $product3['tag'] . ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total'] . ',' . "否";
 							$output .= $line . "\r\n";
 							$outputline++;
