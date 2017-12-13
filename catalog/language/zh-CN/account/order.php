@@ -37,3 +37,4 @@ $_['button_filter']       = '筛选';
 
 // Error
 $_['error_reorder']         = '%s 现在不能再次订购。';
+$_['error_track']           = '您的包裹还未邮出，请稍后查询。';
