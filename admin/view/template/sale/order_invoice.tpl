@@ -20,7 +20,7 @@
     <button style="float: right;" onclick="printer(<?php echo $order['order_id']; ?>)">Print</button>
   </h1>
   <div id="printer-area-<?php echo $order['order_id']; ?>" style="page-break-after: always;">
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="font-size: 11px;">
       <thead>
       <tr>
         <td colspan="2"><?php echo $text_order_detail; ?></td>
@@ -60,7 +60,7 @@
       </tr>
       </tbody>
     </table>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="font-size: 11px;">
       <thead>
       <tr>
         <td style="width: 50%;"><b><?php echo $text_payment_address; ?></b></td>
@@ -78,7 +78,7 @@
       </tr>
       </tbody>
     </table>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="font-size: 11px;">
       <tbody>
       <tr>
         <td style="width: 25%;"><?php echo $entry_category; ?></td>
@@ -91,12 +91,12 @@
         <td colspan="3">
           <img src='<?php echo $order['barcode_url']; ?>'>
           <br>
-          <span style="margin-left: 15px; font-size: 18px;"><?php echo $order['invoice_prefix'];?></span>
+          <span style="margin-left: 200px; "><?php echo $order['invoice_prefix'];?></span>
         </td>
       </tr>
       </tbody>
     </table>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="font-size: 11px;">
       <thead>
       <tr>
         <td><b><?php echo $column_product; ?></b></td>
