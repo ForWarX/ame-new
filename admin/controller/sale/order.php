@@ -2904,7 +2904,7 @@ class ControllerSaleOrder extends Controller {
 						foreach ($products as $product) {
 							foreach ($products2 as $product2) foreach ($products3 as $product3)
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" .',' . $result['shipping_city'] . "（市）" .',' . $result['shipping_district'] . "（区）" .',' . $result['shipping_address_1']
+									.',' . $result['shipping_phone'] .  ',身份证,' .'*'. $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . "（省）" .',' . $result['shipping_city'] . "（市）" .',' . $result['shipping_district'] . "（区）" .',' . $result['shipping_address_1']
 									. ',' . $product['upc'] . ',' . $product2['quantity'] . ',' . $product['name'] . ',,'
 									. $product2['name'] . ',' . $product3['tag'] . ',,,' . $product['price'] . ',' . $product['weight'] . ',CAD,,1,,' . $result['weight'] . ',' . $result['total'] . ',' . "否";
 							$output .= $line . "\r\n";
