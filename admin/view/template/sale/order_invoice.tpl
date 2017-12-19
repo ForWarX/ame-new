@@ -80,21 +80,26 @@
     </table>
     <table class="table table-bordered" style="font-size: 11px;">
       <tbody>
+
+      <tr>
+        <td><?php echo $entry_barcode; ?></td>
+        <td  colspan="3">
+          <img  src='<?php echo $order['barcode_url']; ?>'>
+          <br>
+          <span style="margin-left: 200px; "><?php echo $order['invoice_prefix'];?></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered" style="font-size: 13px;">
+      <thead>
       <tr>
         <td style="width: 25%;"><?php echo $entry_category; ?></td>
         <td style="width: 25%;"><?php echo $order['category_name']; ?></td>
         <td style="width: 25%;"><?php echo $entry_weight; ?></td>
         <td style="width: 25%;"><?php echo $order['weight'];?></td>
       </tr>
-      <tr>
-        <td><?php echo $entry_barcode; ?></td>
-        <td colspan="3">
-          <img src='<?php echo $order['barcode_url']; ?>'>
-          <br>
-          <span style="margin-left: 200px; "><?php echo $order['invoice_prefix'];?></span>
-        </td>
-      </tr>
-      </tbody>
+      </thead>
     </table>
     <table class="table table-bordered" style="font-size: 11px;">
       <thead>
@@ -103,9 +108,14 @@
         <td><b><?php echo $column_upc; ?></b></td>
         <td class="text-right"><b><?php echo $column_quantity; ?></b></td>
         <td class="text-right"><b><?php echo $column_price; ?></b></td>
+
+        <!--
         <td class="text-right"><b><?php echo $column_total; ?></b></td>
+
+        -->
       </tr>
       </thead>
+
       <tbody>
       <?php foreach ($order['product'] as $product) { ?>
       <tr>
@@ -117,7 +127,9 @@
         <td><?php echo $product['upc']; ?></td>
         <td class="text-right"><?php echo $product['quantity']; ?></td>
         <td class="text-right"><?php echo $product['price']; ?></td>
+        <!--
         <td class="text-right"><?php echo $product['total']; ?></td>
+        -->
       </tr>
       <?php } ?>
       <?php foreach ($order['voucher'] as $voucher) { ?>
@@ -128,7 +140,9 @@
         <td class="text-right"><?php echo $voucher['amount']; ?></td>
         <td class="text-right"><?php echo $voucher['amount']; ?></td>
       </tr>
+
       <?php } ?>
+      <!--
       <?php foreach ($order['total'] as $total) { ?>
       <tr>
         <td class="text-right" colspan="4"><b><?php echo $total['title']; ?></b></td>
@@ -141,6 +155,7 @@
         <td colspan="4"><?php echo $order['comment']; ?></td>
       </tr>
       <?php } ?>
+      -->
       </tbody>
     </table>
     <h4><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h4>
