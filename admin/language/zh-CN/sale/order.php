@@ -151,6 +151,10 @@ $_['column_shipper']                          = '收件人';
 $_['column_shipperphone']                    = '收件人电话';
 $_['column_shipperid']                        = '身份证';
 $_['column_paid']                             = '已支付';
+//add column upc
+$_['column_upc']             = 'UPC条形码';
+//add column spec
+$_['column_spec']             = '产品规格';
 // Entry
 $_['entry_store']                             = '网店';
 $_['entry_customer']                          = '客户';

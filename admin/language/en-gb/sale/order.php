@@ -99,6 +99,8 @@ $_['column_paid']                = 'Paid';
 $_['column_storage']             = 'Storage';
 //add column upc
 $_['column_upc']             = 'UPC';
+//add column spec
+$_['column_spec']             = 'Spec';
 // Entry
 $_['entry_store']                = 'Store';
 $_['entry_customer']             = 'Customer';

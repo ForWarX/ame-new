@@ -2133,6 +2133,7 @@ class ControllerSaleOrder extends Controller {
 		$data['column_total'] = $this->language->get('column_total');
 		//add column upc
 		$data['column_upc'] = $this->language->get('column_upc');
+		$data['column_spec'] = $this->language->get('column_spec');
 
 		$data['entry_weight'] = $this->language->get('entry_weight');
 		$data['entry_category'] = $this->language->get('entry_category');

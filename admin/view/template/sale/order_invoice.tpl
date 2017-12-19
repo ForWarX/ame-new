@@ -105,6 +105,7 @@
       <thead>
       <tr>
         <td><b><?php echo $column_product; ?></b></td>
+        <td><b><?php echo $column_spec; ?></b></td>
         <td><b><?php echo $column_upc; ?></b></td>
         <td class="text-right"><b><?php echo $column_quantity; ?></b></td>
         <td class="text-right"><b><?php echo $column_price; ?></b></td>
@@ -124,6 +125,7 @@
           <br />
           &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
           <?php } ?></td>
+        <td><?php echo $product['mpn']; ?></td>
         <td><?php echo $product['upc']; ?></td>
         <td class="text-right"><?php echo $product['quantity']; ?></td>
         <td class="text-right"><?php echo $product['price']; ?></td>
