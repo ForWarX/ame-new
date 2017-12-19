@@ -17,7 +17,7 @@
   <?php foreach ($orders as $order) { ?>
   <h1><button onclick="printer(<?php echo $order['order_id']; ?>)">Print</button></h1>
   <div id="printer-area-<?php echo $order['order_id']; ?>" style="page-break-after: always;">
-    <?php foreach ($order['product'] as $product) { ?>
+
     <table class="table table-bordered">
       <tbody>
         <tr>
@@ -30,12 +30,15 @@
         <tr>
           <td colspan='2'>收件地址： <?php echo $order['shipping_address']['shipping_address_1'] . " " . $order['shipping_address']['shipping_city'] . " " . $order['shipping_address']['shipping_zone'] . " " . $order['shipping_address']['shipping_country'] . " " . $order['shipping_address']['shipping_postcode']; ?></td>
         </tr>
-        <tr>
-          <td colspan='2'>商品： <?php echo $product['name'] . $product['meta_title'] . " ( " . $product['mpn'] . " ) X " . $product['quantity']; ?></td>
+        <tr><td colspan='2'>商品：
+        <?php foreach ($order['product'] as $product) { ?>
+           <?php echo $product['name'] . $product['meta_title'] . " ( " . $product['mpn'] . " ) X " . $product['quantity'];     ?>
+        <?php } ?>
+          </td>
         </tr>
       </tbody>
     </table>
-    <?php } ?>
+
   </div>
   <?php } ?>
 </div>
