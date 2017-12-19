@@ -42,10 +42,11 @@
                 <label class="control-label" for="input-order-id"><?php echo $entry_order_id; ?></label>
                 <input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" placeholder="<?php echo $entry_order_id; ?>" id="input-order-id" class="form-control" />
               </div>
-              <div class="form-group">
-                <label class="control-label" for="input-customer"><?php echo $entry_customer; ?></label>
-                <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_customer; ?>" id="input-customer" class="form-control" />
-              </div>
+                <div class="form-group">
+                    <label class="control-label" for="input-sender"><?php echo $entry_sender; ?></label>
+                    <input type="text" name="filter_sender" value="<?php echo $filter_sender; ?>" placeholder="<?php echo $entry_sender; ?>" id="input-sender" class="form-control" />
+                </div>
+
               <!-- add phone number search -->
               <div class="form-group">
                 <label class="control-label" for="input-payment_phone"><?php echo $entry_payment_phone; ?></label>
@@ -93,10 +94,10 @@
                   </span></div>
               </div>
               <!-- Change search date modified to shipping number-->
-              <div class="form-group">
-                <label class="control-label" for="input-sender"><?php echo $entry_sender; ?></label>
-                <input type="text" name="filter_sender" value="<?php echo $filter_sender; ?>" placeholder="<?php echo $entry_sender; ?>" id="input-sender" class="form-control" />
-              </div>
+                <div class="form-group">
+                    <label class="control-label" for="input-customer"><?php echo $entry_customer; ?></label>
+                    <input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" placeholder="<?php echo $entry_customer; ?>" id="input-customer" class="form-control" />
+                </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             <!--  <button type="button" id="button-change-customer" class="btn btn-primary"><i class="fa fa-user"></i> <?php echo $button_change_customer; ?></button>
            -->
