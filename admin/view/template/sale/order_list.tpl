@@ -288,7 +288,39 @@
 
           location = url;
       });
+      $('#content input[name=\'filter_order_id\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_customer\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_recipient\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_payment_phone\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_shipping_phone\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_sender\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
   </script>
+
+
   <script type="text/javascript">
       // 更换订单用户
       $('#button-change-customer').on('click', function() {
