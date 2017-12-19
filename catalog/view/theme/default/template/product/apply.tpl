@@ -24,18 +24,18 @@
 				<div class="container" style="background: #f8f8f8; margin-bottom: 10px; padding: 15px; width: 100%;">
 					<input type='hidden' name="address_id" value='<?php echo empty($user_address) ? '' : $user_address['address_id']; ?>'>
 					<div class="row">
-						<div class='col-sm-12' style="font-size: larger; color: black;">Sender:</div>
+						<div class='col-sm-12' style="font-size: larger; color: black;">寄件人/Sender:</div>
 					</div>
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Name:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>姓名/Name:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="firstname" value='<?php echo empty($user_address) ? 'AME' : $user_address['firstname']; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Company:</label>
+								<label class='col-sm-2 control-label'>公司/Company:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="company" value='<?php echo empty($user_address) ? 'AmericoMall' : $user_address['company']; ?>'></div>
 							</div>
 						</div>
@@ -43,13 +43,13 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>City:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>市/City:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="city" value='<?php echo empty($user_address) ? 'Toronto' : $user_address['city']; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label' for='zone-id'>Province:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label' for='zone-id'>省份/Province:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="zone_id" id="zone_id" class="form-control input-sm">
 										<?php $zone_id = empty($user_address) ? 610 : $user_address["zone_id"]; ?>
@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class='col-sm-12'>
 							<div class="row form-group">
-								<label class='col-sm-1 control-label'>Address:<span style="color:red">*</span></label>
+								<label class='col-sm-1 control-label'>详细地址/Address:<span style="color:red">*</span></label>
 								<div class='col-sm-8'><input class="form-control input-sm" type='text' name="address_1" value='<?php echo empty($user_address) ? '3445 Sheppard Ave East' : $user_address['address_1']; ?>'></div>
 							</div>
 						</div>
@@ -72,13 +72,13 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Postcode:</label>
+								<label class='col-sm-2 control-label'>邮政编码/Postcode:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="postcode" value='<?php echo empty($user_address) ? 'M1T 3K5' : $user_address['postcode']; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label' for='country-id'>Country:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label' for='country-id'>国家/Country:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="country_id" id="country_id" class="form-control input-sm">
 										<?php $country_id = empty($user_address) ? 38 : $user_address["country_id"]; ?>
@@ -93,13 +93,13 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Email:</label>
+								<label class='col-sm-2 control-label'>电子邮件/Email:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="email" value='<?php echo empty($user_address) ? '' : $user_address['email']; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Phone:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>电话/Phone:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="payment_phone" value='<?php echo empty($user_address) ? '647-498-8891' : $user_address['payment_phone']; ?>'></div>
 							</div>
 						</div>
@@ -118,18 +118,18 @@
 				<div class="container" style="background: #f8f8f8; margin-bottom: 10px; padding: 15px; width: 100%;">
 					<input type='hidden' name="shipping_address_id" value=''>
 					<div class="row">
-						<div class='col-sm-12' style="font-size: larger; color: black;">Recipient:</div>
+						<div class='col-sm-12' style="font-size: larger; color: black;">收件人/Recipient:</div>
 					</div>
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Name:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>姓名/Name:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_firstname" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["name"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Company:</label>
+								<label class='col-sm-2 control-label'>公司/Company:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_company" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["company"]; ?>'></div>
 							</div>
 						</div>
@@ -138,10 +138,10 @@
 
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label' for='shipping-country-id'>Country:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label' for='shipping-country-id'>国家/Country:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="shipping_country_id" id='shipping_country_id' class="form-control input-sm">
-										<?php $country_id = empty($shipping_copy) ? 44 : $shipping_copy["country_id"]; ?>
+										<?php $country_id = empty($shipping_copy) ? 38 : $shipping_copy["country_id"]; ?>
 										<option value="0"> -- Select -- </option>
 										<?php foreach ($countries as $country) { ?>
 										<option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $country_id) ? 'selected' : ''; ?>><?php echo $country['name']; ?></option>
@@ -152,7 +152,7 @@
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label' for='shipping-zone-id'>Province:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label' for='shipping-zone-id'>省份/Province:<span style="color:red">*</span></label>
 								<div class='col-sm-4'>
 									<select name="shipping_zone_id" id="shipping_zone_id" class="form-control input-sm">
 										<?php
@@ -173,7 +173,7 @@
 					<div class="row">
 						<div class='col-sm-12'>
 							<div class="row form-group">
-								<label class='col-sm-1 control-label'>Address:<span style="color:red">*</span></label>
+								<label class='col-sm-1 control-label'>详细地址/Address:<span style="color:red">*</span></label>
 								<div class='col-sm-8'><input class="form-control input-sm" type='text' name="shipping_address_1" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["address_1"]; ?>'></div>
 							</div>
 						</div>
@@ -181,13 +181,13 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Postcode:</label>
+								<label class='col-sm-2 control-label'>邮政编码/Postcode:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_postcode" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["postcode"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>City:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>市/City:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_city" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["city"]; ?>'></div>
 							</div>
 						</div>
@@ -195,7 +195,7 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>District:</label>
+								<label class='col-sm-2 control-label'>区/District:</label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_district" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["shipping_district"]; ?>'></div>
 							</div>
 						</div>
@@ -203,13 +203,13 @@
 					<div class="row">
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Email:<span style="color:red"></span></label>
+								<label class='col-sm-2 control-label'>电子邮件/Email:<span style="color:red"></span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_email" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["email"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-6'>
 							<div class="row form-group">
-								<label class='col-sm-2 control-label'>Phone:<span style="color:red">*</span></label>
+								<label class='col-sm-2 control-label'>电话/Phone:<span style="color:red">*</span></label>
 								<div class='col-sm-4'><input class="form-control input-sm" type='text' name="shipping_phone" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["phone"]; ?>'></div>
 							</div>
 						</div>
@@ -217,13 +217,13 @@
 					<div class="row" id='china_div'>
 						<div class='col-sm-4'>
 							<div class="row form-group">
-								<label class='col-sm-3 control-label'>China ID #:<span style="color:red">*</span></label>
+								<label class='col-sm-3 control-label'>身份证号/China ID #:<span style="color:red">*</span></label>
 								<div class='col-sm-6'><input class="form-control input-sm" type='text' name="chinaid" value='<?php if (!empty($shipping_copy)) echo $shipping_copy["chinaid"]; ?>'></div>
 							</div>
 						</div>
 						<div class='col-sm-4'>
 							<div class="row form-group">
-								<label class='col-sm-3 control-label'>China ID Front:</label>
+								<label class='col-sm-3 control-label'>身份证正面/China ID Front:</label>
 								<div class='col-sm-9'>
 									<input type='file' name="chinaid_front" value=''>
 									<p class="help-block" id="chinaid_front_helper" style="display: none;"><?php echo $text_chinaid_front_helper; ?></p>
@@ -232,7 +232,7 @@
 						</div>
 						<div class='col-sm-4'>
 							<div class="row form-group">
-								<label class='col-sm-3 control-label'>China ID Back:</label>
+								<label class='col-sm-3 control-label'>身份证背面/China ID Back:</label>
 								<div class='col-sm-9'>
 									<input type='file' name="chinaid_back" value=''>
 									<p class="help-block" id="chinaid_back_helper" style="display: none;"><?php echo $text_chinaid_back_helper; ?></p>
@@ -246,25 +246,25 @@
 					<div class="row product">
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class='col-sm-12 control-label'>UPC<span style="color:red">*</span></label>
+								<label class='col-sm-12 control-label'>条形码/UPC<span style="color:red">*</span></label>
 								<div class='col-sm-12'><input class="form-control input-sm upc" type='text' name="upc[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class='col-sm-12 control-label'>Brand</label>
+								<label class='col-sm-12 control-label'>商标/Brand</label>
 								<div class='col-sm-12'><input class="form-control input-sm mpn" type='text' name="mpn[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class='col-sm-12 control-label'>English Name</label>
+								<label class='col-sm-12 control-label'>英文名称/English Name</label>
 								<div class='col-sm-12'><input class="form-control input-sm meta_title" type='text' name="meta_title[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label  class='col-sm-12 control-label'>Chinese Name<span style="color:red">*</span></label>
+								<label  class='col-sm-12 control-label'>中文名称/Chinese Name<span style="color:red">*</span></label>
 								<div class='col-sm-12' ><input class="form-control input-sm chn" type='text' name="name[]" value=''></div>
 							</div>
 						</div>
@@ -272,26 +272,26 @@
 					<div class="row">
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class='col-sm-12 control-label'>Spec</label>
+								<label class='col-sm-12 control-label'>产品规格/Spec</label>
 								<div class='col-sm-12'><input class="form-control input-sm spec" type='text' name="tag[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class='col-sm-12 control-label'>Quantity<span style="color:red">*</span></label>
+								<label class='col-sm-12 control-label'>数量/Quantity<span style="color:red">*</span></label>
 								<div class='col-sm-12'><input class="form-control input-sm quantity" type='text' name="quantity[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row form-group">
-								<label class="col-sm-12 control-label">Unit Value<span style="color:red">*</span></label>
+								<label class="col-sm-12 control-label">单价/Unit Value<span style="color:red">*</span></label>
 								<div class='col-sm-12'><input class="form-control input-sm price" type='text' name="price[]" value=''></div>
 							</div>
 						</div>
 						<div class='col-sm-3'>
 							<div class="row">
 								<label class='col-sm-12'>&nbsp;</label>
-								<a href="#" class="btn btn-default remove" role="button" style="margin-left: 15px;">Remove</a>
+								<a href="#" class="btn btn-default remove" role="button" style="margin-left: 15px;">去掉产品/Remove</a>
 								<input type='hidden' name="prod_id[]" value='' class='prod_id'>
 								<input type='hidden' name="category_id[]" value='' class='category_id'>
 								<input type="hidden" name="canMix[]" value="" class="canMix">
@@ -310,26 +310,26 @@
 					<?php } ?>
 					<div class='col-sm-3'>
 						<div class="row form-group">
-							<label class="col-sm-12 control-label"><b>Weight</b></label>
+							<label class="col-sm-12 control-label"><b>总重/Weight</b></label>
 							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-weight" type='text' name="admin_weight" value='' placeholder="LB"></div>
 						</div>
 					</div>
 					<div class='col-sm-3'>
 						<div class="row form-group">
-							<label class="col-sm-12 control-label"><b>Total Price</b></label>
+							<label class="col-sm-12 control-label"><b>总价/Total Price</b></label>
 							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-total" type='text' name="admin_total" value='' placeholder="C$"></div>
 						</div>
 					</div>
 					<div class='col-sm-3'>
 						<div class="row form-group">
-							<label class="col-sm-12 control-label"><b>Comment</b></label>
+							<label class="col-sm-12 control-label"><b>备注/Comment</b></label>
 							<div class='col-sm-12'><input class="form-control input-sm" id="input-admin-comment" type='text' name="admin_comment" value=''></div>
 						</div>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 15px;">
 					<div class='col-sm-6 col-xs-6'>
-						<a href="#" class="btn btn-primary addmore" role="button">Add Item</a>
+						<a href="#" class="btn btn-primary addmore" role="button">增加产品/Add Item</a>
 					</div>
 					<div class='col-sm-6 col-xs-6'>
 						<input type='submit' class='btn btn-primary pull-right' value='Submit'>
