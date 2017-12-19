@@ -291,10 +291,11 @@ class ControllerInformationTrack extends Controller {
 		if ($order_info) {
 			if ($order_info['delivery_company'] != '' && $order_info['delivery_number'] != '') {
 				$AppKey = 'd76521a8f1cf17d2';
-				$typeCom = $order_info['delivery_company']; // 需要转成快递100的代号
+				//$typeCom = $order_info['delivery_company']; // 需要转成快递100的代号
+
 				$typeNu = $order_info['delivery_number'];
 
-				$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=' . $typeCom . '&nu=' . $typeNu;
+				$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=youzhengguonei'  . '&nu=' . $typeNu;
 
 				$curl = curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
