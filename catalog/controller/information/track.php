@@ -289,7 +289,7 @@ class ControllerInformationTrack extends Controller {
 		$order_info = $this->model_account_order->getOrder(0, $order_no);
 
 		if ($order_info) {
-			if ($order_info['delivery_company'] != '' && $order_info['delivery_number'] != '') {
+			if ($order_info['delivery_number'] != '') {
 				$AppKey = 'd76521a8f1cf17d2';
 				//$typeCom = $order_info['delivery_company']; // 需要转成快递100的代号
 

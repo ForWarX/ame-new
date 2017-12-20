@@ -76,7 +76,7 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group required">
+              <div class="form-group ">
                 <label class="col-sm-2 control-label" for="input-firstname"><?php echo $entry_name; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="firstname" value="<?php echo $firstname; ?>" id="input-firstname" class="form-control" />
@@ -89,13 +89,13 @@
                   <input type="text" name="lastname" value="<?php echo $lastname; ?>" id="input-lastname" class="form-control" />
                 </div>
               </div>-->
-              <div class="form-group required">
+              <div class="form-group ">
                 <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="email" value="<?php echo $email; ?>" id="input-email" class="form-control" />
                 </div>
               </div>
-              <div class="form-group required">
+              <div class="form-group ">
                 <label class="col-sm-2 control-label" for="input-telephone"><?php echo $entry_telephone; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="telephone" value="<?php echo $telephone; ?>" id="input-telephone" class="form-control" />
@@ -1385,7 +1385,7 @@ $('select[name=\'customer_group_id\']').trigger('change');
 
 $('#button-customer').on('click', function() {
 	$.ajax({
-		url: '<?php echo $catalog; ?>index.php?route=api/customer&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
+		url: '<?php echo $catalog; ?>index.php?route=api/customerorderedit&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
 		type: 'post',
 		data: $('#tab-customer input[type=\'text\'], #tab-customer input[type=\'hidden\'], #tab-customer input[type=\'radio\']:checked, #tab-customer input[type=\'checkbox\']:checked, #tab-customer select, #tab-customer textarea'),
 		dataType: 'json',
