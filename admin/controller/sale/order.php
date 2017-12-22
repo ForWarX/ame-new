@@ -634,7 +634,6 @@ class ControllerSaleOrder extends Controller {
         $data['entry_final'] = $this->language->get('entry_final');
         $data['entry_delivery_company'] = $this->language->get('entry_delivery_company');
         $data['entry_delivery_number'] = $this->language->get('entry_delivery_number');
-		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
