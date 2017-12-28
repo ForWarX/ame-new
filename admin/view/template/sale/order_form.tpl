@@ -477,6 +477,12 @@
                   </select>
                 </div>
               </div>
+              <div class="form-group ">
+                <label class="col-sm-2 control-label" for="input-payment-phone"><?php echo $entry_payment_phone; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="payment_phone" value="<?php echo $payment_phone; ?>" id="input-payment-phone" class="form-control" />
+                </div>
+              </div>
               <?php foreach ($custom_fields as $custom_field) { ?>
               <?php if ($custom_field['location'] == 'address') { ?>
               <?php if ($custom_field['type'] == 'select') { ?>
@@ -1880,6 +1886,7 @@ $('select[name=\'payment_address\']').on('change', function() {
 			$('#tab-payment input[name=\'city\']').val(json['city']);
 			$('#tab-payment input[name=\'postcode\']').val(json['postcode']);
 			$('#tab-payment select[name=\'country_id\']').val(json['country_id']);
+            $('#tab-payment select[name=\'payment_phone\']').val(json['payment_phone']);
 
 			payment_zone_id = json['zone_id'];
 

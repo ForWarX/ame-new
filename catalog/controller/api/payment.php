@@ -23,7 +23,8 @@ class ControllerApiPayment extends Controller {
 				'postcode',
 				'city',
 				'zone_id',
-				'country_id'
+				'country_id',
+				'payment_phone'
 			);
 
 			foreach ($keys as $key) {
@@ -121,6 +122,7 @@ class ControllerApiPayment extends Controller {
 					'zone_code'      => $zone_code,
 					'country_id'     => $this->request->post['country_id'],
 					'country'        => $country,
+					'payment_phone' => $this->request->post['payment_phone'],
 					'iso_code_2'     => $iso_code_2,
 					'iso_code_3'     => $iso_code_3,
 					'address_format' => $address_format,

@@ -634,6 +634,8 @@ class ControllerSaleOrder extends Controller {
         $data['entry_final'] = $this->language->get('entry_final');
         $data['entry_delivery_company'] = $this->language->get('entry_delivery_company');
         $data['entry_delivery_number'] = $this->language->get('entry_delivery_number');
+		$data['entry_number'] = $this->language->get('entry_delivery_number');
+		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
@@ -751,6 +753,7 @@ class ControllerSaleOrder extends Controller {
 			$data['payment_custom_field'] = $order_info['payment_custom_field'];
 			$data['payment_method'] = $order_info['payment_method'];
 			$data['payment_code'] = $order_info['payment_code'];
+			$data['payment_phone'] = $order_info['payment_phone'];
 
 			$data['shipping_firstname'] = $order_info['shipping_firstname'];
 			$data['shipping_lastname'] = $order_info['shipping_lastname'];
@@ -843,6 +846,7 @@ class ControllerSaleOrder extends Controller {
 			$data['payment_custom_field'] = array();
 			$data['payment_method'] = '';
 			$data['payment_code'] = '';
+			$data['payment_payment'] = '';
 
 			$data['shipping_firstname'] = '';
 			$data['shipping_lastname'] = '';

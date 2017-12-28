@@ -90,6 +90,7 @@ class ModelCheckoutOrder extends Model {
             . "', payment_custom_field = '" . $this->db->escape(json_encode($data['payment_custom_field']))
             . "', payment_method = '" . $this->db->escape($data['payment_method'])
             . "', payment_code = '" . $this->db->escape($data['payment_code'])
+			. "', payment_phone = '" . $this->db->escape($data['payment_phone'])
             . "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname'])
             . "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname'])
             . "', shipping_company = '" . $this->db->escape($data['shipping_company'])

@@ -508,6 +508,7 @@ class ControllerApiOrder extends Controller {
 					$order_data['payment_country_id'] = $this->session->data['payment_address']['country_id'];
 					$order_data['payment_address_format'] = $this->session->data['payment_address']['address_format'];
 					$order_data['payment_custom_field'] = $this->session->data['payment_address']['custom_field'];
+					$order_data['payment_phone'] = $this->session->data['payment_address']['payment_phone'];
 
 					if (isset($this->session->data['payment_method']['title'])) {
 						$order_data['payment_method'] = $this->session->data['payment_method']['title'];
