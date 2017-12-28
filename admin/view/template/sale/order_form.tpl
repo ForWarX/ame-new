@@ -2042,6 +2042,7 @@ $('#button-payment-address').on('click', function() {
 
 // Shipping Address
 $('select[name=\'shipping_address\']').on('change', function() {
+  console.log($token);
 	$.ajax({
 		url: 'index.php?route=customer/customer/address&token=<?php echo $token; ?>&address_id=' + this.value,
 		dataType: 'json',
@@ -2174,7 +2175,9 @@ $('#button-shipping-address').on('click', function() {
 			} else {
 				// Shipping Methods
 				var request = $.ajax({
-					url: '<?php echo $catalog; ?>index.php?route=api/shipping/methods&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
+                //  url: '<?php echo $catalog; ?>index.php?route=api/shipping/methods&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
+
+                  url: '<?php echo $catalog; ?>index.php?route=api/shipping/methods&' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
 					dataType: 'json',
 					beforeSend: function() {
 						$('#button-shipping-address').button('loading');

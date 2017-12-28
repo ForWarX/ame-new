@@ -415,6 +415,7 @@ class ControllerApiOrder extends Controller {
 				}
 
 				// Shipping
+				/* 去掉shipping method
 				if ($this->cart->hasShipping()) {
 					// Shipping Address
 					if (!isset($this->session->data['shipping_address'])) {
@@ -446,6 +447,7 @@ class ControllerApiOrder extends Controller {
 					unset($this->session->data['shipping_method']);
 					unset($this->session->data['shipping_methods']);
 				}
+				*/
 
 				// Cart
 				if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
