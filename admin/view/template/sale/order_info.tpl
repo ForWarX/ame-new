@@ -137,17 +137,17 @@
           <thead>
             <tr>
               <td style="width: 50%;" class="text-left"><?php echo $text_payment_address; ?></td>
-              <?php if ($shipping_method) { ?>
+
               <td style="width: 50%;" class="text-left"><?php echo $text_shipping_address; ?></td>
-              <?php } ?>
+
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="text-left"><?php echo $payment_address; ?></td>
-              <?php if ($shipping_method) { ?>
+
               <td class="text-left"><?php echo $shipping_address; ?></td>
-              <?php } ?>
+
             </tr>
           </tbody>
         </table>
