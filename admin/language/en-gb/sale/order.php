@@ -156,6 +156,8 @@ $_['entry_telephone']            = 'Telephone';
 $_['entry_shipping_phone']       = 'Shipping Phone';
 // add entry shipping phone
 $_['entry_payment_phone']       = 'Sender Phone';
+// add entry shipping chinaid
+$_['entry_payment_chinaid']       = 'China ID';
 
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';

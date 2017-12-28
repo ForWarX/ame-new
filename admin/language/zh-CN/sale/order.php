@@ -216,6 +216,8 @@ $_['button_order_copy']                       = '继续下单';
 $_['button_labels_print']                     = '打印小票';
 $_['button_new_order']                        = '下单';
 $_['button_change_customer']                  = '更换客户';
+// add entry shipping chinaid
+$_['entry_shipping_chinaid']                   = '身份证';
 
 // Help
 $_['help_country_match']                      = '国家的 IP 地址是否与帐单地址中的国家/地区相配 (不匹配 = 更高的风险)。';

@@ -98,6 +98,8 @@ class ModelCheckoutOrder extends Model {
             . "', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2'])
             . "', shipping_city = '" . $this->db->escape($data['shipping_city'])
             . "', shipping_postcode = '" . $this->db->escape($data['shipping_postcode'])
+			. "', shipping_phone = '" . $this->db->escape($data['shipping_phone'])
+			. "', shipping_chinaid = '" . (int)$data['shipping_chinaid']
             . "', shipping_country = '" . $this->db->escape($data['shipping_country'])
             . "', shipping_country_id = '" . (int)$data['shipping_country_id']
             . "', shipping_zone = '" . $this->db->escape($data['shipping_zone'])

@@ -673,6 +673,18 @@
                   <input type="text" name="postcode" value="<?php echo $shipping_postcode; ?>" id="input-shipping-postcode" class="form-control" />
                 </div>
               </div>
+              <div class="form-group ">
+                <label class="col-sm-2 control-label" for="input-shipping-phone"><?php echo $entry_shipping_phone; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="shipping_phone" value="<?php echo $shipping_phone; ?>" id="input-shipping-phone" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-sm-2 control-label" for="input-shipping-chinaid"><?php echo $entry_shipping_chinaid; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="shipping_chinaid" value="<?php echo $shipping_chinaid; ?>" id="input-shipping-chinaid" class="form-control" />
+                </div>
+              </div>
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-shipping-country"><?php echo $entry_country; ?></label>
                 <div class="col-sm-10">
@@ -2073,6 +2085,8 @@ $('select[name=\'shipping_address\']').on('change', function() {
 			$('#tab-shipping input[name=\'city\']').val(json['city']);
 			$('#tab-shipping input[name=\'postcode\']').val(json['postcode']);
 			$('#tab-shipping select[name=\'country_id\']').val(json['country_id']);
+            $('#tab-shipping input[name=\'shipping_phone\']').val(json['shipping_phone']);
+            $('#tab-shipping select[name=\'shipping_chinaid\']').val(json['shipping_chinaid']);
 
 			shipping_zone_id = json['zone_id'];
 

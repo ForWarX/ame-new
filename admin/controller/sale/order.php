@@ -636,6 +636,8 @@ class ControllerSaleOrder extends Controller {
         $data['entry_delivery_number'] = $this->language->get('entry_delivery_number');
 		$data['entry_number'] = $this->language->get('entry_delivery_number');
 		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
+		$data['entry_shipping_phone'] = $this->language->get('entry_shipping_phone');
+		$data['entry_shipping_chinaid'] = $this->language->get('entry_shipping_chinaid');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
@@ -767,6 +769,8 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_custom_field'] = $order_info['shipping_custom_field'];
 			$data['shipping_method'] = $order_info['shipping_method'];
 			$data['shipping_code'] = $order_info['shipping_code'];
+			$data['shipping_phone'] = $order_info['shipping_phone'];
+			$data['shipping_chinaid'] = $order_info['shipping_chinaid'];
 
             $data['weight'] = $order_info['weight'];
             $data['total'] = $order_info['total'];
@@ -860,6 +864,8 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_custom_field'] = array();
 			$data['shipping_method'] = '';
 			$data['shipping_code'] = '';
+			$data['shipping_phone'] = '';
+			$data['shipping_chinaid'] = '';
 
 			$data['order_products'] = array();
 			$data['order_vouchers'] = array();
