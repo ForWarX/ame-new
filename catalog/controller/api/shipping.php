@@ -26,7 +26,9 @@ class ControllerApiShipping extends Controller {
 					'shipping_chinaid',
 					'city',
 					'zone_id',
-					'country_id'
+					'country_id',
+					'shipping_method',
+					'shipping_code'
 				);
 
 				foreach ($keys as $key) {
@@ -121,6 +123,8 @@ class ControllerApiShipping extends Controller {
 						'shipping_chinaid' => $this->request->post['shipping_chinaid'],
 						'city'             => $this->request->post['city'],
 						'zone_id'          => $this->request->post['zone_id'],
+						'shipping_method' => $this->request->post['shipping_method'],
+						'shipping_code'   => $this->request->post['shipping_code'],
 						'zone'             => $zone,
 						'zone_code'        => $zone_code,
 						'country_id'       => $this->request->post['country_id'],

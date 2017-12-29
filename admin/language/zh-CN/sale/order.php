@@ -217,7 +217,12 @@ $_['button_labels_print']                     = '打印小票';
 $_['button_new_order']                        = '下单';
 $_['button_change_customer']                  = '更换客户';
 // add entry shipping chinaid
-$_['entry_shipping_chinaid']                   = '身份证';
+$_['entry_shipping_chinaid']                 = '身份证';
+// add entry shipping method
+$_['entry_shipping_method']                  = '运送方式';
+// add entry shipping code
+$_['entry_shipping_code']                    = '运送代码';
+
 
 // Help
 $_['help_country_match']                      = '国家的 IP 地址是否与帐单地址中的国家/地区相配 (不匹配 = 更高的风险)。';

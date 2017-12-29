@@ -365,8 +365,13 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
 		//add $data entry shipping phone
 		$data['entry_shipping_phone'] = $this->language->get('entry_shipping_phone');
-		//add $data entry shipping phone
+		//add $data entry payment phone
 		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
+		//add $data entry shipping method
+		$data['entry_shipping_method'] = $this->language->get('entry_shipping_method');
+		//add $data entry shipping code
+		$data['entry_shipping_code'] = $this->language->get('entry_shipping_code');
+
 
 		$data['button_invoice_print'] = $this->language->get('button_invoice_print');
 		$data['button_shipping_print'] = $this->language->get('button_shipping_print');
@@ -638,6 +643,7 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_payment_phone'] = $this->language->get('entry_payment_phone');
 		$data['entry_shipping_phone'] = $this->language->get('entry_shipping_phone');
 		$data['entry_shipping_chinaid'] = $this->language->get('entry_shipping_chinaid');
+		$data['entry_shipping_code'] = $this->language->get('entry_shipping_code');
 
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_model'] = $this->language->get('column_model');
@@ -772,6 +778,7 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_phone'] = $order_info['shipping_phone'];
 			$data['shipping_chinaid'] = $order_info['shipping_chinaid'];
 
+
             $data['weight'] = $order_info['weight'];
             $data['total'] = $order_info['total'];
             $data['delivery_company'] = $order_info['delivery_company'];
@@ -866,6 +873,8 @@ class ControllerSaleOrder extends Controller {
 			$data['shipping_code'] = '';
 			$data['shipping_phone'] = '';
 			$data['shipping_chinaid'] = '';
+
+
 
 			$data['order_products'] = array();
 			$data['order_vouchers'] = array();

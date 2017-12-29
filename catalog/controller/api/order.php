@@ -533,6 +533,8 @@ class ControllerApiOrder extends Controller {
 						$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
 						$order_data['shipping_phone'] = $this->session->data['shipping_address']['shipping_phone'];
 						$order_data['shipping_chinaid'] = $this->session->data['shipping_address']['shipping_chinaid'];
+						$order_data['shipping_method'] = $this->session->data['shipping_address']['shipping_method'];
+						$order_data['shipping_code'] = $this->session->data['shipping_address']['shipping_code'];
 						$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
 						$order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
 						$order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
