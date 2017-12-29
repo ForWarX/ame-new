@@ -32,7 +32,7 @@
         </tr>
         <tr><td colspan='2'>商品：
         <?php foreach ($order['product'] as $product) { ?>
-           <?php echo $product['name'] . $product['meta_title'] . " ( " . $product['mpn'] . " ) X " . $product['quantity'];     ?>
+           <?php echo $product['name'] . $product['meta_title'] . " ( " . $product['mpn'] . " ) X " . $product['quantity']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";        ?>
         <?php } ?>
           </td>
         </tr>
