@@ -2201,13 +2201,17 @@ class ControllerSaleOrder extends Controller {
 				if ($order_info['payment_address_format']) {
 					$format = $order_info['payment_address_format'];
 				} else {
-					$format = '寄件人姓名/Name:{firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{address_2}' . " " . '{city}' . " " . '{zone}' . " " . '{country}'. "\n".'邮政编码/Postcode: {postcode}' . "\n".'寄件人电话/Phone: {phone}';
+					$format = '寄件人姓名&nbsp;&nbsp;/Name: &nbsp;{firstname}'
+						. "\n" . '地址/Address:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{address_1}'
+						. '{address_2}' . " " . '    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{city}' . " " . '{zone}' . " " . '{country}'
+						. "\n".'邮政编码/Postcode:&nbsp;&nbsp;&nbsp;{postcode}'
+						. "\n".'寄件人电话/Phone: &nbsp;&nbsp;&nbsp;{phone}'
+						. "\n" . '公司/Company：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{company}';
 				}
 
 				$find = array(
 					'{firstname}',
 					'{lastname}',
-					'{company}',
 					'{address_1}',
 					'{address_2}',
 					'{city}',
@@ -2215,13 +2219,13 @@ class ControllerSaleOrder extends Controller {
 					'{zone}',
 					'{zone_code}',
 					'{country}',
-					'{phone}'
+					'{phone}',
+				    '{company}'
 				);
 
 				$replace = array(
 					'firstname' => $order_info['payment_firstname'],
 					'lastname'  => $order_info['payment_lastname'],
-					'company'   => $order_info['payment_company'],
 					'address_1' => $order_info['payment_address_1'],
 					'address_2' => $order_info['payment_address_2'],
 					'city'      => $order_info['payment_city'],
@@ -2229,7 +2233,8 @@ class ControllerSaleOrder extends Controller {
 					'zone'      => $order_info['payment_zone'],
 					'zone_code' => $order_info['payment_zone_code'],
 					'country'   => $order_info['payment_country'],
-					'phone'   => $order_info['payment_phone']
+					'phone'   => $order_info['payment_phone'],
+					'company'   => $order_info['payment_company']
 				);
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2237,13 +2242,19 @@ class ControllerSaleOrder extends Controller {
 				if ($order_info['shipping_address_format']) {
 					$format = $order_info['shipping_address_format'];
 				} else {
-					$format = '收件人姓名/Name: {firstname}' . "\n" . '公司/Company：{company}' . "\n" . '地址/Address: {address_1}' . "\n" . '{district}'  . '{city} '  . '{zone} '  . '{country} '. "\n" . '邮政编码/Postcode: {postcode}'. "\n".'收件人电话/Phone: {phone}'. "\n".'身份证/China ID: {ID}' ;
+					$format = '收件人姓名/Name: &nbsp;&nbsp;{firstname}'
+			//			. "\n" . '公司/Company：{company}'
+						. "\n" . '地址/Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{address_1}'
+						. "\n" . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{district}'  . '{city} '  . '{zone} '  . '{country} '
+						. "\n" . '邮政编码/Postcode: &nbsp;{postcode}'
+						. "\n".'收件人电话/Phone: &nbsp;&nbsp;{phone}'
+						. "\n".'身份证/China ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ID}' ;
 				}
 
 				$find = array(
 					'{firstname}',
 					'{lastname}',
-					'{company}',
+			//		'{company}',
 					'{address_1}',
 					'{district}',
 					'{city}',
@@ -2258,7 +2269,7 @@ class ControllerSaleOrder extends Controller {
 				$replace = array(
 					'firstname' => $order_info['shipping_firstname'],
 					'lastname'  => $order_info['shipping_lastname'],
-					'company'   => $order_info['shipping_company'],
+				//	'company'   => $order_info['shipping_company'],
 					'address_1' => $order_info['shipping_address_1'],
 					'district' => $order_info['shipping_district'],
 					'city'      => $order_info['shipping_city'],

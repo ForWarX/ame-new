@@ -31,13 +31,9 @@
         <div style="width: 50%; display: inline-block; float: left; text-align:center">
           <img src="http://www.americoexpress.ca/ame/App/Home/View/Default/img/web/about_us_logo.png" style="width: 308px;">
         </div>
-        <div style="width: 50%; display: inline-block; margin-top:12px; ">
+        <div style="width: 50%; display: inline-block; margin-top:18px; font-size:20px;">
           <b><?php echo $text_order_id; ?></b> <?php echo $order['invoice_prefix']; ?><br />
           <b><?php echo $text_date_added; ?></b> <?php echo $order['date_added']; ?><br />
-          <b><?php echo $text_payment_method; ?></b> <?php echo $order['payment_method']; ?><br />
-          <?php if ($order['shipping_method']) { ?>
-          <b><?php echo $text_shipping_method; ?></b> <?php echo $order['shipping_method']; ?><br />
-          <?php } ?>
           <?php if ($order['admin_name']) { ?>
           <b><?php echo $text_admin_name; ?></b> <?php echo $order['admin_name']; ?>
           <?php } ?>
@@ -70,14 +66,19 @@
       <tbody>
       <tr>
         <td style="vertical-align: initial;">
-          <address style="margin-bottom: 0;"><?php echo $order['payment_address']; ?></address>
+          <b>
+         <?php echo $order['payment_address']; ?>
+          </b>
         </td>
         <td style="vertical-align: initial;">
-          <address style="margin-bottom: 0;"><?php echo $order['shipping_address']; ?></address>
+          <b>
+        <?php echo $order['shipping_address']; ?>
+          </b>
         </td>
       </tr>
       </tbody>
     </table>
+    <!--
     <table class="table table-bordered" style="font-size: 11px;">
       <tbody>
 
@@ -91,16 +92,8 @@
       </tr>
       </tbody>
     </table>
-    <table class="table table-bordered" style="font-size: 13px;">
-      <thead>
-      <tr>
-        <td style="width: 25%;"><?php echo $entry_category; ?></td>
-        <td style="width: 25%;"><?php echo $order['category_name']; ?></td>
-        <td style="width: 25%;"><?php echo $entry_weight; ?></td>
-        <td style="width: 25%;"><?php echo $order['weight'];?></td>
-      </tr>
-      </thead>
-    </table>
+    -->
+
     <table class="table table-bordered" style="font-size: 11px;">
       <thead>
       <tr>
@@ -139,7 +132,7 @@
         <td><?php echo $voucher['description']; ?></td>
         <td></td>
         <td class="text-right">1</td>
-        <td class="text-right"><?php echo $voucher['amount']; ?></td>
+        <td class="text-right">11<?php echo $voucher['amount']; ?></td>
         <td class="text-right"><?php echo $voucher['amount']; ?></td>
       </tr>
 
@@ -159,6 +152,17 @@
       <?php } ?>
       -->
       </tbody>
+    </table>
+
+    <table class="table table-bordered" style="font-size: 13px;">
+      <thead>
+      <tr>
+        <td style="width: 25%;"><?php echo $entry_category; ?></td>
+        <td style="width: 25%;"><?php echo $order['category_name']; ?></td>
+        <td style="width: 25%;"><?php echo $entry_weight; ?></td>
+        <td style="width: 25%;"><?php echo $order['weight'];?></td>
+      </tr>
+      </thead>
     </table>
     <h4><?php echo $text_signature; ?><u> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </u></h4>
     <p>1.根據中國有關規定,海外包裹快遞進入中國大陸需要提供收件人身份證正反兩面複印件。<br>2.托運物品按實際裝箱情況填寫，我公司對任何因為包裹清單填寫错误造成的延遲清關，退關等不負責任。<br>
