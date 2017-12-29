@@ -2203,7 +2203,7 @@ class ControllerSaleOrder extends Controller {
 				} else {
 					$format = '寄件人姓名&nbsp;&nbsp;/Name: &nbsp;{firstname}'
 						. "\n" . '地址/Address:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{address_1}'
-						. '{address_2}' . " " . '    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{city}' . " " . '{zone}' . " " . '{country}'
+						. '{address_2}' . " " . '    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{city}' . " " . '{zone}' . " " . '{country}'
 						. "\n".'邮政编码/Postcode:&nbsp;&nbsp;&nbsp;{postcode}'
 						. "\n".'寄件人电话/Phone: &nbsp;&nbsp;&nbsp;{phone}'
 						. "\n" . '公司/Company：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{company}';
@@ -2245,7 +2245,7 @@ class ControllerSaleOrder extends Controller {
 					$format = '收件人姓名/Name: &nbsp;&nbsp;{firstname}'
 			//			. "\n" . '公司/Company：{company}'
 						. "\n" . '地址/Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{address_1}'
-						. "\n" . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{district}'  . '{city} '  . '{zone} '  . '{country} '
+						. "\n" . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{district}'  . '{city} '  . '{zone} '  . '{country} '
 						. "\n" . '邮政编码/Postcode: &nbsp;{postcode}'
 						. "\n".'收件人电话/Phone: &nbsp;&nbsp;{phone}'
 						. "\n".'身份证/China ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ID}' ;
