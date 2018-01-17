@@ -159,6 +159,12 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$filter_sender = null;
 		}
+		//add filter anything
+		if (isset($this->request->get['filter_anything'])) {
+			$filter_anything = $this->request->get['filter_anything'];
+		} else {
+			$filter_anything = null;
+		}
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -226,6 +232,10 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_sender'])) {
 			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
 		}
+		//add anything
+		if (isset($this->request->get['filter_anything'])) {
+			$url .= '&filter_anything=' . $this->request->get['filter_anything'];
+		}
 
 
 		if (isset($this->request->get['sort'])) {
@@ -275,6 +285,7 @@ class ControllerSaleOrder extends Controller {
 			'filter_date_modified'   => $filter_date_modified,
 			'filter_shipping_number' => $filter_shipping_number,
 			'filter_sender'           => $filter_sender,
+			'filter_anything'         => $filter_anything,
 			'sort'                     => $sort,
 			'order'                    => $order,
 			'start'                    => ($page - 1) * $this->config->get('config_limit_admin'),
@@ -371,6 +382,8 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_shipping_method'] = $this->language->get('entry_shipping_method');
 		//add $data entry shipping code
 		$data['entry_shipping_code'] = $this->language->get('entry_shipping_code');
+		//add $data entry sender
+		$data['entry_anything'] = $this->language->get('entry_anything');
 
 
 		$data['button_invoice_print'] = $this->language->get('button_invoice_print');
@@ -445,6 +458,10 @@ class ControllerSaleOrder extends Controller {
 		//add filter sender
 		if (isset($this->request->get['filter_sender'])) {
 			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
+		}
+		//add filter anything
+		if (isset($this->request->get['filter_anything'])) {
+			$url .= '&filter_anything=' . $this->request->get['filter_anything'];
 		}
 
 
@@ -532,6 +549,11 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->request->get['filter_sender'])) {
 			$url .= '&filter_sender=' . $this->request->get['filter_sender'];
 		}
+		//add anything
+		if (isset($this->request->get['filter_anything'])) {
+			$url .= '&filter_anything=' . $this->request->get['filter_anything'];
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -569,6 +591,9 @@ class ControllerSaleOrder extends Controller {
 		$data['filter_shipping_number'] = $filter_shipping_number;
 		//add filter shipping number
 		$data['filter_sender'] = $filter_sender;
+
+		//add filter shipping number
+		$data['filter_anything'] = $filter_anything;
 
 		$data['sort'] = $sort;
 		$data['order'] = $order;

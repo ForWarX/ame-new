@@ -222,6 +222,8 @@ $_['entry_shipping_chinaid']                 = '身份证';
 $_['entry_shipping_method']                  = '运送方式';
 // add entry shipping code
 $_['entry_shipping_code']                    = '运送代码';
+// add entry recipient
+$_['entry_anything']                           = '搜索';
 
 
 // Help

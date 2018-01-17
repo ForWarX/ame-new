@@ -52,6 +52,12 @@
                 <label class="control-label" for="input-payment_phone"><?php echo $entry_payment_phone; ?></label>
                 <input type="text" name="filter_payment_phone" value="<?php echo $filter_payment_phone; ?>" placeholder="<?php echo $entry_payment_phone; ?>" id="input-payment_phone" class="form-control" />
               </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="input-anything"><?php echo $entry_anything; ?></label>
+                    <input type="text" name="filter_anything" value="<?php echo $filter_anything; ?>" placeholder="<?php echo $entry_anything; ?>" id="input-anything" class="form-control" />
+                </div>
+
             </div>
 
             <div class="col-sm-4">
@@ -285,6 +291,12 @@
           if (filter_sender) {
               url += '&filter_sender=' + encodeURIComponent(filter_sender);
           }
+          //add filter anything
+          var filter_anything = $('input[name=\'filter_anything\']').val();
+
+          if (filter_anything) {
+              url += '&filter_anything=' + encodeURIComponent(filter_anything);
+          }
 
           location = url;
       });
@@ -314,6 +326,11 @@
           }
       });
       $('#content input[name=\'filter_sender\']').bind('keydown', function(e) {
+          if (e.keyCode == 13) {
+              $('#button-filter').trigger('click');
+          }
+      });
+      $('#content input[name=\'filter_anything\']').bind('keydown', function(e) {
           if (e.keyCode == 13) {
               $('#button-filter').trigger('click');
           }

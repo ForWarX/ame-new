@@ -453,7 +453,7 @@ class ModelSaleOrder extends Model {
 		if (!empty($data['filter_telephone'])) {
 			$sql .= " AND o.telephone LIKE '%" . $data['filter_telephone'] . "%'";
 		}
-		//add filter shipping phone
+		//add filter payment phone
 		if (!empty($data['filter_payment_phone'])) {
 			$sql .= " AND o.payment_phone LIKE '%" . $data['filter_payment_phone'] . "%'";
 		}
@@ -464,6 +464,16 @@ class ModelSaleOrder extends Model {
 		//add filter sender
 		if (!empty($data['filter_sender'])) {
 			$sql .= " AND o.payment_firstname LIKE '%" . $this->db->escape($data['filter_sender']) . "%'";
+		}
+		//add filter anything
+		if (!empty($data['filter_anything'])) {
+			$sql .= " AND o.payment_firstname LIKE '%" . $this->db->escape($data['filter_anything']) . "%'".
+			      	" OR o.shipping_phone LIKE '%" . $data['filter_anything'] . "%'".
+				    " OR o.payment_phone LIKE '%" . $data['filter_anything'] . "%'".
+				    " OR CONCAT(o.shipping_firstname, ' ', o.shipping_lastname) LIKE '%" . $this->db->escape($data['filter_anything']) . "%'".
+				    " OR o.delivery_number LIKE '%" . $data['filter_anything'] . "%'".
+			        " OR o.invoice_prefix LIKE '%" .$data['filter_anything'] . "%'".
+				    " OR o.shipping_chinaid LIKE '%" . $data['filter_anything'] . "%'" ;
 		}
 
 

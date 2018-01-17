@@ -162,6 +162,8 @@ $_['entry_payment_chinaid']       = 'China ID';
 $_['entry_shipping_method']       = 'Shipping Method';
 // add entry shipping chinaid
 $_['entry_shipping_code']         = 'Shipping Code';
+// add entry recipient
+$_['entry_anything']                = 'Search Anything';
 
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';
