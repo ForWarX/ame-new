@@ -1,0 +1,472 @@
+<modification>
+    <name>Admin Quick View Order Info in Order List</name>
+	<id>View products, comments, payment, shipping in Order List by I.Kelly</id>
+    <code id='comments products shipping'>quick_view_info_orderlist</code>
+	<version>1.5</version>
+	<author>i.kelly</author>
+
+<file path='admin/language/en-gb/sale/order.php'>
+	  <operation>
+			<search><![CDATA[$_['column_spec']             = 'Spec';]]></search>
+			<add  position="after" offset='5'><![CDATA[
+		$_['column_orderdetails']='Order Details';
+				]]></add>
+		</operation>  
+	    
+	    
+	</file>
+	<file path='admin/language/zh-CN/sale/order.php'>
+		<operation>
+			<search><![CDATA[$_['error_action']                            = '警告: 无法完成此操作!';]]></search>
+			<add  position="after" offset='5'><![CDATA[
+		$_['column_orderdetails']='订单商品';
+				]]></add>
+		</operation>
+
+
+	</file>
+
+<file path='admin/model/sale/order.php'>
+	  <operation>
+			<search ><![CDATA[
+			public function getOrder($order_id) {
+			]]></search>
+			<add position="before"><![CDATA[
+		
+		public function getQVPAYMENT($order_id) {
+
+		$this->load->model('sale/order');
+		$order_info = $this->model_sale_order->getOrder($order_id);
+
+		if (isset($order_info)) {
+
+			$payment = $order_info['payment_method'];
+			return $payment;
+
+		}
+
+	}
+
+	public function getQVCOMMENT($order_id) {
+
+		$this->load->model('sale/order');
+		$order_info = $this->model_sale_order->getOrder($order_id);
+
+		if (isset($order_info)) {
+
+			$comments = nl2br($order_info['comment']);
+			return $comments;
+
+		}
+
+	}
+
+
+	public function getQVSHIPPING($order_id) {
+
+		$this->load->model('sale/order');
+		$order_info = $this->model_sale_order->getOrder($order_id);
+
+
+		if (isset($order_info)) {
+
+			if (strlen(strip_tags($order_info['shipping_method'])) > 55 ) {
+				$shipping = substr(strip_tags($order_info['shipping_method']), 0, 55).'...';
+			} else {
+				$shipping = substr(strip_tags($order_info['shipping_method']), 0, 55);
+			}
+
+
+		}
+		return $shipping;
+	}
+
+
+	public function getQVPRODUCTS($order_id)
+	{
+
+		$this->load->model('tool/image');
+		$this->load->model('catalog/product');
+
+		$array_products= array();
+		$products = $this->getOrderProducts($order_id);
+
+
+
+		foreach ($products as $product) {
+			$option_data = array();
+
+			$options = $this->getOrderOptions($order_id, $product['order_product_id']);
+
+
+			$product_info = $this->model_catalog_product->getProduct($product['product_id']);
+
+			if ($product_info) {
+				if ($product_info['image']) {
+					$image = $this->model_tool_image->resize($product_info['image'], 125, 125);
+				} else {
+					$image = false;
+				}
+				if ($product_info['upc']) {
+					$product_info['upc']=$product_info['upc'];
+				} else {
+					$product_info['upc']=" ";
+				}
+
+			}else{
+			    $product_info['upc']=" ";
+		        $image = false;
+
+			}
+
+
+
+			foreach ($options as $option) {
+				if ($option['type'] != 'file') {
+					$option_data[] = array(
+						'name'  => $option['name'],
+						'value' => $option['value'],
+						'type'  => $option['type']
+					);
+				} else {
+					$option_data[] = array(
+						'name'  => $option['name'],
+						'value' => utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.')),
+						'type'  => $option['type'],
+
+					);
+				}
+			}
+
+			$array_products[] = array(
+				'order_product_id' => $product['order_product_id'],
+				'product_id'       => $product['product_id'],
+				'name'    	 	   => $product['name'],
+				'model'    		   => $product['model'],
+				'option'   		   => $option_data,
+				'quantity'		   => $product['quantity'],
+				'upc'		       => $product_info['upc'],
+			  //'image'		       =>  $image,
+
+
+			);
+		}
+		return $array_products;
+
+	}
+
+	
+
+				]]></add>
+		</operation>  
+	    
+	    
+	</file>
+	<file path="admin/controller/sale/order.php">
+		<operation error='log'>
+			<search ><![CDATA[$data['column_storage'] = $this->language->get('column_storage');]]></search>
+			<add position="before"><![CDATA[
+				
+     	$data['column_orderdetails'] = $this->language->get('column_orderdetails');
+    	$data['column_model'] = $this->language->get('column_model');	
+    	$data['column_quantity'] = $this->language->get('column_quantity');
+    	$data['column_product'] = $this->language->get('column_product');
+    	$data['column_upc'] = $this->language->get('column_upc');
+
+    		
+				]]></add>
+		</operation>
+
+<operation error='log'>
+			<search><![CDATA['customer'      => $result['customer'],]]></search>
+			<add position="before"><![CDATA[
+				
+    'products'=> $this->model_sale_order->getQVPRODUCTS($result['order_id']),  
+    'comment'=> $this->model_sale_order->getQVCOMMENT($result['order_id']),
+    'shipping'=> $this->model_sale_order->getQVSHIPPING($result['order_id']),
+    'payment'=> $this->model_sale_order->getQVPAYMENT($result['order_id']),
+
+				]]></add>
+		</operation>
+	</file>
+	
+	<file path="admin/view/template/sale/order_list.tpl">
+		<operation error='log'>
+			<search ><![CDATA[
+	<td class="text-left"><?php echo $column_shipperphone; ?></td>
+			]]></search>
+			<add position="before"><![CDATA[ 
+
+			<td class="text-left" ;"><?php echo $column_orderdetails; ?></td>
+    	
+				]]></add>
+		</operation>
+		
+<operation error='log'>
+			<search ><![CDATA[<td class="text-left"><?php echo $order['shipping_phone']; ?></td>]]></search>
+			<add position="before"><![CDATA[
+	 	
+    <td class="text-left">
+    
+ <span class=" previeworder" data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true" title="<center>Viewing <b><?php echo count($order['products']);?></b> Products in Order# <?php echo $order['order_id']; ?></center>"
+			data-content='
+			
+			
+	 <table class="table">
+      <thead>
+            <tr>
+              <td class="center" style="width:126px;">Image</td>
+              <td class="left"><?php echo $column_product; ?></td>
+              <td class="left"><?php echo $column_upc; ?></td>
+              <td class="right" style="text-align:right;"><?php echo $column_quantity; ?></td>
+           
+              
+            </tr>
+          
+  <br>
+
+
+
+<?php $int=0;$countit=1;foreach ($order['products'] as $product) { ?>
+           
+           <tr>
+              <td style="text-align:center;"><img src="<?php echo $product['image'];?>"></td>
+              <td class="left" style="font-weight:normal;font-size:12px;"> <span style="color: #1e91cf;"><span style="font-size:14px;"><?php echo $countit;?>.</span> <b><?php echo htmlentities($product['name'],ENT_QUOTES); ?></b></span>
+                <?php foreach ($product['option'] as $option) { ?>
+                <br />
+                <?php if ($option['type'] != 'file') { ?>
+                &nbsp;<span style="font-size:12px;"> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></span>
+                <?php } else { ?>
+                &nbsp;<span style="font-size:12px;"> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>"><?php echo $option['value']; ?></a></span>
+                <?php } ?>
+                <?php } ?></td>
+              <td class="left" style="font-weight:normal;font-size:12px;"><?php echo $product['upc']; ?></td>
+              <td style="text-align:right;">
+            <span style="color: #1e91cf;font-weight:normal;"> <?php echo $product['quantity']; $int = $int + (int)$product['quantity']; ?></span></td>
+             
+            </tr>
+           
+            <?php $countit++; } ?>
+            
+            <tr><td style="text-align:left;font-size:12px;"><b style="color: #39b3d7;">PAYMENT METHOD</b></td><td></td><td></td><td style="text-align:right;"><b style="color: #39b3d7;font-size:12px;">TOTAL</b></td></tr>
+            
+             <tr><td style="text-align:left;font-size:12px;"><?php echo $order['payment']; ?></td><td></td><td></td><td style="text-align:right;font-size:12px;"><?php echo $int;?></td></tr>
+            </table>
+            '>   
+            
+<span style="color: #39b3d7;"><i class="fa fa-eye fa-lg"></i> <b><?php echo count($order['products']);?></b> product<?php if(count($order['products'])>1) echo 's';?> - <?php $int=0;foreach ($order['products'] as $product) {$int = $int + (int)$product['quantity']; ?>    <?php  } ?><b><?php echo $int;?></b> Total</span></span>
+    
+        <br>
+ 
+<span style="color: #1e91cf;"><i class="fa fa-truck fa-lg"></i> <?php  echo $order['shipping']; ?></span>
+
+
+
+
+  
+
+<?php if (!empty($order['comment'])){ ?><br> <div style="text-align: justify;color: #f24545;max-width: 345px;line-height: 15px;"><i class="fa fa-comment fa-lg"></i> <?php echo $order['comment']; ?></div><?php } ?>
+
+
+    
+     
+    </td>
+				]]></add>
+		</operation>
+		
+	<operation error='log'>
+			<search><![CDATA[
+	<script type="text/javascript"><!--
+			]]></search>
+			<add position="before" index="1"><![CDATA[
+<style>
+.previeworder {
+  cursor: pointer;
+}
+.previeworder:hover {
+  font-weight: bold;
+}.previeworder > span:hover {
+  color: #5cb85c !important;
+}
+.text-left {
+  line-height: 27px !important;
+}
+.popover {
+ max-width: 700px;width:700px;}
+ 
+ @media screen and (max-width: 640px) {
+ .popover {
+ max-width: 300px;width:300px;}
+ 
+ }
+ </style>
+    <script>
+$(function() {
+$('.previeworder').popover();
+});
+</script>
+	
+	]]></add>
+		</operation>
+	</file>
+	
+		
+	
+		<file path="admin/view/template/dashboard/recent.tpl">
+		<operation error='log'>
+			<search ><![CDATA[
+			 <td><?php echo $column_customer; ?></td>
+			]]></search>
+			<add position="after"><![CDATA[ 
+			 <td>Order Details</td>
+				]]></add>
+		</operation>
+		
+			<operation error='log'>
+			<search ><![CDATA[
+			<td><?php echo $order['customer']; ?></td>
+			]]></search>
+			<add position="after"><![CDATA[ 
+		
+			 
+		    <td class="text-left">
+
+ <span class=" previeworder" data-toggle="popover" data-placement="top" data-trigger="hover" data-html="true" title="<center>Viewing <b><?php echo count($order['products']);?></b> Products in Order# <?php echo $order['order_id']; ?></center>"
+			data-content='
+			
+			
+	 <table class="table">
+      <thead>
+            <tr>
+              <td class="center" style="width:126px;">Image</td>
+              <td class="left"><?php echo $column_product; ?></td>
+              <td class="left"><?php echo $column_model; ?></td>
+              <td class="right" style="text-align:right;"><?php echo $column_quantity; ?></td>
+           
+              
+            </tr>
+          
+  <br>
+
+
+
+<?php $int=0;$countit=1;foreach ($order['products'] as $product) { ?>
+           
+           <tr>
+              <td style="text-align:center;"><img src="<?php echo $product['image'];?>"></td>
+              <td class="left" style="font-weight:normal;font-size:12px;"> <span style="color: #1e91cf;"><span style="font-size:14px;"><?php echo $countit;?>.</span> <b><?php echo htmlentities($product['name'],ENT_QUOTES); ?></b></span>
+                <?php foreach ($product['option'] as $option) { ?>
+                <br />
+                <?php if ($option['type'] != 'file') { ?>
+                &nbsp;<span style="font-size:12px;"> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></span>
+                <?php } else { ?>
+                &nbsp;<span style="font-size:12px;"> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>"><?php echo $option['value']; ?></a></span>
+                <?php } ?>
+                <?php } ?></td>
+              <td class="left" style="font-weight:normal;font-size:12px;"><?php echo $product['model']; ?></td>
+              <td style="text-align:right;">
+            <span style="color: #1e91cf;font-weight:normal;"> <?php echo $product['quantity']; $int = $int + (int)$product['quantity']; ?></span></td>
+             
+            </tr>
+           
+            <?php $countit++; } ?>
+            
+            <tr><td style="text-align:left;font-size:12px;"><b style="color: #39b3d7;">PAYMENT 1111111111111111111111111 METHOD</b></td><td></td><td></td><td style="text-align:right;"><b style="color: #39b3d7;font-size:12px;">TOTAL</b></td></tr>
+            
+             <tr><td style="text-align:left;font-size:12px;"><?php echo $order['payment']; ?></td><td></td><td></td><td style="text-align:right;font-size:12px;"><?php echo $int;?></td></tr>
+            </table>
+            '>   
+            
+<span style="color: #39b3d7;"><i class="fa fa-eye fa-lg"></i> <b><?php echo count($order['products']);?></b> product<?php if(count($order['products'])>1) echo 's';?> - <?php $int=0;foreach ($order['products'] as $product) {$int = $int + (int)$product['quantity']; ?>    <?php  } ?><b><?php echo $int;?></b> Total</span></span>
+    
+        <br>
+ 
+<span style="color: #1e91cf;"><i class="fa fa-truck fa-lg"></i> <?php  echo $order['shipping']; ?></span>
+
+
+
+
+  
+
+<?php if (!empty($order['comment'])){ ?><br> <div style="text-align: justify;color: #f24545;max-width: 345px;line-height: 15px;"><i class="fa fa-comment fa-lg"></i> <?php echo $order['comment']; ?></div><?php } ?>
+
+
+    
+     
+    </td>
+				]]></add>
+		</operation>
+		
+	
+	</file>
+	
+	
+<file path="admin/view/template/common/dashboard.tpl">
+
+	
+	<operation error='log'>
+			<search><![CDATA[
+	<?php echo $footer; ?>	
+		
+			]]></search>
+			<add position="before" ><![CDATA[
+<style>
+.previeworder {
+  cursor: pointer;
+}
+.previeworder:hover {
+  font-weight: bold;
+}.previeworder > span:hover {
+  color: #5cb85c !important;
+}
+.text-left {
+  line-height: 27px !important;
+}
+.popover {
+ max-width: 700px;width:700px;}
+ 
+ @media screen and (max-width: 640px) {
+ .popover {
+ max-width: 300px;width:300px;}
+ 
+ }
+ </style>
+    <script>
+$(function() {
+$('.previeworder').popover();
+});
+</script>
+	
+	]]></add>
+		</operation>
+		</file>
+	
+		<file path="admin/controller/dashboard/recent.php">
+	<operation error='log'>
+			<search ><![CDATA[$this->language->get('column_total');]]></search>
+			<add position="before"><![CDATA[
+				
+    	$data['column_model'] = $this->language->get('column_model');	
+    	$data['column_quantity'] = $this->language->get('column_quantity');
+    	$data['column_product'] = "Product";	
+    	
+	
+				]]></add>
+		</operation>
+				<operation error='log'>
+			<search ><![CDATA[
+		'customer'   => $result['customer'],
+			]]></search>
+			<add position="after"><![CDATA[ 
+	'products'=> $this->model_sale_order->getQVPRODUCTS($result['order_id']),  
+    'comment'=> $this->model_sale_order->getQVCOMMENT($result['order_id']),
+    'shipping'=> $this->model_sale_order->getQVSHIPPING($result['order_id']),
+    'payment'=> $this->model_sale_order->getQVPAYMENT($result['order_id']),
+				]]></add>
+		</operation>
+		
+
+	
+</file>
+
+</modification>
