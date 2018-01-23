@@ -131,7 +131,7 @@ class ModelSaleOrder extends Model {
 				'option'   		   => $option_data,
 				'quantity'		   => $product['quantity'],
 				'upc'		       => $product_info['upc'],
-			  //'image'		       =>  $image,
+			    'image'		       =>  $image,
 
 
 			);
