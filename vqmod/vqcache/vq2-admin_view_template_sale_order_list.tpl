@@ -157,8 +157,10 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_delivery_number; ?>"><?php echo $column_delivery_number; ?></a>
                     <?php } ?></td>
-                      -->
+
                   <td class="text-left"><?php echo $column_custom_pass; ?></td>
+
+                  -->
                   <td class="text-left"><?php echo $column_paid; ?></td>
                   <td class="text-left"><?php if ($sort == 'storage_name') { ?>
                     <a href="<?php echo $sort_storage; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_storage; ?></a>
@@ -263,8 +265,10 @@
                   <td class="text-left"><?php echo $order['delivery_company']; ?></td>
 
                   <td class="text-left"><?php echo $order['delivery_number']; ?></td>
-                   -->
+
                   <td class="text-left"><?php echo $order['custome_pass']; ?></td>
+                  -->
+
                   <td class="text-left"><?php echo ( ($order['order_status_id'] == 2)||($order['order_status_id'] == 3)||($order['order_status_id'] == 5)||($order['order_status_id'] == 15)) ? 'Paid' : 'No'; ?></td>
                   <td class="text-left"><?php echo $order['storage_name']; ?></td>
                   <td class="text-left"><?php echo $order['order_status']; ?></td>
