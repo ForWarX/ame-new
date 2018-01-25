@@ -162,35 +162,43 @@
 
                   -->
                   <td class="text-left"><?php echo $column_paid; ?></td>
-                  <td class="text-left"><?php if ($sort == 'storage_name') { ?>
-                    <a href="<?php echo $sort_storage; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_storage; ?></a>
-                    <?php } else { ?>
-                    <a href="<?php echo $sort_storage; ?>"><?php echo $column_storage; ?></a>
-                    <?php } ?></td>
-                  <td class="text-left"><?php if ($sort == 'order_status') { ?>
-                    <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
-                    <?php } else { ?>
-                    <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
-                    <?php } ?></td>
-                  <td class="text-right"><?php echo $column_action; ?></td>
-                </tr>
-              </thead>
-              <tbody>
-                <?php if ($orders) { ?>
-                <?php foreach ($orders as $order) { ?>
-                <tr>
-                  <td class="text-center"><?php if (in_array($order['order_id'], $selected)) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" checked="checked" />
-                    <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" />
-                    <?php } ?>
-                    <input type="hidden" name="shipping_code[]" value="<?php echo $order['shipping_code']; ?>" /></td>
-                  <td class="text-right"><?php echo $order['invoice_prefix']; ?></td>
-                  <td class="text-left"><?php echo $order['date_added']; ?></td>
-                  <td class="text-left"><?php echo $order['customer']; ?></td>
-                    <td class="text-left"><?php echo $order['payment_firstname']; ?></td>
-                  <td class="text-left"><?php echo $order['shipping_name']; ?></td>
-                  <td class="text-left"><?php echo $order['weight']; ?></td>
+                    <td class="text-left"><?php if ($sort == 'o.order_delivery_number') { ?>
+                        <a href="<?php echo $sort_delivery_number; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_delivery_number; ?></a>
+                        <?php } else { ?>
+                        <a href="<?php echo $sort_delivery_number; ?>"><?php echo $column_delivery_number; ?></a>
+                        <?php } ?></td>
+                    <!--
+               <td class="text-left"><?php if ($sort == 'storage_name') { ?>
+                 <a href="<?php echo $sort_storage; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_storage; ?></a>
+                 <?php } else { ?>
+                 <a href="<?php echo $sort_storage; ?>"><?php echo $column_storage; ?></a>
+                 <?php } ?></td>
+                  -->
+
+               <td class="text-left"><?php if ($sort == 'order_status') { ?>
+                 <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+                 <?php } else { ?>
+                 <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
+                 <?php } ?></td>
+               <td class="text-right"><?php echo $column_action; ?></td>
+             </tr>
+           </thead>
+           <tbody>
+             <?php if ($orders) { ?>
+             <?php foreach ($orders as $order) { ?>
+             <tr>
+               <td class="text-center"><?php if (in_array($order['order_id'], $selected)) { ?>
+                 <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" checked="checked" />
+                 <?php } else { ?>
+                 <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" />
+                 <?php } ?>
+                 <input type="hidden" name="shipping_code[]" value="<?php echo $order['shipping_code']; ?>" /></td>
+               <td class="text-right"><?php echo $order['invoice_prefix']; ?></td>
+               <td class="text-left"><?php echo $order['date_added']; ?></td>
+               <td class="text-left"><?php echo $order['customer']; ?></td>
+                 <td class="text-left"><?php echo $order['payment_firstname']; ?></td>
+               <td class="text-left"><?php echo $order['shipping_name']; ?></td>
+               <td class="text-left"><?php echo $order['weight']; ?></td>
 
 	 	
     <td class="text-left">
@@ -259,19 +267,20 @@
      
     </td>
 				
-                    <td class="text-left"><?php echo $order['shipping_phone']; ?></td>
-                    <td class="text-left"><?php echo $order['shipping_chinaid']; ?></td>
-                    <!--
-                  <td class="text-left"><?php echo $order['delivery_company']; ?></td>
+                 <td class="text-left"><?php echo $order['shipping_phone']; ?></td>
+                 <td class="text-left"><?php echo $order['shipping_chinaid']; ?></td>
+                 <!--
+               <td class="text-left"><?php echo $order['delivery_company']; ?></td>
 
-                  <td class="text-left"><?php echo $order['delivery_number']; ?></td>
+               <td class="text-left"><?php echo $order['delivery_number']; ?></td>
 
-                  <td class="text-left"><?php echo $order['custome_pass']; ?></td>
-                  -->
+               <td class="text-left"><?php echo $order['custome_pass']; ?></td>
+               -->
 
                   <td class="text-left"><?php echo ( ($order['order_status_id'] == 2)||($order['order_status_id'] == 3)||($order['order_status_id'] == 5)||($order['order_status_id'] == 15)) ? 'Paid' : 'No'; ?></td>
-                  <td class="text-left"><?php echo $order['storage_name']; ?></td>
-                  <td class="text-left">
+                    <!--<td class="text-left"><?php echo $order['storage_name']; ?></td> -->
+                    <td class="text-left"><?php echo $order['delivery_number']; ?></td>
+                 <td class="text-left">
 			<a class="ajaxstatus" id="<?php echo $order['order_id']; ?>-" >
 					  <select name="<?php echo $order['order_id']; ?>-" id="input-order-status" style=" width:90px" >
                       <?php foreach ($order_statuses as $order_status) { ?>
@@ -285,222 +294,222 @@
 
 			</a>
 			</td>
-                  <td class="text-right">
-                    <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                    <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                    <a href="<?php echo $order['order_copy']; ?>" data-toggle="tooltip" title="<?php echo $button_order_copy; ?>" class="btn btn-primary" target="_blank"><i class="fa fa-copy"></i></a>
-                  </td>
-                </tr>
-                <?php } ?>
-                <?php } else { ?>
-                <tr>
-                  <td class="text-center" colspan="8"><?php echo $text_no_results; ?></td>
-                </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-          </div>
-        </form>
-        <div class="row">
-          <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
-          <div class="col-sm-6 text-right"><?php echo $results; ?></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript">
-      $('#button-filter').on('click', function() {
-          url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
+                 <td class="text-right">
+                   <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                   <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                   <a href="<?php echo $order['order_copy']; ?>" data-toggle="tooltip" title="<?php echo $button_order_copy; ?>" class="btn btn-primary" target="_blank"><i class="fa fa-copy"></i></a>
+                 </td>
+               </tr>
+               <?php } ?>
+               <?php } else { ?>
+               <tr>
+                 <td class="text-center" colspan="8"><?php echo $text_no_results; ?></td>
+               </tr>
+               <?php } ?>
+             </tbody>
+           </table>
+         </div>
+       </form>
+       <div class="row">
+         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
+         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <script type="text/javascript">
+     $('#button-filter').on('click', function() {
+         url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
 
-          var filter_order_id = $('input[name=\'filter_order_id\']').val();
-          if (filter_order_id) {
-              url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
-          }
+         var filter_order_id = $('input[name=\'filter_order_id\']').val();
+         if (filter_order_id) {
+             url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+         }
 
-          var filter_customer = $('input[name=\'filter_customer\']').val();
-          if (filter_customer) {
-              url += '&filter_customer=' + encodeURIComponent(filter_customer);
-          }
+         var filter_customer = $('input[name=\'filter_customer\']').val();
+         if (filter_customer) {
+             url += '&filter_customer=' + encodeURIComponent(filter_customer);
+         }
 
-          var filter_order_status = $('select[name=\'filter_order_status\']').val();
-          if (filter_order_status != '*') {
-              url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
-          }
+         var filter_order_status = $('select[name=\'filter_order_status\']').val();
+         if (filter_order_status != '*') {
+             url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+         }
 
-          var filter_total = $('input[name=\'filter_total\']').val();
-          if (filter_total) {
-              url += '&filter_total=' + encodeURIComponent(filter_total);
-          }
-          //add filter recipient
-          var filter_recipient = $('input[name=\'filter_recipient\']').val();
+         var filter_total = $('input[name=\'filter_total\']').val();
+         if (filter_total) {
+             url += '&filter_total=' + encodeURIComponent(filter_total);
+         }
+         //add filter recipient
+         var filter_recipient = $('input[name=\'filter_recipient\']').val();
 
-          if (filter_recipient) {
-              url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
-          }
+         if (filter_recipient) {
+             url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
+         }
 
-          //add filter telephone
-          var filter_telephone = $('input[name=\'filter_telephone\']').val();
+         //add filter telephone
+         var filter_telephone = $('input[name=\'filter_telephone\']').val();
 
-          if (filter_telephone) {
-              url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
-          }
-          //add filter payment phone
-          var filter_payment_phone = $('input[name=\'filter_payment_phone\']').val();
+         if (filter_telephone) {
+             url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+         }
+         //add filter payment phone
+         var filter_payment_phone = $('input[name=\'filter_payment_phone\']').val();
 
-          if (filter_payment_phone) {
-              url += '&filter_payment_phone=' + encodeURIComponent(filter_payment_phone);
-          }
+         if (filter_payment_phone) {
+             url += '&filter_payment_phone=' + encodeURIComponent(filter_payment_phone);
+         }
 
-          //add filter shipping phone
-          var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
+         //add filter shipping phone
+         var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
 
-          if (filter_shipping_phone) {
-              url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
-          }
+         if (filter_shipping_phone) {
+             url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
+         }
 
-          var filter_date_added = $('input[name=\'filter_date_added\']').val();
+         var filter_date_added = $('input[name=\'filter_date_added\']').val();
 
-          if (filter_date_added) {
-              url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-          }
+         if (filter_date_added) {
+             url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+         }
 
-          var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+         var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
 
-          if (filter_date_modified) {
-              url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
-          }
-          //add filter shipping number
-          var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
+         if (filter_date_modified) {
+             url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+         }
+         //add filter shipping number
+         var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
 
-          if (filter_shipping_number) {
-              url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
-          }
-          //add filter Sender
-          var filter_sender = $('input[name=\'filter_sender\']').val();
+         if (filter_shipping_number) {
+             url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+         }
+         //add filter Sender
+         var filter_sender = $('input[name=\'filter_sender\']').val();
 
-          if (filter_sender) {
-              url += '&filter_sender=' + encodeURIComponent(filter_sender);
-          }
-          //add filter anything
-          var filter_anything = $('input[name=\'filter_anything\']').val();
+         if (filter_sender) {
+             url += '&filter_sender=' + encodeURIComponent(filter_sender);
+         }
+         //add filter anything
+         var filter_anything = $('input[name=\'filter_anything\']').val();
 
-          if (filter_anything) {
-              url += '&filter_anything=' + encodeURIComponent(filter_anything);
-          }
+         if (filter_anything) {
+             url += '&filter_anything=' + encodeURIComponent(filter_anything);
+         }
 
-          location = url;
-      });
-      $('#content input[name=\'filter_order_id\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_customer\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_recipient\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_payment_phone\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_shipping_phone\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_sender\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-      $('#content input[name=\'filter_anything\']').bind('keydown', function(e) {
-          if (e.keyCode == 13) {
-              $('#button-filter').trigger('click');
-          }
-      });
-  </script>
+         location = url;
+     });
+     $('#content input[name=\'filter_order_id\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_customer\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_recipient\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_payment_phone\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_shipping_phone\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_sender\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+     $('#content input[name=\'filter_anything\']').bind('keydown', function(e) {
+         if (e.keyCode == 13) {
+             $('#button-filter').trigger('click');
+         }
+     });
+ </script>
 
 
-  <script type="text/javascript">
-      // 更换订单用户
-      $('#button-change-customer').on('click', function() {
-          if (!confirm("Confirm?")) return;
+ <script type="text/javascript">
+     // 更换订单用户
+     $('#button-change-customer').on('click', function() {
+         if (!confirm("Confirm?")) return;
 
-          url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
+         url = 'index.php?route=sale/order&token=<?php echo $token; ?>';
 
-          var filter_order_id = $('input[name=\'filter_order_id\']').val();
-          if (filter_order_id) {
-              url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
-          }
+         var filter_order_id = $('input[name=\'filter_order_id\']').val();
+         if (filter_order_id) {
+             url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+         }
 
-          var filter_customer = '<?php echo $filter_customer; ?>';
-          if (filter_customer) {
-              url += '&filter_customer=' + encodeURIComponent(filter_customer);
-          }
+         var filter_customer = '<?php echo $filter_customer; ?>';
+         if (filter_customer) {
+             url += '&filter_customer=' + encodeURIComponent(filter_customer);
+         }
 
-          var filter_order_status = $('select[name=\'filter_order_status\']').val();
-          if (filter_order_status != '*') {
-              url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
-          }
+         var filter_order_status = $('select[name=\'filter_order_status\']').val();
+         if (filter_order_status != '*') {
+             url += '&filter_order_status=' + encodeURIComponent(filter_order_status);
+         }
 
-          var filter_total = $('input[name=\'filter_total\']').val();
-          if (filter_total) {
-              url += '&filter_total=' + encodeURIComponent(filter_total);
-          }
-          //add filter recipient
-          var filter_recipient = $('input[name=\'filter_recipient\']').val();
+         var filter_total = $('input[name=\'filter_total\']').val();
+         if (filter_total) {
+             url += '&filter_total=' + encodeURIComponent(filter_total);
+         }
+         //add filter recipient
+         var filter_recipient = $('input[name=\'filter_recipient\']').val();
 
-          if (filter_recipient) {
-              url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
-          }
+         if (filter_recipient) {
+             url += '&filter_recipient=' + encodeURIComponent(filter_recipient);
+         }
 
-          //add filter telephone
-          var filter_telephone = $('input[name=\'filter_telephone\']').val();
+         //add filter telephone
+         var filter_telephone = $('input[name=\'filter_telephone\']').val();
 
-          if (filter_telephone) {
-              url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
-          }
+         if (filter_telephone) {
+             url += '&filter_telephone=' + encodeURIComponent(filter_telephone);
+         }
 
-          //add filter shipping phone
-          var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
+         //add filter shipping phone
+         var filter_shipping_phone = $('input[name=\'filter_shipping_phone\']').val();
 
-          if (filter_shipping_phone) {
-              url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
-          }
+         if (filter_shipping_phone) {
+             url += '&filter_shipping_phone=' + encodeURIComponent(filter_shipping_phone);
+         }
 
-          var filter_date_added = $('input[name=\'filter_date_added\']').val();
+         var filter_date_added = $('input[name=\'filter_date_added\']').val();
 
-          if (filter_date_added) {
-              url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-          }
+         if (filter_date_added) {
+             url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+         }
 
-          var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
+         var filter_date_modified = $('input[name=\'filter_date_modified\']').val();
 
-          if (filter_date_modified) {
-              url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
-          }
-          //add filter shipping number
-          var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
+         if (filter_date_modified) {
+             url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+         }
+         //add filter shipping number
+         var filter_shipping_number = $('input[name=\'filter_shipping_number\']').val();
 
-          if (filter_shipping_number) {
-              url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
-          }
+         if (filter_shipping_number) {
+             url += '&filter_shipping_number=' + encodeURIComponent(filter_shipping_number);
+         }
 
-          var change_customer = $('input[name=\'filter_customer\']').data('id');
-          if (change_customer) {
-              url += '&change_customer=' + change_customer;
-          }
+         var change_customer = $('input[name=\'filter_customer\']').data('id');
+         if (change_customer) {
+             url += '&change_customer=' + change_customer;
+         }
 
-          $('#form-order').attr('action', url).submit();
-      });
-  </script>
+         $('#form-order').attr('action', url).submit();
+     });
+ </script>
 
 <style>
 .previeworder {
@@ -530,25 +539,25 @@ $('.previeworder').popover();
 </script>
 	
 	
-  <script type="text/javascript"><!--
+ <script type="text/javascript"><!--
 $('input[name=\'filter_customer\']').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item['name'],
-						value: item['customer_id']
-					}
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-        $('input[name=\'filter_customer\']').val(item['label']).data("id", item['value']);
-	}
+   'source': function(request, response) {
+       $.ajax({
+           url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+           dataType: 'json',
+           success: function(json) {
+               response($.map(json, function(item) {
+                   return {
+                       label: item['name'],
+                       value: item['customer_id']
+                   }
+               }));
+           }
+       });
+   },
+   'select': function(item) {
+       $('input[name=\'filter_customer\']').val(item['label']).data("id", item['value']);
+   }
 });
 //--></script>
   <script type="text/javascript"><!--
