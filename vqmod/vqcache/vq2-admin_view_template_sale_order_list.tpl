@@ -271,7 +271,20 @@
 
                   <td class="text-left"><?php echo ( ($order['order_status_id'] == 2)||($order['order_status_id'] == 3)||($order['order_status_id'] == 5)||($order['order_status_id'] == 15)) ? 'Paid' : 'No'; ?></td>
                   <td class="text-left"><?php echo $order['storage_name']; ?></td>
-                  <td class="text-left"><?php echo $order['order_status']; ?></td>
+                  <td class="text-left">
+			<a class="ajaxstatus" id="<?php echo $order['order_id']; ?>-" >
+					  <select name="<?php echo $order['order_id']; ?>-" id="input-order-status" style=" width:90px" >
+                      <?php foreach ($order_statuses as $order_status) { ?>
+                      <?php if ($order_status['order_status_id'] == $order['order_status_id']) { ?>
+                      <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                      <?php } else { ?>
+                      <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                      <?php } ?>
+                      <?php } ?>
+                    </select>
+
+			</a>
+			</td>
                   <td class="text-right">
                     <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
                     <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
@@ -587,4 +600,24 @@ $('.date').datetimepicker({
 	pickTime: false
 });
 //--></script></div>
+
+			<script type="text/javascript"><!--
+$('.ajaxstatus').change(function() {
+    var object=$(this).attr('id');
+	var object_id=$(this).attr('id')+encodeURIComponent($('select[name="' + object + '"]').val());
+    console.log(object_id);
+	$.ajax({
+		url: 'index.php?route=sale/order/setstatus&token=<?php echo $token; ?>',
+		type: 'get',
+		data: {object_id:object_id},
+		dataType: 'html',
+		success: function(html) {
+			if(html!=''){				
+				$('#'+object_id).html(html);
+			}
+		}
+	});
+});
+//--></script>
+			
 <?php echo $footer; ?> 

@@ -17,6 +17,11 @@ class ModelSaleOrder extends Model {
 	}
 
 
+				public function setStatus($order_id, $column_name, $value){
+				$this->db->query("UPDATE " . DB_PREFIX . "order SET " . $column_name . " = '" . (int)$value . "' WHERE order_id= '" . (int)$order_id . "'");
+				}
+			
+
 		
 		public function getQVPAYMENT($order_id) {
 

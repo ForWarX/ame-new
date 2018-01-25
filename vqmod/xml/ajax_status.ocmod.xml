@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Admin Ajax Status</name>
+  	<code>admin-ajax-status</code>
+    <version>1.0</version>
+    <author>Shrijal Regmi</author>
+    <link>http://www.tncmedia.com.np</link>
+    <file path="admin/controller/sale/order.php">
+        <operation>
+            <search><![CDATA[
+            public function add()
+            ]]></search>
+            <add position="before"><![CDATA[
+            public function setstatus() {
+		$this->load->model('sale/order');
+		$output='';
+		if(isset($this->request->get['object_id'])){
+			$requestpart = explode('-',$this->request->get['object_id']);
+			if(count($requestpart)==2){
+				$column_name ="order_status_id";
+				$order_id = $requestpart[0];
+				$status_id = $requestpart[1];
+				$result = $this->model_sale_order->getOrder($order_id);
+
+				if($result[$column_name]){
+					$this->model_sale_order->setStatus($order_id, $column_name, $status_id);
+				} else {
+					$this->model_sale_order->setStatus($order_id, $column_name, $status_id);
+				}				
+				//$result = $this->model_sale_order->getOrder($order_id);
+				//$output = $result[$column_name];
+			}
+		}
+		//$this->response->setOutput($output);
+	}
+            ]]></add>
+        </operation>
+    </file> 
+	
+	<file path="admin/model/sale/order.php">
+        <operation>
+            <search><![CDATA[
+            public function getOrder($order_id)
+            ]]></search>
+            <add position="before"><![CDATA[
+				public function setStatus($order_id, $column_name, $value){
+				$this->db->query("UPDATE " . DB_PREFIX . "order SET " . $column_name . " = '" . (int)$value . "' WHERE order_id= '" . (int)$order_id . "'");
+				}
+			]]></add>
+        </operation>
+    </file>  
+	
+	<file path="admin/view/template/sale/order_list.tpl">
+        <operation>
+            <search><![CDATA[
+            <?php echo $order['order_status']; ?>
+            ]]></search>
+            <add position="replace"><![CDATA[
+			<a class="ajaxstatus" id="<?php echo $order['order_id']; ?>-" >
+					  <select name="<?php echo $order['order_id']; ?>-" id="input-order-status" style=" width:90px" >
+                      <?php foreach ($order_statuses as $order_status) { ?>
+                      <?php if ($order_status['order_status_id'] == $order['order_status_id']) { ?>
+                      <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                      <?php } else { ?>
+                      <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                      <?php } ?>
+                      <?php } ?>
+                    </select>
+
+			</a>
+			]]></add>
+        </operation>
+		<operation>
+            <search><![CDATA[
+            <?php echo $footer; ?>
+            ]]></search>
+            <add position="before"><![CDATA[
+			<script type="text/javascript"><!--
+$('.ajaxstatus').change(function() {
+    var object=$(this).attr('id');
+	var object_id=$(this).attr('id')+encodeURIComponent($('select[name="' + object + '"]').val());
+    console.log(object_id);
+	$.ajax({
+		url: 'index.php?route=sale/order/setstatus&token=<?php echo $token; ?>',
+		type: 'get',
+		data: {object_id:object_id},
+		dataType: 'html',
+		success: function(html) {
+			if(html!=''){				
+				$('#'+object_id).html(html);
+			}
+		}
+	});
+});
+//--></script>
+			]]></add>
+        </operation>
+    </file>
+</modification>

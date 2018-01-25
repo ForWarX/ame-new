@@ -21,6 +21,30 @@ class ControllerSaleOrder extends Controller {
 		$this->getList();
 	}
 
+
+            public function setstatus() {
+		$this->load->model('sale/order');
+		$output='';
+		if(isset($this->request->get['object_id'])){
+			$requestpart = explode('-',$this->request->get['object_id']);
+			if(count($requestpart)==2){
+				$column_name ="order_status_id";
+				$order_id = $requestpart[0];
+				$status_id = $requestpart[1];
+				$result = $this->model_sale_order->getOrder($order_id);
+
+				if($result[$column_name]){
+					$this->model_sale_order->setStatus($order_id, $column_name, $status_id);
+				} else {
+					$this->model_sale_order->setStatus($order_id, $column_name, $status_id);
+				}				
+				//$result = $this->model_sale_order->getOrder($order_id);
+				//$output = $result[$column_name];
+			}
+		}
+		//$this->response->setOutput($output);
+	}
+            
 	public function add() {
 		$this->load->language('sale/order');
 
