@@ -212,6 +212,8 @@
                    <a href="<?php echo $order['view']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
                    <a href="<?php echo $order['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                    <a href="<?php echo $order['order_copy']; ?>" data-toggle="tooltip" title="<?php echo $button_order_copy; ?>" class="btn btn-primary" target="_blank"><i class="fa fa-copy"></i></a>
+                     <a href="<?php echo $order['label'];; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_labels_print; ?>" class="btn btn-info"><i class="fa fa-barcode"></i></a>
+
                  </td>
                </tr>
                <?php } ?>

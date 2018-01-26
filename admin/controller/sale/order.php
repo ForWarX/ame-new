@@ -328,6 +328,7 @@ class ControllerSaleOrder extends Controller {
 				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
 				'shipping_code' => $result['shipping_code'],
 				'view'          => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
+				'label'          => $this->url->link('sale/order/lables', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
 				'edit'          => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
                 'order_copy'    => $result['store_url'] . 'index.php?route=product/apply/copy&order_id=' . $result['order_id'] . "&token=" . $this->session->data['token'] ."&admin_name=" . $admin_name
 			);
@@ -395,6 +396,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
 		$data['button_view'] = $this->language->get('button_view');
+		$data['button_labels_print'] = $this->language->get('button_labels_print');
 		$data['button_ip_add'] = $this->language->get('button_ip_add');
 		$data['button_order_copy'] = $this->language->get('button_order_copy');
 		$data['button_new_order'] = $this->language->get('button_new_order');
