@@ -88,7 +88,7 @@ class ControllerCheckoutSuccess extends Controller {
 			$data['continue'] = $this->url->link('common/home');
 
 		}
-	
+
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
