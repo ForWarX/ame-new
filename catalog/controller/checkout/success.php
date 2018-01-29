@@ -81,11 +81,18 @@ class ControllerCheckoutSuccess extends Controller {
             $token = $this->request->get['token'];
             $text_print = $this->language->get('text_print');
             $data['text_message'] = sprintf($data['text_message'] . $text_print, "admin/index.php?route=sale/order/invoice&token=" . $token . "&order_id=" . $order_id, "admin/index.php?route=sale/order/lables&token=" . $token . "&order_id=" . $order_id);
+			$data['continue'] = "/admin/index.php?route=sale/order&token=" . $token;
+
         }
+		else{
+			$data['continue'] = $this->url->link('common/home');
+
+		}
+	
 
 		$data['button_continue'] = $this->language->get('button_continue');
 
-		$data['continue'] = $this->url->link('common/home');
+
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
