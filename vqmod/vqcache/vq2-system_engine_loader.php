@@ -37,29 +37,29 @@ final class Loader {
 	public function model($route) {
 		// Sanitize the call
 		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
-		
+
 		// Trigger the pre events
 		$this->registry->get('event')->trigger('model/' . $route . '/before', array(&$route));
-		
+
 		if (!$this->registry->has('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), $route))) {
 			$file  = DIR_APPLICATION . 'model/' . $route . '.php';
 			$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $route);
-			
+
 			if (is_file($file)) {
 				include_once(\VQMod::modCheck($file));
-	
+
 				$proxy = new Proxy();
-				
+
 				foreach (get_class_methods($class) as $method) {
 					$proxy->{$method} = $this->callback($this->registry, $route . '/' . $method);
 				}
-				
+
 				$this->registry->set('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), (string)$route), $proxy);
 			} else {
 				throw new \Exception('Error: Could not load model ' . $route . '!');
 			}
 		}
-		
+
 		// Trigger the post events
 		$this->registry->get('event')->trigger('model/' . $route . '/after', array(&$route));
 	}
