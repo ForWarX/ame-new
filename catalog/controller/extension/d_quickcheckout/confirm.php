@@ -194,7 +194,7 @@ class ControllerExtensionDQuickcheckoutConfirm extends Controller {
 
         $this->load->language('checkout/checkout');
         $this->load->model('sale/order');
-        $order_data['invoice_prefix'] =  $this->model_sale_order->createOrderNumberForShop();
+        $order_data['invoice_prefix'] =  $this->model_sale_order->createOrderNumberForShop($this->session->data['order_id']);
         $order_data['store_id'] = $this->config->get('config_store_id');
         $order_data['store_name'] = $this->config->get('config_name');
 
