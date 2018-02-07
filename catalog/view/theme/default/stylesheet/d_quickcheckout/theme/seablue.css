@@ -6,14 +6,14 @@
 }
 #d_quickcheckout .panel .panel-heading {
   color: #31708f;
-  background-color: #d9edf7;
+  background-color: rgb(44,196,238);
   border-color: #bce8f1;
 }
 #d_quickcheckout .panel .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #bce8f1;
 }
 #d_quickcheckout .panel .panel-heading .badge {
-  color: #d9edf7;
+  color: rgb(44,196,238);
   background-color: #31708f;
 }
 #d_quickcheckout .panel .panel-footer + .panel-collapse > .panel-body {

@@ -1,4 +1,5 @@
 <?php echo $header; ?><?php echo $column_left; ?>
+
 <div id="content">
   <div class="page-header">
     <div class="container-fluid">
@@ -39,7 +40,6 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label class="control-label" for="input-order-id"><?php echo $entry_order_id; ?></label>
                 <input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" placeholder="<?php echo $entry_order_id; ?>" id="input-order-id" class="form-control" />
               </div>
                 <div class="form-group">

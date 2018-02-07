@@ -76,6 +76,8 @@ $_['entry_shipping'] 	             = 'My delivery and billing addresses are the 
 $_['entry_china_id']                 = 'China ID';
 $_['entry_china_id_front']           = 'ID Front';
 $_['entry_china_id_back']            = 'ID Back';
+$_['entry_payment_phone']            = 'Payment_phone';
+$_['entry_shipping_phone']           = 'Phone';
 
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';

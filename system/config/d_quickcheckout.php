@@ -24,7 +24,7 @@ $_['d_quickcheckout_setting'] = array(
 		'update_mini_cart' => 1,
 	),
 	'design' => array(
-		'theme' => 'default',
+		'theme' => 'seablue',
 		'column_width' => array(1 => '4', 2 => '4', 3 => '4', 4 => '8'),							
 		'login_style' => 'popup',
 		'address_style' => 'radio',
@@ -77,8 +77,8 @@ $_['d_quickcheckout_setting'] = array(
 					'width' => '50',
 					'fields' => array(
 						'firstname' => array(
-								'id' => 'firstname',
-								'title' => 'entry_firstname', 
+								'id' => 'lastname',
+								'title' => 'entry_firstname',
 								'tooltip' => '',
 								'error' => array(0 => array('min_length' => 1, 
 															 'max_length' => 32, 
@@ -92,10 +92,10 @@ $_['d_quickcheckout_setting'] = array(
 						),
 						'lastname' => array(
 								'id' => 'lastname',
-								 'title' => 'entry_lastname', 
+								 'title' => 'entry_lastname',
 								 'tooltip' => '',
-								 'error' => array(0 => array('min_length' => 1, 
-															 'max_length' => 32, 
+								 'error' => array(0 => array('min_length' => 1,
+															 'max_length' => 32,
 															 'text' => 'error_lastname')),
 								 'type' => 'text',
 								 'refresh' => '0',
@@ -152,7 +152,7 @@ $_['d_quickcheckout_setting'] = array(
 						
 						'fax' => array(
 								'id' => 'fax',
-								'title' => 'entry_fax',
+								'title' => 'entry_payment_phone',
 								'tooltip' => '',
 								'error' => array(0 => array('min_length' => 3, 
 															 'max_length' => 32, 
@@ -200,10 +200,10 @@ $_['d_quickcheckout_setting'] = array(
 						),
 						'company' => array(
 								'id' => 'company',
-								'title' => 'entry_company',
+								'title' => 'entry_china_id',
 								'tooltip' => '',
-								'error' => array(0 => array('min_length' => 3, 
-															 'max_length' => 34, 
+								'error' => array(0 => array('min_length' => 3,
+															 'max_length' => 34,
 															 'text' => 'error_step_payment_address_fields_company')),
 								'type' => 'text',
 								'refresh' => '0',
@@ -238,7 +238,7 @@ $_['d_quickcheckout_setting'] = array(
 						),
 						'address_2' => array(
 								'id' => 'address_2',
-								'title' => 'entry_address_2', 
+								'title' => 'entry_payment_phone',
 								'tooltip' => '',
 								'error' => array(0 => array('min_length' => 3, 
 															 'max_length' => 128, 
@@ -388,7 +388,7 @@ $_['d_quickcheckout_setting'] = array(
 						),
 						'company' => array(
 							'id' => 'company',
-							'title' => 'entry_company',  
+							'title' => 'entry_china_id',
 							'tooltip' => '',
 							'error' => array(0 => array('min_length' => 3, 
 														 'max_length' => 32, 
@@ -420,7 +420,7 @@ $_['d_quickcheckout_setting'] = array(
 						),
 						'address_2' => array(
 							'id' => 'address_2',
-							'title' => 'entry_address_2', 
+							'title' => 'entry_shipping_phone',
 							'tooltip' => '',
 							'error' => array(0 => array('min_length' => 3, 
 														 'max_length' => 128, 
@@ -635,8 +635,8 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''
 										 ),
 					'lastname' => array(
-										 'display' => 1, 
-										 'require' => 1,
+										 'display' => 0,
+										 'require' => 0,
 										 'value' => ''													
 										 ), 
 					'email' => array(	 'display' => 1, 
@@ -662,12 +662,12 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''														
 										 ),
 					'telephone' => array(
-										 'display' => 1, 
+										 'display' => 0,
 										 'require' => 0,
 										 'value' => ''	
 										 ),
 					'fax' => array(
-										 'display' => 1, 
+										 'display' => 0,
 										 'require' => 0,
 										 'value' => ''	
 										 ),
@@ -683,7 +683,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'company' => array(
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'customer_group_id' => array(
@@ -697,8 +697,8 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''	
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'city' => array(
@@ -754,7 +754,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'company' => array(
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'address_1' => array(
@@ -763,13 +763,13 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''	
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'city' => array( 
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'postcode' => array(
@@ -842,13 +842,13 @@ $_['d_quickcheckout_setting'] = array(
 			'payment_address' => array(
 				'display' => 1,
 				'fields' => array(
-					'firstname' => array('display' => 1, 
+					'firstname' => array('display' => 1,
 										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'lastname' => array(
-										 'display' => 1, 
-										 'require' => 1,
+										 'display' => 0,
+										 'require' => 0,
 										 'value' => ''														
 										 ), 
 					'email' => array(	 'display' => 1, 
@@ -873,12 +873,12 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''														
 										 ),
 					'telephone' => array(
-										 'display' => 1, 
+										 'display' => 0,
 										 'require' => 0,
 										 'value' => ''	
 										 ),
 					'fax' => array(
-										 'display' => 1, 
+										 'display' => 0,
 										 'require' => 0,
 										 'value' => ''	
 										 ),
@@ -898,8 +898,8 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''	
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'city' => array(
@@ -949,7 +949,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'company' => array(
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'address_1' => array(
@@ -958,13 +958,13 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''
 										 ),
 					'city' => array( 
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''
 										 ),
 					'postcode' => array(
@@ -1041,13 +1041,13 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''	
 										 ),
 					'lastname' => array(
-										 'display' => 1, 
-										 'require' => 1,
+										 'display' => 0,
+										 'require' => 0,
 										 'value' => ''															
 										 ),
 					'company' => array(
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'address_1' => array(
@@ -1056,8 +1056,8 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''	
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''	
 										 ),
 					'city' => array(
@@ -1103,7 +1103,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'company' => array(
 										 'display' => 1, 
-										 'require' => 0,
+										 'require' => 1,
 										 'value' => ''
 										 ),
 					'address_1' => array(
@@ -1112,8 +1112,8 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''
 										 ),
 					'address_2' => array(
-										 'display' => 0, 
-										 'require' => 0,
+										 'display' => 1,
+										 'require' => 1,
 										 'value' => ''
 										 ),
 					'city' => array( 

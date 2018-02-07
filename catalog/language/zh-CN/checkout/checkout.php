@@ -9,8 +9,8 @@ $_['text_checkout_account']          = '第 2 步： 帐户与账单详细资料
 $_['text_checkout_payment_address']  = '第 2 步： 账单详细资料';
 $_['text_checkout_shipping_address'] = '第 3 步： 货运详细信息';
 $_['text_checkout_shipping_method']  = '第 4 步： 货运方式';
-$_['text_checkout_payment_method']   = '第五步： 支款方式';
-$_['text_checkout_confirm']          = '第六步： 确认订单';
+$_['text_checkout_payment_method']   = '第 5 步： 支款方式';
+$_['text_checkout_confirm']          = '第 6 步： 确认订单';
 $_['text_modify']                    = '修改»';
 $_['text_new_customer']              = '新客户';
 $_['text_returning_customer']        = '老客户';
@@ -66,7 +66,10 @@ $_['entry_city']                     = '城市';
 $_['entry_country']                  = '国家';
 $_['entry_zone']                     = '区域 / 国家';
 $_['entry_newsletter']               = '我想订阅 %s。';
-$_['entry_shipping'] 	             = '我的交付和账单地址是相同的。';
+$_['entry_shipping'] 	               = '我的交付和账单地址是相同的。';
+$_['entry_payment_phone'] 	       = '寄件人电话';
+$_['entry_china_id']                 = '身份证';
+$_['entry_shipping_phone']            = '收件人电话';
 
 // Error
 $_['error_warning']                  = '在尝试处理您的订单时出现了一个问题 ！如果问题仍然存在请尝试选择不同的支付方式，或者您可以联系店主通过 <a href="%s"> 点击这里</a>。';

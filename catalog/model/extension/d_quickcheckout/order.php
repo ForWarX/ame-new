@@ -145,7 +145,8 @@ class ModelExtensionDQuickcheckoutOrder extends Model {
             payment_country = '" . $this->db->escape($data['payment_country']) . "', 
             payment_country_id = '" . (int) $data['payment_country_id'] . "', 
             payment_zone = '" . $this->db->escape($data['payment_zone']) . "', 
-            payment_zone_id = '" . (int) $data['payment_zone_id'] . "', 
+            payment_zone_id = '" . (int) $data['payment_zone_id'] . "',
+            payment_phone = '" . $this->db->escape($data['payment_address_2']) . "',
             payment_address_format = '" . $this->db->escape($data['payment_address_format']) . "', ";
         if (VERSION >= '2.1.0.1') {
             $query .="payment_custom_field = '" . $this->db->escape(isset($data['payment_custom_field']) ? json_encode($data['payment_custom_field']) : '') . "', ";
@@ -156,7 +157,7 @@ class ModelExtensionDQuickcheckoutOrder extends Model {
             payment_code = '" . $this->db->escape($data['payment_code']) . "', 
             shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . "', 
             shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . "', 
-            shipping_company = '" . $this->db->escape($data['shipping_company']) . "', 
+            shipping_chinaid = '" . $this->db->escape($data['shipping_company']) . "',
             shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . "', 
             shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . "', 
             shipping_city = '" . $this->db->escape($data['shipping_city']) . "', 
@@ -164,7 +165,8 @@ class ModelExtensionDQuickcheckoutOrder extends Model {
             shipping_country = '" . $this->db->escape($data['shipping_country']) . "', 
             shipping_country_id = '" . (int) $data['shipping_country_id'] . "', 
             shipping_zone = '" . $this->db->escape($data['shipping_zone']) . "', 
-            shipping_zone_id = '" . (int) $data['shipping_zone_id'] . "', 
+            shipping_zone_id = '" . (int) $data['shipping_zone_id'] . "',
+            shipping_phone = '" . $this->db->escape($data['shipping_address_2']) . "',
             shipping_address_format = '" . $this->db->escape($data['shipping_address_format']) . "', ";
         if (VERSION >= '2.1.0.1') {
             $query .="shipping_custom_field = '" . $this->db->escape(isset($data['shipping_custom_field']) ? json_encode($data['shipping_custom_field']) : '') . "', ";
