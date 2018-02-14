@@ -12,6 +12,7 @@ $_['text_fax']       = '传真';
 $_['text_open']      = '营业时间';
 $_['text_comment']   = '评论';
 $_['text_success']   = '<p>您的查询已成功发送到商店的店主 ！</p>';
+$_['text_ame_no']   = '请您输入AME号码 查询包裹状态';
 
 // Column
 $_['column_order_id']       = '订单 ID';
@@ -47,4 +48,4 @@ $_['error_captcha']  = '验证码与图像不匹配 ！';
 $_['error_track']    = '系统未查询到账单， 请输入正确的订单号码！格式例如: AME1711010187';
 $_['error_not_found']    = '您的邮包还未寄出，请稍后查询';
 //button
-$_['button_track']  = '点击这里查询您的包裹状态';
+$_['button_track']  = '点击查询包裹状态';

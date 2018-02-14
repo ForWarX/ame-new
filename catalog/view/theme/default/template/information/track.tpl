@@ -130,7 +130,7 @@
             <td class="text-right"><?php echo $order['total']; ?></td>
             <td class="text-left"><?php echo $order['date_added']; ?></td>
             <td class="text-right">
-               <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i></a>
+               <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
             </td>
           </tr>
           </tbody>

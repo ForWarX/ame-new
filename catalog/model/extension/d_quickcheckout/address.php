@@ -146,7 +146,7 @@
                     if (!empty($country_info['address_format'])) {
                         $new_address['address_format'] = $country_info['address_format'];
                     } else {
-                        $new_address['address_format'] = '{phone} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+                        $new_address['address_format'] = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{phone}'. "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
                     }
                 } else {
                     $new_address['country'] = '';
@@ -183,7 +183,7 @@
                 if (!empty($country_info['address_format'])) {
                     $address['address_format'] = $country_info['address_format'];
                 } else {
-                    $address['address_format'] = '{phone} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+                    $address['address_format'] = '{firstname} {lastname}' . "\n" . '{company}'. "\n" . '{phone}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
                 }
             } else {
                 $address['country'] = '';
