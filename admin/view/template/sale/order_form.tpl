@@ -293,7 +293,7 @@
                         <input type="hidden" name="voucher[<?php echo $voucher_row; ?>][message]" value="<?php echo $order_voucher['message']; ?>" />
                         <input type="hidden" name="voucher[<?php echo $voucher_row; ?>][amount]" value="<?php echo $order_voucher['amount']; ?>" /></td>
                       <td class="text-left"></td>
-                      <td class="text-right">1</td>
+                      <td class="text-right"></td>
                       <td class="text-right"></td>
                       <td class="text-right"></td>
                       <td class="text-center"></td>
@@ -665,6 +665,12 @@
                 <label class="col-sm-2 control-label" for="input-shipping-city"><?php echo $entry_city; ?></label>
                 <div class="col-sm-10">
                   <input type="text" name="city" value="<?php echo $shipping_city; ?>" id="input-shipping-city" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-sm-2 control-label" for="input-shipping-district"><?php echo $entry_shipping_district; ?></label>
+                <div class="col-sm-10">
+                  <input type="text" name="shipping_district" value="<?php echo $shipping_district; ?>" id="input-shipping-district" class="form-control" />
                 </div>
               </div>
               <div class="form-group required">
@@ -2101,6 +2107,7 @@ $('select[name=\'shipping_address\']').on('change', function() {
             $('#tab-shipping select[name=\'shipping_chinaid\']').val(json['shipping_chinaid']);
             $('#tab-shipping input[name=\'shipping_method\']').val(json['shipping_method']);
             $('#tab-shipping select[name=\'shipping_code\']').val(json['shipping_code']);
+            $('#tab-shipping input[name=\'shipping_district\']').val(json['shipping_district']);
 
 			shipping_zone_id = json['zone_id'];
 
@@ -2594,7 +2601,7 @@ $('.datetime').datetimepicker({
 $('.time').datetimepicker({
 	pickDate: false
 });
-//--></script> 
+//--></script>
   <script type="text/javascript">
 // Sort the custom fields
 $('#tab-customer .form-group[data-sort]').detach().each(function() {
@@ -2640,4 +2647,4 @@ $('#tab-shipping .form-group[data-sort]').detach().each(function() {
 	}
 });
 </script></div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>

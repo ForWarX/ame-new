@@ -224,6 +224,8 @@ $_['entry_shipping_method']                  = '运送方式';
 $_['entry_shipping_code']                    = '运送代码';
 // add entry recipient
 $_['entry_anything']                           = '搜索';
+// add entry shipping district
+$_['entry_shipping_district']                 = '区';
 
 
 // Help

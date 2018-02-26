@@ -154,7 +154,7 @@ $_['entry_shipping_number']      = 'Shipping Number';
 $_['entry_telephone']            = 'Telephone';
 // add entry shipping phone
 $_['entry_shipping_phone']       = 'Shipping Phone';
-// add entry shipping phone
+// add entry payment phone
 $_['entry_payment_phone']         = 'Sender Phone';
 // add entry shipping chinaid
 $_['entry_payment_chinaid']       = 'China ID';
@@ -164,6 +164,8 @@ $_['entry_shipping_method']       = 'Shipping Method';
 $_['entry_shipping_code']         = 'Shipping Code';
 // add entry recipient
 $_['entry_anything']                = 'Search Anything';
+// add entry shipping district
+$_['entry_shipping_district']      = 'District';
 
 $_['entry_date_added']           = 'Date Added';
 $_['entry_date_modified']        = 'Date Modified';

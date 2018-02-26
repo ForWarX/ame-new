@@ -104,6 +104,7 @@ class ModelCheckoutOrder extends Model {
             . "', shipping_country_id = '" . (int)$data['shipping_country_id']
             . "', shipping_zone = '" . $this->db->escape($data['shipping_zone'])
             . "', shipping_zone_id = '" . (int)$data['shipping_zone_id']
+			. "', shipping_district = '" . $this->db->escape($data['shipping_district'])
             . "', shipping_address_format = '" . $this->db->escape($data['shipping_address_format'])
             . "', shipping_custom_field = '" . $this->db->escape(json_encode($data['shipping_custom_field']))
             . "', shipping_method = '" . $this->db->escape($data['shipping_method'])

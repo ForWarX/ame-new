@@ -29,7 +29,7 @@
       <tbody>
       <tr>
         <div style="width: 50%; display: inline-block; float: left; text-align:center">
-          <img src="http://www.americoexpress.ca/ame/App/Home/View/Default/img/web/about_us_logo.png" style="width: 308px;">
+          <img src="http://www.americoexpress.com/ame/App/Home/View/Default/img/web/about_us_logo.png" style="width: 308px;">
         </div>
         <div style="width: 50%; display: inline-block; margin-top:18px; font-size:20px;">
           <b><?php echo $text_order_id; ?></b> <?php echo $order['invoice_prefix']; ?><br />
