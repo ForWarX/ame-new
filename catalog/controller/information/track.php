@@ -170,6 +170,7 @@ class ControllerInformationTrack extends Controller {
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
 		$data['column_receiver'] = $this->language->get('column_receiver');
+		$data['column_delivery_number'] = $this->language->get('column_delivery_number');
 		$data['column_track'] = $this->language->get('column_track');
 		$data['error_track'] = $this->language->get('error_track');
 		$data['error_not_found'] = $this->language->get('error_not_found');
@@ -199,14 +200,15 @@ class ControllerInformationTrack extends Controller {
 		$product_total = $this->model_account_order->getTotalOrderProductsByOrderId($result['order_id']);
 		$voucher_total = $this->model_account_order->getTotalOrderVouchersByOrderId($result['order_id']);
 		$data['order'] = array(
-			'order_id'   => $result['order_id'],
-			'order_no'   => $result['invoice_prefix'],
-			'name'       => $result['shipping_firstname'],
-			'status'     => $result['order_status'],
-			'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-			'products'   => ($product_total + $voucher_total),
-			'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-			'view'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], true),
+			'order_id'             => $result['order_id'],
+			'order_no'             => $result['invoice_prefix'],
+			'name'                 => $result['shipping_firstname'],
+			'status'               => $result['order_status'],
+			'delivery_number'     => $result['delivery_number'],
+			'date_added'           => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+			'products'             => ($product_total + $voucher_total),
+			'total'                => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+			'view'                  => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], true),
 		);
 		}
 

@@ -30,6 +30,7 @@ $_['column_status']         = '邮包状态';
 $_['column_comment']        = '备注';
 $_['column_receiver']       = '收件人';
 $_['column_track']          = '如果包裹已邮寄';
+$_['column_delivery_number'] = '国内单号';
 
 // Entry
 $_['entry_name']     = '您的姓名';
