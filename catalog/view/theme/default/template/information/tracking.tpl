@@ -23,7 +23,7 @@
               <?php echo $address; ?>
               </address>
               <?php if ($geocode) { ?>
-              <a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
+              <a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"> <?php echo $button_map; ?></a>
               <?php } ?>
             </div>
             <div class="col-sm-3"><strong><?php echo $text_telephone; ?></strong><br>
@@ -67,7 +67,7 @@
                   <?php echo $location['address']; ?>
                   </address>
                   <?php if ($location['geocode']) { ?>
-                  <a href="https://maps.google.com/maps?q=<?php echo urlencode($location['geocode']); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> <?php echo $button_map; ?></a>
+                  <a href="https://maps.google.com/maps?q=<?php echo urlencode($location['geocode']); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"> <?php echo $button_map; ?></a>
                   <?php } ?>
                 </div>
                 <div class="col-sm-3"> <strong><?php echo $text_telephone; ?></strong><br>
@@ -101,7 +101,7 @@
           <div  class="input-group">
             <input type="text" id="ame_no" name="ame_no" value="<?php echo $ame_no; ?>" placeholder="<?php echo $text_ame_no; ?>" class="form-control input-lg" />
   <span class="input-group-btn">
-    <button type="button" class="btn btn-default btn-lg" id="button-search"><i class="fa fa-search"></i></button>
+    <button type="button" class="btn btn-default btn-lg" id="button-search"><?php echo $button_track; ?></button>
   </span>
           </div>
           <?php if (!empty($order)) { ?>
