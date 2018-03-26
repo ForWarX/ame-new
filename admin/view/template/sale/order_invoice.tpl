@@ -50,8 +50,9 @@
           <b><?php echo $text_fax; ?></b> <?php echo $order['store_fax']; ?><br />
           <?php } ?>
           <b><?php echo $text_email; ?></b> <?php echo $order['store_email']; ?><br />
-          <b><?php echo $text_website; ?></b> <?php echo $order['store_url']; ?>
-
+          <b><?php echo $text_search_website; ?></b> <?php echo $text_search_url; ?>
+          <!--<b><?php echo $text_website; ?></b> <?php echo $order['store_url']; ?>
+             -->
         </td>
       </tr>
       </tbody>

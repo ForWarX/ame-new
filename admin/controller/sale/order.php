@@ -2174,6 +2174,8 @@ class ControllerSaleOrder extends Controller {
 		$data['text_shipping_method'] = $this->language->get('text_shipping_method');
 		$data['text_comment'] = $this->language->get('text_comment');
 		$data['text_admin_name'] = $this->language->get('text_admin_name');
+		$data['text_search_website'] = $this->language->get('text_search_website');
+		$data['text_search_url'] = $this->language->get('text_search_url');
 		//add text signature
 		$data['text_signature'] = $this->language->get('text_signature');
 
@@ -2969,7 +2971,7 @@ class ControllerSaleOrder extends Controller {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
 									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
 									. ',' .$result['weight'] . ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
-									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight'] . ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
+									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
 							$output .= $line . "\r\n";
 							$outputline++;
 						}
