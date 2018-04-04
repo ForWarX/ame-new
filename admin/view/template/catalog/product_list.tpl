@@ -87,6 +87,19 @@
                   <?php } ?>
                 </select>
               </div>
+              <div class="form-group">
+                <label class="control-label" for="input-category"><?php echo $entry_category; ?></label>
+                <select name="filter_category_id" id="input-status" class="form-control">
+                  <option value="*"></option>
+                  <?php foreach($allcategories as $cd) { ?>
+                  <?php if($filter_category_id==$cd['filter_category_id']) { ?>
+                  <option value="<?php echo $cd['filter_category_id']; ?>" selected="selected"><?php echo $cd['filter_category_name']; ?></option>
+                  <?php } else { ?>
+                  <option value="<?php echo $cd['filter_category_id']; ?>"><?php echo $cd['filter_category_name']; ?></option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
+              </div>
               <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-filter"></i> <?php echo $button_filter; ?></button>
             </div>
           </div>
@@ -214,7 +227,11 @@ $('#button-filter').on('click', function() {
   if (filter_image != '*') {
     url += '&filter_image=' + encodeURIComponent(filter_image);
   }
+  var filter_category_id = $('select[name=\'filter_category_id\']').val();
 
+  if (filter_category_id != '*') {
+    url += '&filter_category_id=' + encodeURIComponent(filter_category_id);
+  }
 	location = url;
 });
 //--></script>
