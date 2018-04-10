@@ -48,6 +48,7 @@
       <table id="logo-container" class="table table-condensed">
         <tbody>
         <tr>
+          <!--
           <td>
             <div id="logo" class="pull-right">
               <?php if ($logo) { ?>
@@ -57,6 +58,7 @@
               <?php } ?>
             </div>
           </td>
+          -->
           <td id="logo-text">
             <table>
               <tbody>
