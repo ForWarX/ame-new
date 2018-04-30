@@ -215,6 +215,7 @@ $_['entry_sender']                             = '寄件人';
 $_['entry_payment_phone']                      = '寄件人电话';
 // Button
 $_['button_order_copy']                       = '继续下单';
+$_['button_export2']                          = '导出报关表';
 $_['button_labels_print']                     = '打印小票';
 $_['button_new_order']                        = '下单';
 $_['button_change_customer']                  = '更换客户';

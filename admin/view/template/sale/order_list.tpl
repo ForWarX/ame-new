@@ -4,7 +4,8 @@
     <div class="container-fluid">
       <div class="pull-right">
         <button type="submit" id="button-export" form="form-order" formaction="<?php echo $export; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_export; ?>" class="btn btn-info"><i class="fa fa-download"></i></button>
-        <button type="submit" id="button-import" form="form-order" formaction="<?php echo $import; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
+          <button type="submit" id="button-export2" form="form-order" formaction="<?php echo $export2; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_export2; ?>" class="btn btn-info"><i class="fa fa-download"></i></button>
+          <button type="submit" id="button-import" form="form-order" formaction="<?php echo $import; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
         <button type="submit" id="button-shipping" form="form-order" formaction="<?php echo $shipping; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_shipping_print; ?>" class="btn btn-info"><i class="fa fa-truck"></i></button>
         <button type="submit" id="button-invoice" form="form-order" formaction="<?php echo $invoice; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_invoice_print; ?>" class="btn btn-info"><i class="fa fa-print"></i></button>
         <a href="<?php echo $new_order; ?>" data-toggle="tooltip" title="<?php echo $button_new_order; ?>" class="btn btn-primary" target="_blank"><i class="fa fa-file"></i></a>
@@ -485,6 +486,10 @@ $('#button-delete').on('click', function(e) {
 	}
 });
       $('#button-export').on('click', function(e) {
+          $('#form-order').attr('action', this.getAttribute('formAction'));
+
+      });
+      $('#button-export2').on('click', function(e) {
           $('#form-order').attr('action', this.getAttribute('formAction'));
 
       });

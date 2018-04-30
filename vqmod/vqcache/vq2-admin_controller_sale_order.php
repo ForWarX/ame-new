@@ -293,7 +293,7 @@ class ControllerSaleOrder extends Controller {
 		$data['delete'] = $this->url->link('sale/order/delete', 'token=' . $this->session->data['token'], true);
 		$data['import'] = $this->url->link('sale/order/import', 'token=' . $this->session->data['token'], true);
         $data['export'] = $this->url->link('sale/order/export', 'token=' . $this->session->data['token'] . $url, true);
-
+		$data['export2'] = $this->url->link('sale/order/export2', 'token=' . $this->session->data['token'] . $url, true);
 		$data['orders'] = array();
 
 		$filter_data = array(
@@ -435,6 +435,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_shipping_print'] = $this->language->get('button_shipping_print');
 		$data['button_import'] = $this->language->get('button_import');
         $data['button_export'] = $this->language->get('button_export');
+		$data['button_export2'] = $this->language->get('button_export2');
 		$data['button_add'] = $this->language->get('button_add');
 		$data['button_edit'] = $this->language->get('button_edit');
 		$data['button_delete'] = $this->language->get('button_delete');
@@ -2891,7 +2892,7 @@ class ControllerSaleOrder extends Controller {
 
 	// 旧的订单导出系统
 	/*
-	public function export2() {
+	public function export3() {
         set_time_limit(60);
 
         if (isset($this->request->get['filter_order_id'])) {
@@ -3013,6 +3014,46 @@ class ControllerSaleOrder extends Controller {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
 									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
 									. ',' .$result['weight'] . ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
+									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
+							$output .= $line . "\r\n";
+							$outputline++;
+						}
+				}
+
+			}
+		}
+
+
+
+		header("Content-Type: application/octet-stream;");
+		header("Content-Disposition: attachment; filename=AME_Export.csv");
+		echo iconv('utf-8', 'gbk', $output);
+	}
+	public function export2() {
+		set_time_limit(60);
+
+		$this->load->model('sale/order');
+		$this->load->model('localisation/language');
+
+		$output = "客户单号,分单号（非必填）,寄件人,寄件人电话,寄件人地址,寄件人国家代码,寄件人城市,收件人,收件人电话,收件人证件类型,收件人证件号码,收件人省,收件人市,收件人区,收件人地址,包裹重量,单品货值,货物upc编码,品名简称,英文名称,商品规格,HS编码,行邮税号,货物数量,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,货物品名,总价（CAD）,采用建议价格\r\n";
+		//记录导出行数
+		$outputline=0;
+		$lang_id = $this->model_localisation_language->getLanguageByCode('zh-CN')['language_id'];
+
+		if (isset($this->request->post['selected']) && $this->validate()) {
+			foreach ($this->request->post['selected'] as $order_id) {
+				$result = $this->model_sale_order->getOrder($order_id);
+				if($result['order_status_id']==2||$result['order_status_id']==3||$result['order_status_id']==5||$result['order_status_id']==15) {
+					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
+					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
+					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					//数字确定导出行数
+					if ($outputline < 300)
+						foreach ($products as $product) {
+							foreach ($products2 as $product2) foreach ($products3 as $product3)
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
+									. ',' .$result['weight']*0.45359237. ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
 									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
 							$output .= $line . "\r\n";
 							$outputline++;
