@@ -69,7 +69,7 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div id="logo">
           <?php if ($logo) { ?>
           <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
@@ -78,9 +78,9 @@
           <?php } ?>
         </div>
       </div>
-      <div class="col-md-6 col-sm-5"><?php echo $search; ?>
+      <div class="col-md-6 col-sm-7" style="margin-top: 13px"><?php echo $search; ?>
       </div>
-      <div class="col-md-3 col-sm-4"><?php echo $cart; ?></div>
+      <div class="col-md-3 col-sm-4" style="margin-top: 13px"><?php echo $cart; ?></div>
     </div>
   </div>
 </header>
