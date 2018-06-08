@@ -316,11 +316,20 @@
                 <div class="tab-pane active" id="tab-product">
                   <fieldset>
                     <legend><?php echo $text_product; ?></legend>
+                    <!--
                     <div class="form-group">
                       <label class="col-sm-2 control-label" for="input-product"><?php echo $entry_product; ?></label>
                       <div class="col-sm-10">
                         <input type="text" name="product" value="" id="input-product" class="form-control" />
-                        <input type="hidden" name="product_id" value="" />
+                        <input  name="product_id" value="" />
+                      </div>
+                    </div>
+                    -->
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-product"><?php echo $entry_product; ?></label>
+                      <div class="col-sm-10">
+                        <input type="text" name="product_id" value="" id="input-product" class="form-control" />
+
                       </div>
                     </div>
                     <div class="form-group">
@@ -1717,7 +1726,7 @@ $('#tab-product input[name=\'product\']').autocomplete({
 
 $('#button-product-add').on('click', function() {
 	$.ajax({
-		url: '<?php echo $catalog; ?>index.php?route=api/cart/add&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
+		url: '<?php echo $catalog; ?>index.php?route=api/cart/addbyupc&token=' + token + '&store_id=' + $('select[name=\'store_id\'] option:selected').val(),
 		type: 'post',
 		data: $('#tab-product input[name=\'product_id\'], #tab-product input[name=\'quantity\'], #tab-product input[name^=\'option\'][type=\'text\'], #tab-product input[name^=\'option\'][type=\'hidden\'], #tab-product input[name^=\'option\'][type=\'radio\']:checked, #tab-product input[name^=\'option\'][type=\'checkbox\']:checked, #tab-product select[name^=\'option\'], #tab-product textarea[name^=\'option\']'),
 		dataType: 'json',
