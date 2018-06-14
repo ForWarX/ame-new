@@ -2927,6 +2927,7 @@ class ControllerSaleOrder extends Controller {
 		if (empty($data['error'])) {
 			if (($handle = fopen($tmp_name, "r")) !== FALSE) {
 				$row = 0;
+				$line=0;
 				while (($para = fgetcsv($handle)) !== FALSE) {
 					if ($row++ < 1) continue;
 					$num = count($para);
@@ -2962,7 +2963,7 @@ class ControllerSaleOrder extends Controller {
 						} else {
 							//add dilivery number
 							 $this->model_sale_order->setDliveryNumber($invoice_prefix,$deliveryno);
-							 $order = $this->model_sale_order->getOrderByPrefix($invoice_prefix);
+							 $line++;
 						}
 
 					}
@@ -2970,7 +2971,7 @@ class ControllerSaleOrder extends Controller {
 
 				if (empty($data['error'])) {
 					--$row; // 不计算标题行
-					$data['message']= "Upload " . $row . " succeed";
+					$data['message']= "Upload " . $line . " succeed";
 				}
 			}
 			fclose($handle);
