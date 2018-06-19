@@ -598,6 +598,10 @@ class ModelSaleOrder extends Model {
 	public function setDliveryNumber($invoice_prefix,$deliveryno) {
 		$this->db->query("UPDATE " . DB_PREFIX . "order SET delivery_number='" . (int)$deliveryno . "', order_status_id='3' WHERE invoice_prefix = '" . $this->db->escape($invoice_prefix) . "'");
 	}
+	//ADD SET ORDER_STATUS
+	public function setorder_status($order_id) {
+		$this->db->query("UPDATE " . DB_PREFIX . "order SET order_status_id='15' WHERE order_id = '"  . (int)$order_id . "'");
+	}
 
 	public function get_custome_pass($order_id) {
 		$query = $this->db->query("SELECT sum(custome_pass) as passed FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");

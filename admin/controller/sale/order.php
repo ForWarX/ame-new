@@ -3097,6 +3097,7 @@ class ControllerSaleOrder extends Controller {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
 					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
 					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					$this->model_sale_order->setorder_status($result['order_id']);
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
@@ -3137,6 +3138,7 @@ class ControllerSaleOrder extends Controller {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
 					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
 					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
