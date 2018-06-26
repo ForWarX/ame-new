@@ -608,6 +608,14 @@ class ModelSaleOrder extends Model {
 
 		return $query->row['passed'];
 	}
+	public function getOrderProductquan($order_product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_product_id = '" . (int)$order_product_id . "'");
+		if ($query->num_rows) {
+			return $query->row['quantity'];
+		} else {
+			return 0;
+		}
+}
 
 	public function getOrderProducts($order_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");

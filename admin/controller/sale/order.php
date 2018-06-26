@@ -3101,11 +3101,11 @@ class ControllerSaleOrder extends Controller {
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
-							foreach ($products2 as $product2) foreach ($products3 as $product3)
+							   $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
 									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
 									. ',' .$result['weight'] . ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
-									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
+									. $product['name'] . ',' . $product['tag'] . ',,,' .  $quan . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
 							$output .= $line . "\r\n";
 							$outputline++;
 						}
