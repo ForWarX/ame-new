@@ -115,7 +115,7 @@
             <td class="text-left"><?php echo $column_receiver; ?></td>
             <td class="text-right"><?php echo $column_product; ?></td>
             <td class="text-left"><?php echo $column_status; ?></td>
-            <td class="text-right"><?php echo $column_total; ?></td>
+            <!--<td class="text-right"><?php echo $column_total; ?></td> -->
             <td class="text-left"><?php echo $column_date_added; ?></td>
             <td class="text-left"><?php echo $column_delivery_number; ?></td>
             <td class="text-left"><?php echo $column_track; ?></td>
@@ -128,7 +128,7 @@
             <td class="text-left"><?php echo $order['name']; ?></td>
             <td class="text-right"><?php echo $order['products']; ?></td>
             <td class="text-left"><?php echo $order['status']; ?></td>
-            <td class="text-right"><?php echo $order['total']; ?></td>
+          <!--<td class="text-right"><?php echo $order['total']; ?></td> -->
             <td class="text-left"><?php echo $order['date_added']; ?></td>
             <td class="text-left"><?php echo $order['delivery_number']; ?></td>
             <td class="text-right">
