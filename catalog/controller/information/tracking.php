@@ -297,8 +297,8 @@ class ControllerInformationTracking extends Controller {
 
 				$typeNu = $order_info['delivery_number'];
 
-				//$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=youzhengguonei'  . '&nu=' . $typeNu;
-				$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=yuantong'  . '&nu=' . $typeNu;
+				$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=youzhengguonei'  . '&nu=' . $typeNu;
+				//$url = 'http://www.kuaidi100.com/applyurl?key=' . $AppKey . '&com=yuantong'  . '&nu=' . $typeNu;
 				$curl = curl_init();
 				curl_setopt($curl, CURLOPT_URL, $url);
 				curl_setopt($curl, CURLOPT_HEADER, 0);
