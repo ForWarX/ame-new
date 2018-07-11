@@ -333,6 +333,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, true);
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, true);
         $data['import'] = $this->url->link('catalog/product/import', 'token=' . $this->session->data['token'], true);
+		$data['import2'] = $this->url->link('catalog/product/import2', 'token=' . $this->session->data['token'], true);
 
 		$data['products'] = array();
 
@@ -422,6 +423,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_filter'] = $this->language->get('button_filter');
 		$data['button_import'] = $this->language->get('button_import');
+		$data['button_import2'] = $this->language->get('button_import2');
 
 		$data['token'] = $this->session->data['token'];
 
@@ -1632,4 +1634,137 @@ class ControllerCatalogProduct extends Controller {
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($data));
     }
+
+	// 修改报关商品信息
+	public function import2() {
+		$this->load->language('catalog/product');
+
+		$data['title'] = $this->language->get('text_import');
+
+		if ($this->request->server['HTTPS']) {
+			$data['base'] = HTTPS_SERVER;
+		} else {
+			$data['base'] = HTTP_SERVER;
+		}
+
+		/* if needs, get text from language file
+        $data['text_comment'] = $this->language->get('text_comment');
+        $data['column_location'] = $this->language->get('column_location');
+        */
+
+		$data['action_url'] = str_replace('&amp;', '&', $this->url->link('catalog/product/process_import2', 'token=' . $this->session->data['token'], true));
+
+		$this->response->setOutput($this->load->view('catalog/product_import2', $data));
+	}
+
+	// 报关商品信息导入操作
+	public function process_import2() {
+		set_time_limit(600);
+
+		$data = array();
+
+		if (!empty($this->request->files['file']['name'])) {
+			$name = $this->request->files['file']['name'];
+			$type = $this->request->files['file']['type'];
+			$tmp_name = $this->request->files['file']['tmp_name'];
+			$error = $this->request->files['file']['error'];
+			$size = $this->request->files['file']['size'];
+
+			if (is_file($tmp_name)) {
+				$filename = basename(html_entity_decode($name, ENT_QUOTES, 'UTF-8'));
+				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
+					$data['error'] = 'Filename Error';
+				} else if (utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)) != 'csv') {
+					$data['error'] = 'Only csv file accepted';
+				}
+			} else {
+				$data['error'] = "File doesn't exists.";
+			}
+		} else {
+			$data['error'] = "Please select upload file.";
+		}
+		$this->load->model('catalog/product');
+
+		if (empty($data['error'])) {
+			if (($handle = fopen($tmp_name, "r")) !== FALSE) {
+
+				$row = 0;
+				while (($csv_data = fgetcsv($handle)) !== FALSE) {
+					if ($row++ < 1) continue;
+					$num = count($csv_data);
+					if ($num < 1) {
+						$row--; // 数据不完整的行不计入总行数
+						continue;
+					}
+
+					$upc = $csv_data[0];
+					if (empty($upc)) {
+						$row--; // 缺少UPC的行不计入总行数
+						continue;
+					}
+
+					// 获取字段
+					$name_cn = $csv_data[1];        // 中文名
+					$name_en = $csv_data[2];        // 英文名
+					$ean = $csv_data[3];            // 报关价格
+					$mpn = $csv_data[4];            // 品牌
+					$tag = $csv_data[5];            // 规格
+					$jan = $csv_data[6];            // 单位
+
+
+					$product = $this->model_catalog_product->getProductByUPC($upc);
+
+					if (empty($product)) {
+
+					} else {
+						//获取产品描述
+						//$product2 = $this->model_catalog_product->getProductDescriptions($product['product_id']);
+						// 添加商品信息
+						$para['upc'] = $upc;
+
+						if (empty($name_cn)){
+							$para['name_cn']= NULL;
+						    } else {
+							$para['name_cn'] = $name_cn;
+						}
+						if (empty($name_en)) {
+							$para['name_en'] = NULL;
+						    }else{
+							$para['name_en'] = $name_en;
+						}
+						if (empty($ean)) {
+							$para['ean'] = NULL;
+						    }else{
+							$para['ean'] = $ean;
+						}
+						if (empty($mpn)) {
+							$para['mpn'] = NULL;
+						    }else{
+							$para['mpn'] = $mpn;
+						}
+						if (empty($tag)) {
+							$para['tag'] = NULL;
+						    }else{
+							$para['tag'] = $tag;
+						}
+						if (empty($jan)) {
+							$para['jan'] = NULL;
+						    }else{
+							$para['jan'] = $jan;
+						}
+						$this->model_catalog_product->editProductImport2($product['product_id'], $para);
+					}
+				}
+
+				if (empty($data['error'])) {
+					--$row; // 不计算标题行
+					$data['message'] = "Upload " . $row . " succeed";
+				}
+			}
+			fclose($handle);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($data));
+	}
 }

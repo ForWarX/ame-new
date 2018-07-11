@@ -25,7 +25,7 @@ $_['column_status']          = '状态';
 $_['column_action']          = '操作';
 
 // Entry
-$_['entry_name']             = '商品名称';
+$_['entry_name']             = '商品名称（报关名字）';
 $_['entry_description']      = '描述';
 $_['entry_meta_title'] 	     = 'Meta 标签标题';
 $_['entry_meta_keyword'] 	 = 'Meta 标记关键字';
@@ -34,10 +34,10 @@ $_['entry_keyword']          = 'SEO 关键字';
 $_['entry_model']            = '模型';
 $_['entry_sku']              = 'SKU';
 $_['entry_upc']              = 'UPC';
-$_['entry_ean']              = '报关 EAN';
-$_['entry_jan']              = 'JAN';
+$_['entry_ean']              = '报关价格 EAN';
+$_['entry_jan']              = '报关单位 JAN';
 $_['entry_isbn']             = 'ISBN';
-$_['entry_mpn']              = 'MPN';
+$_['entry_mpn']              = '报关品牌 MPN';
 $_['entry_location']         = '位置';
 $_['entry_shipping']         = '需要货运';
 $_['entry_manufacturer']     = '商品品牌';
@@ -75,7 +75,7 @@ $_['entry_category']         = '类别';
 $_['entry_filter']           = '筛选器';
 $_['entry_download']         = '下载类文件';
 $_['entry_related']          = '相关商品';
-$_['entry_tag']          	 = '商品标签';
+$_['entry_tag']          	 = '商品标签（报关规格）';
 $_['entry_reward']           = '奖赏积分';
 $_['entry_layout']           = '布局重写';
 $_['entry_recurring']        = '定期付款';
@@ -105,3 +105,5 @@ $_['error_name']             = '商品名称必须是大于 3 且小于 255 个�
 $_['error_meta_title']       = 'Meta 标题必须大于 3 和少于 255 个字符 ！';
 $_['error_model']            = '商品型号必须是大于 1 且小于 64 个字符 ！';
 $_['error_keyword']          = 'SEO 关键字正在使用中 ！';
+//add button
+$_['button_import2']          = '更改产品报关信息';

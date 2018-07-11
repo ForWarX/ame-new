@@ -452,6 +452,44 @@ class ModelCatalogProduct extends Model {
         $this->cache->delete('product');
     }
 
+	//增加商品报关信息 修改功能
+	public function editProductImport2($product_id, $data) {
+		$sql = "UPDATE " . DB_PREFIX . "product SET upc = '" . $this->db->escape($data['upc']);
+
+		if (!empty($data['ean'])) $sql .= "', ean = '" . $this->db->escape($data['ean']);
+		if (!empty($data['mpn'])) $sql .= "', mpn = '" . $this->db->escape($data['mpn']);
+		if (!empty($data['jan'])) $sql .= "', jan = '" . $this->db->escape($data['jan']);
+
+		$sql .= "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'";
+
+		$this->db->query($sql);
+
+		// 英文名和描述
+		if (isset($data['name_en']) || isset($data['desc_en'])) {
+			$sql = "UPDATE " . DB_PREFIX . "product_description SET language_id='1'";
+			if (!empty($data['name_en'])) $sql .= ", name = '" . $this->db->escape($data['name_en']);
+			if (!empty($data['desc_en'])) $sql .= "', description = '" . $data['desc_en'];
+			$sql .= "' WHERE product_id='" . $product_id . "' and language_id='1'";
+			$this->db->query($sql);
+		}
+		// 中文名和描述
+		if (isset($data['name_cn']) || isset($data['desc_cn']) || isset($data['tag'])) {
+			$this->load->model('localisation/language');
+			$language = $this->model_localisation_language->getLanguageByCode('zh-CN');
+			$language_id = $language['language_id'];
+
+			$sql = "UPDATE " . DB_PREFIX . "product_description SET language_id='" . $language_id . "'";
+			if (!empty($data['name_cn'])) $sql .= ", name = '" . $this->db->escape($data['name_cn']);
+			if (!empty($data['desc_cn'])) $sql .= "', description = '" . $data['desc_cn'];
+			if (!empty($data['tag'])) $sql .= "', tag = '" . $this->db->escape($data['tag']);
+			$sql .= "' WHERE product_id='" . $product_id . "' and language_id='" . $language_id . "'";
+			$this->db->query($sql);
+		}
+
+
+
+		$this->cache->delete('product');
+	}
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p WHERE p.product_id = '" . (int)$product_id . "'");
 

@@ -4,6 +4,7 @@
     <div class="container-fluid">
       <div class="pull-right">
         <button type="submit" id="button-import" form="form-product" formaction="<?php echo $import; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
+        <button type="submit" id="button-import2" form="form-product" formaction="<?php echo $import2; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import2; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
         <a href="<?php echo $add; ?>" data-toggle="tooltip" title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         <button type="submit" form="form-product" formaction="<?php echo $copy; ?>" data-toggle="tooltip" title="<?php echo $button_copy; ?>" class="btn btn-default"><i class="fa fa-copy"></i></button>
         <button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger" onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
