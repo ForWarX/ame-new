@@ -4,8 +4,7 @@
     <div class="container-fluid">
       <div class="pull-right">
         <button type="submit" id="button-export" form="form-order" formaction="<?php echo $export; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_export; ?>" class="btn btn-info"><i class="fa fa-download"></i></button>
-         <!-- <button type="submit" id="button-export2" form="form-order" formaction="<?php echo $export2; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_export2; ?>" class="btn btn-info"><i class="fa fa-download"></i></button>
-          -->
+        <button type="submit" id="button-export2" form="form-order" formaction="<?php echo $export2; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_export2; ?>" class="btn btn-info"><i class="fa fa-download"></i></button>
           <button type="submit" id="button-import" form="form-order" formaction="<?php echo $import; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
           <button type="submit" id="button-import2" form="form-order" formaction="<?php echo $import2; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_import2; ?>" class="btn btn-info"><i class="fa fa-upload"></i></button>
           <button type="submit" id="button-shipping" form="form-order" formaction="<?php echo $shipping; ?>" formtarget="_blank" data-toggle="tooltip" title="<?php echo $button_shipping_print; ?>" class="btn btn-info"><i class="fa fa-truck"></i></button>
