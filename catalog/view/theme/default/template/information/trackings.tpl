@@ -9,46 +9,9 @@
     <?php } else { ?>
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
-    <!--
+
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?></h1>
-      <h3><?php echo $text_location; ?></h3>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <?php if ($image) { ?>
-            <div class="col-sm-3"><img src="<?php echo $image; ?>" alt="<?php echo $store; ?>" title="<?php echo $store; ?>" class="img-thumbnail" /></div>
-            <?php } ?>
-            <div class="col-sm-3"><strong><?php echo $store; ?></strong><br />
-              <address>
-              <?php echo $address; ?>
-              </address>
-              <?php if ($geocode) { ?>
-              <a href="https://maps.google.com/maps?q=<?php echo urlencode($geocode); ?>&hl=<?php echo $geocode_hl; ?>&t=m&z=15" target="_blank" class="btn btn-info"> <?php echo $button_map; ?></a>
-              <?php } ?>
-            </div>
-            <div class="col-sm-3"><strong><?php echo $text_telephone; ?></strong><br>
-              <?php echo $telephone; ?><br />
-              <br />
-              <?php if ($fax) { ?>
-              <strong><?php echo $text_fax; ?></strong><br>
-              <?php echo $fax; ?>
-              <?php } ?>
-            </div>
-            <div class="col-sm-3">
-              <?php if ($open) { ?>
-              <strong><?php echo $text_open; ?></strong><br />
-              <?php echo $open; ?><br />
-              <br />
-              <?php } ?>
-              <?php if ($comment) { ?>
-              <strong><?php echo $text_comment; ?></strong><br />
-              <?php echo $comment; ?>
-              <?php } ?>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      
       <?php if ($locations) { ?>
       <h3><?php echo $text_store; ?></h3>
       <div class="panel-group" id="accordion">
@@ -184,7 +147,7 @@
 
 <script>
 $('#button-search').bind('click', function() {
-url = 'index.php?route=information/tracking';
+url = 'index.php?route=information/trackings';
 
 var search = $('#content input[name=\'search\']').prop('value');
 
@@ -231,7 +194,7 @@ $('#button-search').trigger('click');
   $("#OrderTrackBTN").click(function () {
     $.ajax({
       async: false, // ∑¿÷πwindow.open±ª¿πΩÿ
-      url: 'index.php?route=information/tracking/get_order_track',
+      url: 'index.php?route=information/trackings/get_order_track',
       type: "POST",
       data: "order_no=" + $(this).data("order_no"),
       dataType: 'json',
