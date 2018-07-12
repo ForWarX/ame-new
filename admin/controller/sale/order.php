@@ -3143,10 +3143,20 @@ class ControllerSaleOrder extends Controller {
 					if ($outputline < 300)
 						foreach ($products as $product) {
 							    $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
+							//如果寄件省为 上海 北京 天津 重庆 则导出时 后面自动变为市
+							if($result['payment_zone_id']==708||$result['payment_zone_id']==685||$result['payment_zone_id']==711||$result['payment_zone_id']==686) {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
-									. ',' .$result['weight']*0.45359237 .','.'#' . $product['upc'] . ','. $product['name'] . ','
-									. $product['mpn'] . ',' . $product['tag'] . ','. $product['jan'] . ','. $product['ean'] . ',' .  $quan . ',0,0,' . "否";
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '市' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+									. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+							}else{
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+								. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '省' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+								. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+								. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+
+
+							}
 							$output .= $line . "\r\n";
 							$outputline++;
 						}
