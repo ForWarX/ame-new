@@ -3102,11 +3102,21 @@ class ControllerSaleOrder extends Controller {
 					if ($outputline < 300)
 						foreach ($products as $product) {
 							    $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
+							if($result['shipping_zone_id']==708||$result['shipping_zone_id']==685||$result['shipping_zone_id']==711||$result['shipping_zone_id']==686) {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
-									. ',' .$result['weight'] . ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
-									. $product['name'] . ',' . $product['tag'] . ',,,' .  $quan . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
-							$output .= $line . "\r\n";
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '市' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] . ',' . $product['ean'] . ',' . '#' . $product['upc'] . ',,'
+									. $product['name'] . ',' . $product['tag'] . ',,,' . $quan . ',' . $product['weight'] . ',CAD,,1,,' . $product['name'] . ',' . $result['total'] . ',' . "否";
+							}
+							else{
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+								. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '省' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+								. ',' . $result['weight'] . ',' . $product['ean'] . ',' . '#' . $product['upc'] . ',,'
+								. $product['name'] . ',' . $product['tag'] . ',,,' . $quan . ',' . $product['weight'] . ',CAD,,1,,' . $product['name'] . ',' . $result['total'] . ',' . "否";
+
+
+							}
+								$output .= $line . "\r\n";
 							$outputline++;
 						}
 				}
@@ -3138,16 +3148,23 @@ class ControllerSaleOrder extends Controller {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
 					//$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
 					//$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
-
+					$this->model_sale_order->setorder_status($result['order_id']);
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
 							    $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
+							if($result['shipping_zone_id']==708||$result['shipping_zone_id']==685||$result['shipping_zone_id']==711||$result['shipping_zone_id']==686) {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
-									. ',' .$result['weight']*0.45359237 .','.'#' . $product['upc'] . ','. $product['name'] . ','
-									. $product['mpn'] . ',' . $product['tag'] . ','. $product['jan'] . ','. $product['ean'] . ',' .  $quan . ',0,0,' . "否";
-							$output .= $line . "\r\n";
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '市' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+									. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+							}else{
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '省' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+									. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+							}
+								$output .= $line . "\r\n";
 							$outputline++;
 						}
 				}
