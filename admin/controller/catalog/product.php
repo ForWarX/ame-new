@@ -402,6 +402,8 @@ class ControllerCatalogProduct extends Controller {
 		$data['text_confirm'] = $this->language->get('text_confirm');
 
 		$data['column_image'] = $this->language->get('column_image');
+		$data['column_id'] = $this->language->get('column_id');
+		$data['column_upc'] = $this->language->get('column_upc');
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_model'] = $this->language->get('column_model');
 		$data['column_price'] = $this->language->get('column_price');
