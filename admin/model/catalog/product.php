@@ -593,6 +593,7 @@ class ModelCatalogProduct extends Model {
 
 		$sort_data = array(
 			'pd.name',
+			'p.upc',
 			'p.model',
 			'p.price',
 			'p.quantity',
