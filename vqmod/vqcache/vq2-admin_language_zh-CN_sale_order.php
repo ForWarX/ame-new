@@ -175,7 +175,7 @@ $_['entry_postcode']                          = '邮编';
 $_['entry_country']                           = '国家';
 $_['entry_zone']                              = '区域 / 州';
 $_['entry_zone_code']                         = '区域 / 州代码';
-$_['entry_product']                           = '选择商品';
+$_['entry_product']                           = '请输入UPC号';
 $_['entry_option']                            = '选择选项';
 $_['entry_quantity']                          = '数量';
 $_['entry_to_name']                           = '收件人姓名';
@@ -216,6 +216,7 @@ $_['entry_payment_phone']                      = '寄件人电话';
 // Button
 $_['button_order_copy']                       = '继续下单';
 $_['button_export2']                          = '导出报关表';
+$_['button_import2']                          = '导入推送号';
 $_['button_labels_print']                     = '打印小票';
 $_['button_new_order']                        = '下单';
 $_['button_change_customer']                  = '更换客户';

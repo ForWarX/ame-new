@@ -1,0 +1,61 @@
+#HOW TO DOWNLOAD THE MODULE
+
+1. Visit https://shopunity.net/marketplace and search for your module
+2. Log in to your account (or create it)
+3. Download the extension that is compatible with your OpenÑart.
+
+                             
+
+#INSTALLATION For OpenÑart 3.x
+
+##How to install via Extension installer for OpenÑart 3.x
+
+1. Go to OpenÑart Admin / Extensions / Extension installer
+2. Upload the archive of the purchase extension
+3. Go to OpenÑart Admin / Extensions / Modules and click Install next to the purchased extension
+
+
+
+#INSTALLATION For OpenÑart 2.x
+
+##How to install via Extension installer for OpenÑart 2.0.0.0-2.3.0.2
+
+Here is a detailed video on how to install an extension via Extension Installer https://www.youtube.com/watch?v=deKP0nHxjUk
+If you need to install for an older version (OpenÑart v2.x), please follow there steps.
+
+1. If you have not yet setup FTP in OpenÑart Admin and your extension installer is showing an error when uploading a zip archive, you may need to install The Isenaselabs  Extension installer fix (https://isenselabs.com/products/view/quickfix-extensions-installer-issue-when-ftp-support-disabled)
+2. Update your Modification cache by going to your OpenÑart Admin / Extensions / Modifications and clicking "REFRESH" (blue button on top right)
+3. Go to Admin / Extensions / Extension Installer and upload the purchased extension archive that you have downloaded from https://shopunity.net/download-purchase
+4. Wait for the upload to finish successfully.
+5. Go to Admin / Extensions / Modules and click Install next to uploaded extension. 
+
+
+
+##How to install via FTP for OpenÑart 2.0.0.0-2.3.0.2
+
+If you would like to upload the extension via FTP, you will first need to install Shopunity extension. It is required to setup all the required modifications for porting the latest Extension Structure to older OpenÑart Versions.
+
+1. Go to https://shopunity.net and download Shopunity for OpenÑart 2.x
+2. Upload it into your Root folder via ftp
+3. Go to OpenÑart admin / Extensions / Modules and click Install next to Shopunity 
+4. Upload the purchased extension into the root folder via ftp
+5. Go to OpenÑart Admin / Extensions / Modules and click Install next to your purchased extension
+
+
+
+##How to get automatic Updates with Shopunity
+You can use Shopunity Extension to update your purchased extension with a simple click of a button. Shopunity also allows you to install hundreds of free quality extensions with a click of a button so you don't need to worry about FTPs and ZIP files. It is all taken care of.
+
+
+
+##How to get Support
+If you have any issues like claiming your purchase or downloading your Extension, please contact our support at 
+
+https://dreamvention.ee/support
+
+or email us at support@dreamvention.com
+Our support team will assist you as soon as possible. Please keep in mind that we are off on Saturday and Sunday.
+
+
+#Help us make better modules.
+If you have ideas or found a bug, please do not hesitate to let us know via https://dreamvention.ee/support. We value any possible feedback.

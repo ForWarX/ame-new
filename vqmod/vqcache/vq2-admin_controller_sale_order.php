@@ -292,6 +292,7 @@ class ControllerSaleOrder extends Controller {
 		$data['new_order'] = '../index.php?route=product/apply&token=' . $this->session->data['token'] . "&admin_name=" . $this->user->getUserRealName();
 		$data['delete'] = $this->url->link('sale/order/delete', 'token=' . $this->session->data['token'], true);
 		$data['import'] = $this->url->link('sale/order/import', 'token=' . $this->session->data['token'], true);
+		$data['import2'] = $this->url->link('sale/order/import2', 'token=' . $this->session->data['token'], true);
         $data['export'] = $this->url->link('sale/order/export', 'token=' . $this->session->data['token'] . $url, true);
 		$data['export2'] = $this->url->link('sale/order/export2', 'token=' . $this->session->data['token'] . $url, true);
 		$data['orders'] = array();
@@ -356,7 +357,8 @@ class ControllerSaleOrder extends Controller {
 				'order_status_id' => $result['order_status_id'],
 				'storage_name'  => $result['storage_name'],
 				'total'         => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				//'date_added'
+				'date_added'   => date('Y-m-d H:i:s', strtotime($result['date_added'])+2*60*60),
 				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
 				'shipping_code' => $result['shipping_code'],
 				'view'          => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, true),
@@ -434,6 +436,7 @@ class ControllerSaleOrder extends Controller {
 		$data['button_invoice_print'] = $this->language->get('button_invoice_print');
 		$data['button_shipping_print'] = $this->language->get('button_shipping_print');
 		$data['button_import'] = $this->language->get('button_import');
+		$data['button_import2'] = $this->language->get('button_import2');
         $data['button_export'] = $this->language->get('button_export');
 		$data['button_export2'] = $this->language->get('button_export2');
 		$data['button_add'] = $this->language->get('button_add');
@@ -2889,7 +2892,137 @@ class ControllerSaleOrder extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
 	}
+	/*增加导入推送号*/
+	public function import2() {
+		$this->load->language('sale/order');
 
+		$data['title'] = $this->language->get('text_import');
+
+		if ($this->request->server['HTTPS']) {
+			$data['base'] = HTTPS_SERVER;
+		} else {
+			$data['base'] = HTTP_SERVER;
+		}
+
+		/* if needs, get text from language file
+		$data['text_comment'] = $this->language->get('text_comment');
+		$data['column_location'] = $this->language->get('column_location');
+		*/
+
+		$data['action_url'] = str_replace('&amp;', '&', $this->url->link('sale/order/process_import2', 'token=' . $this->session->data['token'], true));
+		$data['customer_id'] = 1;
+
+		$this->response->setOutput($this->load->view('sale/order_import', $data));
+	}
+
+	public function process_import2() {
+		set_time_limit(600);
+
+		$data = array();
+		//上传时将此|url 该成 server root url
+		//$store_url = "http://www.superpolarbear.com/";
+
+		$store_url= HTTP_SERVER;
+
+		$customer_id = $this->request->post['customer_id'];
+
+		if (!empty($this->request->files['file']['name'])) {
+			$name = $this->request->files['file']['name'];
+			$type = $this->request->files['file']['type'];
+			$tmp_name = $this->request->files['file']['tmp_name'];
+			$error = $this->request->files['file']['error'];
+			$size = $this->request->files['file']['size'];
+
+			if (is_file($tmp_name)) {
+				$filename = basename(html_entity_decode($name, ENT_QUOTES, 'UTF-8'));
+				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
+					$data['error'] = 'Filename Error';
+				} else if (utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)) != 'csv') {
+					$data['error'] = 'Only csv file accepted';
+				}
+			} else {
+				$data['error'] = "File doesn't exists.";
+			}
+		} else {
+			$data['error'] = "Please select upload file.";
+		}
+		$this->load->model('sale/order');
+		$this->load->model('catalog/product');
+		$this->load->model('customer/customer');
+
+		$customer = array();
+		if (empty($data['error'])) {
+			$customer = $this->model_customer_customer->getCustomer($customer_id);
+			if (empty($customer)) {
+				$data['error'] = "Unknown customer information.";
+			}
+		}
+
+		$address = array();
+		if (empty($data['error'])) {
+			$addresses = $this->model_customer_customer->getAddresses($customer_id);
+			if (empty($addresses)) {
+				$data['error'] = "This customer doesn't have address information.";
+			}
+			$address = array_shift($addresses);
+		}
+
+		if (empty($data['error'])) {
+			if (($handle = fopen($tmp_name, "r")) !== FALSE) {
+				$row = 0;
+				$line=0;
+				while (($para = fgetcsv($handle)) !== FALSE) {
+					if ($row++ < 1) continue;
+					$num = count($para);
+					if ($num < 2) {
+						$row--; // 数据不完整的行不计入总行数
+						continue;
+					}
+					$invoice_prefix = $para[0];		// AME1704075988
+					if (empty($invoice_prefix)) {
+						$data['error'] = "Unknow ame order number at line : " . $row;
+						break;
+					}
+
+				}
+
+				if (empty($data['error'])) {
+					fseek($handle, 0);
+
+					$row = 0;
+					while (($para = fgetcsv($handle)) !== FALSE) {
+						if ($row++ < 1) continue;
+						$num = count($para);
+						if ($num < 2) continue;
+
+						$invoice_prefix = $para[0];		// AME1704075988
+						$order = $this->model_sale_order->getOrderByPrefix($invoice_prefix);
+						//ADD PAYMENT INFORMATION
+						$deliveryno = $para[1];
+
+						if (empty($order)) {
+
+
+						} else {
+							//add dilivery number
+							 $this->model_sale_order->setDliveryNumber($invoice_prefix,$deliveryno);
+							 $line++;
+						}
+
+					}
+				}
+
+				if (empty($data['error'])) {
+					--$row; // 不计算标题行
+					$data['message']= "Upload " . $line . " succeed";
+				}
+			}
+			fclose($handle);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($data));
+	}
 	// 旧的订单导出系统
 	/*
 	public function export3() {
@@ -3005,17 +3138,28 @@ class ControllerSaleOrder extends Controller {
 				$result = $this->model_sale_order->getOrder($order_id);
 				if($result['order_status_id']==2||$result['order_status_id']==3||$result['order_status_id']==5||$result['order_status_id']==15) {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
-					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
-					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					//$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
+					//$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					$this->model_sale_order->setorder_status($result['order_id']);
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
-							foreach ($products2 as $product2) foreach ($products3 as $product3)
+							    $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
+							if($result['shipping_zone_id']==708||$result['shipping_zone_id']==685||$result['shipping_zone_id']==711||$result['shipping_zone_id']==686) {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
-									. ',' .$result['weight'] . ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
-									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
-							$output .= $line . "\r\n";
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '市' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] . ',' . $product['ean'] . ',' . '#' . $product['upc'] . ',,'
+									. $product['name'] . ',' . $product['tag'] . ',,,' . $quan . ',' . $product['weight'] . ',CAD,,1,,' . $product['name'] . ',' . $result['total'] . ',' . "否";
+							}
+							else{
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+								. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '省' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+								. ',' . $result['weight'] . ',' . $product['ean'] . ',' . '#' . $product['upc'] . ',,'
+								. $product['name'] . ',' . $product['tag'] . ',,,' . $quan . ',' . $product['weight'] . ',CAD,,1,,' . $product['name'] . ',' . $result['total'] . ',' . "否";
+
+
+							}
+								$output .= $line . "\r\n";
 							$outputline++;
 						}
 				}
@@ -3035,7 +3179,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('sale/order');
 		$this->load->model('localisation/language');
 
-		$output = "客户单号,分单号（非必填）,寄件人,寄件人电话,寄件人地址,寄件人国家代码,寄件人城市,收件人,收件人电话,收件人证件类型,收件人证件号码,收件人省,收件人市,收件人区,收件人地址,包裹重量,单品货值,货物upc编码,品名简称,英文名称,商品规格,HS编码,行邮税号,货物数量,单品毛重（kg）,币别,货物单位,单品法定申报数量,法定计量单位,货物品名,总价（CAD）,采用建议价格\r\n";
+		$output = "订单号,分单号（非必填）,寄件人,寄件人电话,寄件人地址,寄件人国家代码,寄件人城市,收件人姓名,联系电话,收件人证件类型,收件人证件号码,收件人省,收件人市,收件人区,收件人地址,包裹重量,货物upc编码,商品名称,品牌,商品规格,单位,单价,数量,毛重(非必填),净重(非必填),采用建议价格\r\n";
 		//记录导出行数
 		$outputline=0;
 		$lang_id = $this->model_localisation_language->getLanguageByCode('zh-CN')['language_id'];
@@ -3045,17 +3189,25 @@ class ControllerSaleOrder extends Controller {
 				$result = $this->model_sale_order->getOrder($order_id);
 				if($result['order_status_id']==2||$result['order_status_id']==3||$result['order_status_id']==5||$result['order_status_id']==15) {
 					$products = $this->model_sale_order->getOrderProductsAllInfo($result['order_id'], $lang_id);
-					$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
-					$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					//$products2 = $this->model_sale_order->getOrderProducts($result['order_id'], $lang_id);
+					//$products3 = $this->model_sale_order->getOrderProductsDescription($result['order_id'], $lang_id);
+					$this->model_sale_order->setorder_status($result['order_id']);
 					//数字确定导出行数
 					if ($outputline < 300)
 						foreach ($products as $product) {
-							foreach ($products2 as $product2) foreach ($products3 as $product3)
+							    $quan = $this->model_sale_order->getOrderProductquan($product['order_product_id']);
+							if($result['shipping_zone_id']==708||$result['shipping_zone_id']==685||$result['shipping_zone_id']==711||$result['shipping_zone_id']==686) {
 								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
-									.',' . $result['shipping_phone'] .  ',身份证,' .'#'. $result['shipping_chinaid'] . ',' . $result['shipping_zone']  .'省'.',' . $result['shipping_city']  .',' . $result['shipping_district']  .',' . $result['shipping_address_1']
-									. ',' .$result['weight']*0.45359237. ',' . $product['ean'] . ','.'#' . $product['upc'] . ',,'
-									. $product2['name'] . ',' . $product3['tag'] . ',,,' .  $product2['quantity'] . ',' . $product['weight']. ',CAD,,1,,' . $product['name']  . ',' . $result['total'] . ',' . "否";
-							$output .= $line . "\r\n";
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '市' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+									. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+							}else{
+								$line = $result['invoice_prefix'] . ',,AME,647-498-8891,"3445 Sheppard Ave E, Scarborough",501,Toronto,' . $result['shipping_firstname']
+									. ',' . $result['shipping_phone'] . ',身份证,' . '#' . $result['shipping_chinaid'] . ',' . $result['shipping_zone'] . '省' . ',' . $result['shipping_city'] . ',' . $result['shipping_district'] . ',' . $result['shipping_address_1']
+									. ',' . $result['weight'] * 0.45359237 . ',' . '#' . $product['upc'] . ',' . $product['name'] . ','
+									. $product['mpn'] . ',' . $product['tag'] . ',' . $product['jan'] . ',' . $product['ean'] . ',' . $quan . ',0,0,' . "否";
+							}
+								$output .= $line . "\r\n";
 							$outputline++;
 						}
 				}

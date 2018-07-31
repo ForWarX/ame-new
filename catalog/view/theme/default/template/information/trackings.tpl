@@ -11,7 +11,7 @@
     <?php } ?>
 
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      
+
       <?php if ($locations) { ?>
       <h3><?php echo $text_store; ?></h3>
       <div class="panel-group" id="accordion">

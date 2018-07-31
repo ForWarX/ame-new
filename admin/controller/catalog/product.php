@@ -484,7 +484,7 @@ class ControllerCatalogProduct extends Controller {
 		if (isset($this->request->get['page'])) {
 			$url .= '&page=' . $this->request->get['page'];
 		}
-		$data['sort_upc'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=pd.upc' . $url, true);
+		$data['sort_upc'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.upc' . $url, true);
 		$data['sort_name'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, true);
 		$data['sort_model'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.model' . $url, true);
 		$data['sort_price'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, true);

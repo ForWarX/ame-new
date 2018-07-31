@@ -154,4 +154,34 @@ OpenCart is open source software and you are free to remove the powered by OpenC
 Please donate via PayPal to donate@opencart.com
 //-->
 <!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
+<script type='text/javascript'>
+    (function(qrc){
+        qrc(document).ready(function(){
+            var $dur = 800;
+            qrc('#qrcodebox').css({right: -150, 'bottom' : 0 })
+            qrc('#qrcodebox').hover(function () {
+                qrc(this).stop().animate({
+                    right: 0
+                }, $dur);
+            }, function () {
+                qrc(this).stop().animate({
+                    right: -150
+                }, $dur);
+            });
+            qrc('#qrcodebox').show();
+        });
+    })(jQuery);
+</script>
+<?php
+$isHTTPS = ( isset($_SERVER["HTTPS"] ) && $_SERVER["HTTPS"]  ==  "on" );
+$port = ( isset($_SERVER["SERVER_PORT"] ) && (( !$isHTTPS && $_SERVER["SERVER_PORT"] != "80" ) || ( $isHTTPS && $_SERVER["SERVER_PORT"] != "443" )));
+$port = ($port) ? ':'.$_SERVER["SERVER_PORT"] : '';
+$urlqr = ( $isHTTPS ? 'https://' : 'http://').$_SERVER["SERVER_NAME"].$port.$_SERVER["REQUEST_URI"];
+?>
+<div id="qrcodebox">
+<div class="qrcode"></div>
+<div class="qrimage">Link to This Page<img src="system/helper/qrcode/php/qrimg.php?d=<?php echo urlencode($urlqr); ?>" width="148" alt="qrcode">
+</div>
+</div>
+
 </body></html>

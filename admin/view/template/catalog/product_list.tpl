@@ -114,7 +114,7 @@
                   <td class="text-center"><?php echo $column_image; ?></td>
                   <td class="text-center"><?php echo $column_id; ?></td>
 
-                  <td class="text-left"><?php if ($sort == 'pd.upc') { ?>
+                  <td class="text-left"><?php if ($sort == 'p.upc') { ?>
                     <a href="<?php echo $sort_upc; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_upc; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_upc; ?>"><?php echo $column_upc; ?></a>

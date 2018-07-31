@@ -18,7 +18,7 @@ $_['text_amount']            = '固定金额';
 // Column
 $_['column_name']            = '商品名称';
 $_['column_id']              = '商品ID';
-$_['column_upc']              = '商品UPC';
+$_['column_upc']             = '商品UPC';
 $_['column_model']           = '型号';
 $_['column_image']           = '图像';
 $_['column_price']           = '价格';
