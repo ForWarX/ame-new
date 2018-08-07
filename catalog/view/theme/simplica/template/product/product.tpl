@@ -33,7 +33,9 @@
             <li class="image-additional"><a class="thumbnail" href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>"> <img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a></li>
             <?php } ?>
             <?php } ?>
+
           </ul>
+
           <?php } ?>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
@@ -121,9 +123,10 @@
         <?php $class = 'col-sm-4'; ?>
         <?php } ?>
         <div class="<?php echo $class; ?>">
-          
-          
           <ul class="list-unstyled">
+            <li>
+              <div id="qrcode"  style="border-radius:5px;float: right; top:-15px;"><img src="http://chart.googleapis.com/chart?chs=260x260&cht=qr&chl=<?php $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; echo urlencode($url); ?>" alt="<?php echo $manufacturer; ?> <?php echo $heading_title; ?> QR Code" width="130" height="130" title="<?php echo $manufacturer; ?> <?php echo $heading_title; ?> QR Code" /></div>
+            </li>
             <?php if ($manufacturer) { ?>
             <li><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a></li>
             <?php } ?>
