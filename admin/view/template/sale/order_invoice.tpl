@@ -170,7 +170,7 @@
       3.根據中國海關與本國航空要求，我公司有權對快件開包檢查，對於中國海關要求包裹徵稅，我公司會通知寄件人<br>支付該部分稅款，並会在收到寄件人稅款後才予以清關。一切以中國海關核計為準以及做最後決定。<br>4.由於海關清關的不確定性，我公司不對包裹抵達收件人手裡的時間做任何承諾，一般7-10天送達。<br>
       5.如未購買保險，本包裹丟失賠償上限為100加元整。<br>6.保證上述向海關申報內容真實性，如出現虛假申報，一切後果需本人承擔。<br>
     </p>
-
+    <div id="qrcode"  style="border-radius:5px;float: right; top:-15px;"><img src="http://chart.googleapis.com/chart?chs=260x260&cht=qr&chl=<?php $url="http://"."www.superpolarbear.com/index.php?route=information/tracking&ame_no=".$order['invoice_prefix']; echo urlencode($url); ?>" alt="<?php echo $manufacturer; ?> <?php echo $heading_title; ?> QR Code" width="130" height="130" title=" QR Code" /></div>
   </div>
   <?php } ?>
 </div>
