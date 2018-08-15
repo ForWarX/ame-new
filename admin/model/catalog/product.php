@@ -637,22 +637,39 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductDescriptions($product_id) {
-		$product_description_data = array();
+	$product_description_data = array();
+
+	$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
+
+	foreach ($query->rows as $result) {
+		$product_description_data[$result['language_id']] = array(
+			'name'             => $result['name'],
+			'description'      => $result['description'],
+			'meta_title'       => $result['meta_title'],
+			'meta_description' => $result['meta_description'],
+			'meta_keyword'     => $result['meta_keyword'],
+			'tag'              => $result['tag']
+		);
+	}
+
+	return $product_description_data;
+}
+	public function getProductDes($product_id) {
+
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
-		foreach ($query->rows as $result) {
-			$product_description_data[$result['language_id']] = array(
-				'name'             => $result['name'],
-				'description'      => $result['description'],
-				'meta_title'       => $result['meta_title'],
-				'meta_description' => $result['meta_description'],
-				'meta_keyword'     => $result['meta_keyword'],
-				'tag'              => $result['tag']
-			);
-		}
 
-		return $product_description_data;
+		if ($query->num_rows) {
+			if($query->row['description']){
+			return 1;
+			}
+			else{
+				return 0;
+			}
+		} else {
+
+		}
 	}
 
 	public function getProductCategories($product_id) {

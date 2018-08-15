@@ -380,6 +380,7 @@ class ControllerCatalogProduct extends Controller {
 
 			$data['products'][] = array(
 				'product_id' => $result['product_id'],
+				'description' => $this->model_catalog_product->getProductDes($result['product_id']),
 				'upc'        => $result['upc'],
 				'image'      => $image,
 				'name'       => $result['name'],
@@ -403,6 +404,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$data['column_image'] = $this->language->get('column_image');
 		$data['column_id'] = $this->language->get('column_id');
+		$data['column_description'] = $this->language->get('column_description');
 		$data['column_upc'] = $this->language->get('column_upc');
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_model'] = $this->language->get('column_model');
