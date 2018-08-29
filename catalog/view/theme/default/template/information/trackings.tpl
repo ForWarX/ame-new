@@ -69,78 +69,114 @@
   </span>
           </div>
           <?php if (!empty($order)) { ?>
-          <thead>
+
+
+                <tr>
+          <td class="text-right"><?php echo $column_order_no; ?></td>
+          <td class="text-left"><?php echo $order['order_no']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_receiver; ?></td>
+            <td class="text-left"><?php echo $order['name']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_product; ?></td>
+            <td class="text-left"><?php echo $order['products']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_status; ?></td>
+            <td class="text-left"><?php echo $order['status']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_date_added; ?></td>
+            <td class="text-left"><?php echo $order['date_added']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_delivery_number; ?></td>
+            <td class="text-left"><?php echo $order['delivery_number']; ?></td>
+          </tr>
+          <tr>
+            <td class="text-right"><?php echo $column_track; ?></td>
+            <td class="text-left">
+              <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
+            </td>
+          </tr>
+
+
+
+                    <!--
           <tr>
             <td class="text-right"><?php echo $column_order_no; ?></td>
             <td class="text-left"><?php echo $column_receiver; ?></td>
             <td class="text-right"><?php echo $column_product; ?></td>
             <td class="text-left"><?php echo $column_status; ?></td>
             <!-- <td class="text-right"><?php echo $column_total; ?></td>-->
-            <td class="text-left"><?php echo $column_date_added; ?></td>
-            <td class="text-left"><?php echo $column_delivery_number; ?></td>
-            <td class="text-left"><?php echo $column_track; ?></td>
-          </tr>
-          </thead>
+          <!--           <td class="text-left"><?php echo $column_date_added; ?></td>
+                     <td class="text-left"><?php echo $column_delivery_number; ?></td>
+                     <td class="text-left"><?php echo $column_track; ?></td>
+                   </tr>
 
-          <tbody>
-          <tr>
-            <td class="text-right"><?php echo $order['order_no']; ?></td>
-            <td class="text-left"><?php echo $order['name']; ?></td>
-            <td class="text-right"><?php echo $order['products']; ?></td>
-            <td class="text-left"><?php echo $order['status']; ?></td>
-           <!-- <td class="text-right"><?php echo $order['total']; ?></td> -->
-            <td class="text-left"><?php echo $order['date_added']; ?></td>
-            <td class="text-left"><?php echo $order['delivery_number']; ?></td>
-            <td class="text-right">
-               <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
-            </td>
-          </tr>
-          </tbody>
-          <?php } else{ ?>
-          <?php  echo $error_track?>
-          <?php } ?>
-        </table>
-      </div>
-      <!--
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <fieldset>
-          <legend><?php echo $text_contact; ?></legend>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_name; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="name" value="<?php echo $name; ?>" id="input-name" class="form-control" />
-              <?php if ($error_name) { ?>
-              <div class="text-danger"><?php echo $error_name; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
-            <div class="col-sm-10">
-              <input type="text" name="email" value="<?php echo $email; ?>" id="input-email" class="form-control" />
-              <?php if ($error_email) { ?>
-              <div class="text-danger"><?php echo $error_email; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-enquiry"><?php echo $entry_enquiry; ?></label>
-            <div class="col-sm-10">
-              <textarea name="enquiry" rows="10" id="input-enquiry" class="form-control"><?php echo $enquiry; ?></textarea>
-              <?php if ($error_enquiry) { ?>
-              <div class="text-danger"><?php echo $error_enquiry; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <?php echo $captcha; ?>
-        </fieldset>
-        <div class="buttons">
-          <div class="pull-right">
-            <input class="btn btn-primary" type="submit" value="<?php echo $button_submit; ?>" />
-          </div>
-        </div>
-      </form>
-      -->
+
+
+                   <tr>
+                     <td class="text-right"><?php echo $order['order_no']; ?></td>
+                     <td class="text-left"><?php echo $order['name']; ?></td>
+                     <td class="text-right"><?php echo $order['products']; ?></td>
+                     <td class="text-left"><?php echo $order['status']; ?></td>
+                    <!-- <td class="text-right"><?php echo $order['total']; ?></td> -->
+          <!--          <td class="text-left"><?php echo $order['date_added']; ?></td>
+                    <td class="text-left"><?php echo $order['delivery_number']; ?></td>
+                    <td class="text-right">
+                       <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
+                    </td>
+                  </tr>
+                  -->
+
+                  <?php } else{ ?>
+                  <?php  echo $error_track?>
+                  <?php } ?>
+                </table>
+              </div>
+              <!--
+              <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <fieldset>
+                  <legend><?php echo $text_contact; ?></legend>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_name; ?></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="name" value="<?php echo $name; ?>" id="input-name" class="form-control" />
+                      <?php if ($error_name) { ?>
+                      <div class="text-danger"><?php echo $error_name; ?></div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="email" value="<?php echo $email; ?>" id="input-email" class="form-control" />
+                      <?php if ($error_email) { ?>
+                      <div class="text-danger"><?php echo $error_email; ?></div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-enquiry"><?php echo $entry_enquiry; ?></label>
+                    <div class="col-sm-10">
+                      <textarea name="enquiry" rows="10" id="input-enquiry" class="form-control"><?php echo $enquiry; ?></textarea>
+                      <?php if ($error_enquiry) { ?>
+                      <div class="text-danger"><?php echo $error_enquiry; ?></div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                  <?php echo $captcha; ?>
+                </fieldset>
+                <div class="buttons">
+                  <div class="pull-right">
+                    <input class="btn btn-primary" type="submit" value="<?php echo $button_submit; ?>" />
+                  </div>
+                </div>
+              </form>
+              -->
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
