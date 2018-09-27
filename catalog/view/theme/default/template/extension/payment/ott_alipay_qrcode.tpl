@@ -29,7 +29,7 @@
       </div>
 
       <div style="width:200px;height:200px; margin: auto;">
-        <img id="qrimage"  style="width:200px;height:200px; " src="http://b.bshare.cn/barCode?site=weixin&url=<?php echo $code_url; ?>">
+        <img id="qrimages"  style="width:200px;height:200px; " src="http://b.bshare.cn/barCode?site=weixin&url=<?php echo $code_url; ?>"data-oid="<?php echo $order_id; ?>" title="Link" style="display: block;margin: auto;"/>
 
       </div>
       <?php echo $content_bottom; ?></div>

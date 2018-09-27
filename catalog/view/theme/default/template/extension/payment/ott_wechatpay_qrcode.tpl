@@ -16,6 +16,7 @@
     <?php } else { ?>
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
+
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <div class="text-center">
@@ -26,10 +27,11 @@
       <div>
       <img id="ott-qrcode-img" src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $code_url; ?>&choe=UTF-8" data-oid="<?php echo $order_id; ?>" title="Link to Google.com" style="display: block;margin: auto;"/>
       </div>
-      <div style="width:200px;height:200px; margin: auto;">
-        <img id="qrimage"  style="width:200px;height:200px; " src="http://b.bshare.cn/barCode?site=weixin&url=<?php echo $code_url; ?>">
 
+      <div >
+        <img id="ott-qrcode-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $code_url; ?>" data-oid="<?php echo $order_id; ?>" title="Link" style="width:200px;height:200px;display: block;margin: auto;"/>
       </div>
+
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
