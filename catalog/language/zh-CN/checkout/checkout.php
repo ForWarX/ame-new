@@ -70,7 +70,7 @@ $_['entry_shipping'] 	               = '我的交付和账单地址是相同的�
 $_['entry_payment_phone'] 	       = '寄件人电话';
 $_['entry_china_id']                 = '身份证';
 $_['entry_shipping_phone']            = '收件人电话';
-
+$_['entry_china_id2']                 = '身份证（往中国邮寄必填）请联系微信:americoexpress将您的身份证正反面复印件递交';
 // Error
 $_['error_warning']                  = '在尝试处理您的订单时出现了一个问题 ！如果问题仍然存在请尝试选择不同的支付方式，或者您可以联系店主通过 <a href="%s"> 点击这里</a>。';
 $_['error_login']                    = '警告: 没有匹配项的电子邮件地址和/或密码。';

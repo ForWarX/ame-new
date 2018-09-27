@@ -78,6 +78,7 @@ $_['entry_china_id_front']           = 'ID Front';
 $_['entry_china_id_back']            = 'ID Back';
 $_['entry_payment_phone']            = 'Payment_phone';
 $_['entry_shipping_phone']           = 'Phone';
+$_['entry_china_id2']                 = 'China ID£¨If shipping to China£©Please Contact Wechat:americoexpress  , upload the copy of China ID';
 
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
