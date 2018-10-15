@@ -652,6 +652,7 @@ class ControllerSaleOrder extends Controller {
 		$data['entry_zone_code'] = $this->language->get('entry_zone_code');
 		$data['entry_country'] = $this->language->get('entry_country');
 		$data['entry_product'] = $this->language->get('entry_product');
+		$data['entry_productid'] = $this->language->get('entry_productid');
 		$data['entry_option'] = $this->language->get('entry_option');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_to_name'] = $this->language->get('entry_to_name');

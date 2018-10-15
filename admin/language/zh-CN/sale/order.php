@@ -176,6 +176,7 @@ $_['entry_country']                           = '国家';
 $_['entry_zone']                              = '区域 / 州';
 $_['entry_zone_code']                         = '区域 / 州代码';
 $_['entry_product']                           = '请输入UPC号';
+$_['entry_productid']                         = '请输入产品ID号（通过商品目录查找ID号）';
 $_['entry_option']                            = '选择选项';
 $_['entry_quantity']                          = '数量';
 $_['entry_to_name']                           = '收件人姓名';
