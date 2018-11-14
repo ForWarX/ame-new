@@ -288,7 +288,7 @@ class ControllerApiAme extends Controller {
 
 		}else{
 			// Shipping Methods
-			$json['shipping_methods'] = array();
+			$json['shipping_fee'] = array();
 
 			$this->load->model('extension/extension');
 
@@ -323,14 +323,14 @@ class ControllerApiAme extends Controller {
 					if ($quote) {
 					     	 $quote_shpping_way = $quote['quote'];
 						     $quote_shpping_way = array_shift($quote_shpping_way);
-					         $json['shipping_methods'] = $quote_shpping_way['cost'];
+					         $json['shipping_fee'] = $quote_shpping_way['cost'];
 
 					}
 				}
 			}
 
-			if ($json['shipping_methods']) {
-				$this->session->data['shipping_methods'] = $json['shipping_methods'];
+			if ($json['shipping_fee']) {
+				$this->session->data['shipping_fee'] = $json['shipping_fee'];
 			} else {
 				$json['error'] = $this->language->get('error_no_shipping');
 			}
@@ -366,7 +366,7 @@ class ControllerApiAme extends Controller {
 				$ip_data[] = trim($result['ip']);
 			}
 
-		
+
 
 			if (!$json) {
 
@@ -407,7 +407,9 @@ class ControllerApiAme extends Controller {
 			$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
 
 			$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
+
 			if (md5($products."AmeshippingFee") === $verifycode) {
+				$json['success'] = 1;
 			}
 			else{
 				$json['success'] = 0;
