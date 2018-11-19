@@ -377,7 +377,7 @@ class ControllerApiAme extends Controller {
 				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
 
 				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
-				if (md5($products."AmeshippingFee") === $verifycode) {
+				//if (md5($products."AmeshippingFee") === $verifycode) {
 
 					$product_weight1   = 0;
 					$product_quantity1 = 0;
@@ -449,7 +449,7 @@ class ControllerApiAme extends Controller {
 
 					//calculate the shipping fee
 
-					$json['shipping_fee'] = array();
+
 
 					$lbtokg  =  0.45359237;
 					$category1_price=4/$lbtokg;
@@ -571,25 +571,23 @@ class ControllerApiAme extends Controller {
 					$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee;
 					if($total_fee != 0)  {
 						$json['shipping_fee'] = $total_fee;
+					}else{
+					
+						$json['success'] = 0;
 					}
 
 
+				//} else {
+					//$json['success'] = 0;
 
-					if ($json['shipping_fee']) {
-						$this->session->data['shipping_fee'] = $json['shipping_fee'];
-					} else {
-						$json['error'] = $this->language->get('error_no_shipping');
-					}
-
-				} else {
-					$json['success'] = 0;
-
-				 }
+				 //}
 				}
 				else{
 					$json['success'] = 0;
 				}
 
+		}else{
+			$json['success'] = 0;
 		}
 
 
