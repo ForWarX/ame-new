@@ -345,6 +345,265 @@ class ControllerApiAme extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function getShipFee() {
+
+		$this->load->language('api/login');
+
+		$json = array();
+
+		$this->load->model('account/api');
+
+		// Login with API Key
+		$api_info = $this->model_account_api->getApiByKey($this->request->post['key']);
+
+		if ( $api_info ) {
+			// Check if IP is allowed
+			$ip_data = array();
+
+			$results = $this->model_account_api->getApiIps($api_info['api_id']);
+
+			foreach ( $results as $result ) {
+				$ip_data[] = trim($result['ip']);
+			}
+
+
+			if (!$json) {
+
+				$json['success'] = 1;
+				//get shipping fee information
+
+
+				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
+
+				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
+				if (md5($products."AmeshippingFee") === $verifycode) {
+
+					$product_weight1   = 0;
+					$product_quantity1 = 0;
+					$product_weight2   = 0;
+					$product_quantity2 = 0;
+					$product_weight3   = 0;
+					$product_quantity3 = 0;
+					$product_weight4   = 0;
+					$product_quantity4 = 0;
+					$product_weight5   = 0;
+					$product_quantity5 = 0;
+					$product_weight6   = 0;
+					$product_quantity6 = 0;
+
+					if(isset($this->request->post['products'])) {
+
+						$products = str_replace('&quot;', '"', $products);
+
+						$productArr = json_decode($products, true);
+
+						if ($productArr) {
+
+							foreach($productArr as $product) {
+
+								$this->load->model('catalog/product');
+
+								//$product_info = $this->model_catalog_product -> getProduct($product['product_id']);
+
+								if ( isset( $product['option'] )) {
+
+									$option = array_filter($product['option']);
+
+								} else {
+
+									$option = array();
+
+								}
+
+								//$this->cart->add($product['product_id'], $product['quantity'], $option);
+
+								if($product['category_id']==1){
+									$product_weight1    = $product_weight1    +   $product['weight'];
+									$product_quantity1  = $product_quantity1  +   $product['quantity'];
+								}else if($product['category_id']==2){
+									$product_weight2    = $product_weight2   +  $product['weight'];
+									$product_quantity2  = $product_quantity2 +  $product['quantity'];
+								}else if($product['category_id']==3){
+									$product_weight3   =  $product_weight3    +  $product['weight'];
+									$product_quantity3 =  $product_quantity3  +  $product['quantity'];
+								}else if($product['category_id']==4){
+									$product_weight4   =  $product_weight4   +  $product['weight'];
+									$product_quantity4 =  $product_quantity4 +  $product['quantity'];
+								}else if($product['category_id']==5){
+									$product_weight5   =  $product_weight5    +  $product['weight'];
+									$product_quantity5 =  $product_quantity5  +  $product['quantity'];
+								}else if($product['category_id']==6){
+									$product_weight6   =  $product_weight6    +  $product['weight'];
+									$product_quantity6 =  $product_quantity6  +  $product['quantity'];
+								}else{
+
+								}
+
+							}
+
+						}
+
+					}
+
+
+					//calculate the shipping fee
+
+					$json['shipping_fee'] = array();
+
+					$lbtokg  =  0.45359237;
+					$category1_price=4/$lbtokg;
+					$category2_price=4/$lbtokg;
+					$category3_price=4/$lbtokg;
+					$category4_price=8/$lbtokg;
+					$category5_price=8/$lbtokg;
+					$category6_price=8/$lbtokg;
+					if($product_weight1 != 0){
+						$category1_fee = ($product_quantity1 * $product_weight1 * $category1_price) + ($product_quantity1 / 6)
+							* $category1_price + ($product_quantity1 / 6);
+
+					}else{
+						$category1_fee = 0;
+					}
+					if($product_weight2 != 0){
+						$category2_fee = ($product_quantity2 * $product_weight2 * $category2_price) + ($product_quantity2 / 6)
+							* $category2_price + ($product_quantity2 / 6);
+
+					}else{
+						$category2_fee = 0;
+					}
+					if($product_weight3 != 0){
+						$category3_fee = ($product_quantity3 * $product_weight3 * $category3_price) + ($product_quantity3 / 6)
+							* $category3_price + ($product_quantity3 / 6);
+
+					}else{
+						$category3_fee = 0;
+					}
+					if($product_weight4 != 0){
+						$category4_fee = ($product_quantity4 * $product_weight4 * $category4_price) + ($product_quantity4 / 6)
+							* $category4_price + ($product_quantity4 / 6);
+
+					}else{
+						$category4_fee = 0;
+					}
+					if($product_weight5 != 0){
+						$category5_fee = ($product_quantity5 * $product_weight5 * $category5_price) + ($product_quantity5 / 6)
+							* $category5_price + ($product_quantity5 / 6);
+
+					}else{
+						$category5_fee =0;
+					}
+					if($product_weight6 != 0){
+						$category6_fee = ($product_quantity6 * $product_weight6 * $category6_price) + ($product_quantity6 / 6)
+							* $category6_price + ($product_quantity6 / 6);
+					}else{
+						$category6_fee = 0;
+					}
+					/*
+
+                                if($product_weight1 != 0){
+                        if(($product_quantity1*$product_weight1+ceil($product_quantity1/6) * 0.6 * $lbtokg)>ceil($product_quantity1/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category1_fee = ($product_quantity1 * $product_weight1 * $category1_price) + ceil($product_quantity1 / 6)
+                                * $category1_price + ($product_quantity1 / 6);
+                        }else{
+                            $category1_fee = ceil($product_quantity1 / 6) * 2 * $lbtokg * $category1_price;
+                        }
+                    }else{
+                               $category1_fee = 0;
+                           }
+
+                    if($product_weight2 != 0){
+                        if(($product_quantity2*$product_weight1+ceil($product_quantity2/6) * 0.6 * $lbtokg)>ceil($product_quantity2/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category2_fee = ($product_quantity2 * $product_weight2 * $category2_price) + ceil($product_quantity2 / 6)
+                                * $category2_price + ($product_quantity2 / 6);
+                        }else{
+                            $category2_fee = ceil($product_quantity2 / 6) * 2 * $lbtokg * $category2_price;
+                        }
+                    }else{
+                        $category2_fee = 0;
+                    }
+
+                    if($product_weight3 != 0){
+                        if(($product_quantity3*$product_weight3+ceil($product_quantity3/6) * 0.6 * $lbtokg)>ceil($product_quantity3/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category3_fee = ($product_quantity3 * $product_weight3 * $category3_price) + ceil($product_quantity3 / 6)
+                                * $category3_price + ($product_quantity3 / 6);
+                        }else{
+                            $category3_fee = ceil($product_quantity3 / 6) * 2 * $lbtokg * $category3_price;
+                        }
+                    }else{
+                        $category3_fee = 0;
+                    }
+
+                    if($product_weight4 != 0){
+                        if(($product_quantity4*$product_weight4+ceil($product_quantity4/6) * 0.6 * $lbtokg)>ceil($product_quantity4/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category4_fee = ($product_quantity4 * $product_weight4 * $category4_price) + ceil($product_quantity4 / 6)
+                                * $category4_price + ($product_quantity4 / 6);
+                        }else{
+                            $category4_fee = ceil($product_quantity4 / 6) * 2 * $lbtokg * $category4_price;
+                        }
+                    }else{
+                        $category4_fee = 0;
+                    }
+
+                    if($product_weight5 != 0){
+                        if(($product_quantity5*$product_weight5+ceil($product_quantity5/6) * 0.6 * $lbtokg)>ceil($product_quantity5/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category1_fee = ($product_quantity5 * $product_weight5 * $category5_price) + ceil($product_quantity5 / 6)
+                                * $category5_price + ($product_quantity5 / 6);
+                        }else{
+                            $category5_fee = ceil($product_quantity5 / 6) * 2 * $lbtokg * $category5_price;
+                        }
+                    }else{
+                        $category5_fee =0;
+                    }
+
+                    if($product_weight6 != 0){
+                        if(($product_quantity6*$product_weight6+ceil($product_quantity6/6) * 0.6 * $lbtokg)>ceil($product_quantity6/6) * 0.6 * $lbtokg * 2 * $lbtokg) {
+                            $category6_fee = ($product_quantity6 * $product_weight6 * $category6_price) + ceil($product_quantity6 / 6)
+                                * $category6_price + ($product_quantity6 / 6);
+                        }else{
+                            $category6_fee = ceil($product_quantity6 / 6) * 2 * $lbtokg * $category6_price;
+                        }
+                    }else{
+                        $category6_fee = 0;
+                    }
+                     */
+					$total_fee = 0;
+					$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee;
+					if($total_fee != 0)  {
+						$json['shipping_fee'] = $total_fee;
+					}
+
+
+
+					if ($json['shipping_fee']) {
+						$this->session->data['shipping_fee'] = $json['shipping_fee'];
+					} else {
+						$json['error'] = $this->language->get('error_no_shipping');
+					}
+
+				} else {
+					$json['success'] = 0;
+
+				 }
+				}
+				else{
+					$json['success'] = 0;
+				}
+
+		}
+
+
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: POST');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 	public function addorder() {
 
 		$this->load->language('api/login');
