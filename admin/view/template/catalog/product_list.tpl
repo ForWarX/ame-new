@@ -44,6 +44,10 @@
                 <label class="control-label" for="input-upc"><?php echo $entry_upc; ?></label>
                 <input type="text" name="filter_upc" value="<?php echo $filter_upc; ?>" placeholder="<?php echo $entry_upc; ?>" id="input-upc" class="form-control" />
               </div>
+              <div class="form-group">
+                <label class="control-label" for="input-model"><?php echo $entry_model; ?></label>
+                <input type="text" name="filter_model" value="<?php echo $filter_model; ?>" placeholder="<?php echo $entry_model; ?>" id="input-model" class="form-control" />
+              </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
@@ -223,6 +227,11 @@ $('#button-filter').on('click', function() {
 	if (filter_upc) {
 		url += '&filter_upc=' + encodeURIComponent(filter_upc);
 	}
+    var filter_model = $('input[name=\'filter_model\']').val();
+
+    if (filter_model) {
+      url += '&filter_model=' + encodeURIComponent(filter_model);
+    }
 
 	var filter_price = $('input[name=\'filter_price\']').val();
 
