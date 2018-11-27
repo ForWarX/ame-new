@@ -551,6 +551,28 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row;
 	}
+	public function getproductforexport($product_id) {
+		//$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . $this->db->escape($product_id) . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		if ($query->num_rows) {
+			return array(
+				'product_id'                => $query->row['product_id'],
+				'name'                       => $query->row['name'],
+				'upc'                        => $query->row['upc'],
+				'price'                      => $query->row['price'],
+				'length'                     => $query->row['length'],
+				'width'                      => $query->row['width'],
+				'height'                     => $query->row['height'],
+				'weight'                     => $query->row['weight']
+			);
+		}else{
+			return;
+		}
+
+		//return $query->row;
+
+	}
 
 	public function getProductByUPC($upc) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.upc = '" . $this->db->escape($upc) . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");

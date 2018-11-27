@@ -342,6 +342,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, true);
         $data['import'] = $this->url->link('catalog/product/import', 'token=' . $this->session->data['token'], true);
 		$data['import2'] = $this->url->link('catalog/product/import2', 'token=' . $this->session->data['token'], true);
+		$data['export'] = $this->url->link('catalog/product/export', 'token=' . $this->session->data['token'], true);
 
 		$data['products'] = array();
 
@@ -437,6 +438,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['button_filter'] = $this->language->get('button_filter');
 		$data['button_import'] = $this->language->get('button_import');
 		$data['button_import2'] = $this->language->get('button_import2');
+		$data['button_export'] = $this->language->get('button_export');
 
 		$data['token'] = $this->session->data['token'];
 
@@ -1785,4 +1787,28 @@ class ControllerCatalogProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
 	}
+	//产品导出系统
+	public function export() {
+
+		set_time_limit(60);
+
+		$this->load->model('catalog/product');
+
+		$output = "product_id,name,upc,price,length,width,height,weight\r\n";
+		$outputline=0;
+
+
+		if (isset($this->request->post['selected']) ) {
+			foreach ($this->request->post['selected'] as $product_id) {
+				     $result = $this->model_catalog_product->getproductforexport($product_id);
+				     $line = $result['product_id'] . ','. $result['name'] . ',' . $result['upc'] . ','  . $result['price'] . ',' . $result['length']. ',' . $result['width'] . ',' . $result['height']. ',' . $result['weight'] ;
+				     $output .= $line . "\r\n";
+				     $outputline++;
+			}
+		}
+		header("Content-Type: application/octet-stream;");
+		header("Content-Disposition: attachment; filename=AME_Export.csv");
+		echo iconv('utf-8', 'gbk', $output);
+	}
 }
+
