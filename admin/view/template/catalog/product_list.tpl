@@ -62,6 +62,10 @@
                 <label class="control-label" for="input-quantity"><?php echo $entry_quantity; ?></label>
                 <input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" placeholder="<?php echo $entry_quantity; ?>" id="input-quantity" class="form-control" />
               </div>
+              <div class="form-group">
+                <label class="control-label" for="input-product_id"><?php echo $entry_product_id; ?></label>
+                <input type="text" name="filter_product_id" value="<?php echo $filter_product_id; ?>" placeholder="<?php echo $entry_product_id; ?>" id="input-product_id" class="form-control" />
+              </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
@@ -248,6 +252,11 @@ $('#button-filter').on('click', function() {
 	if (filter_quantity) {
 		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
 	}
+     var filter_product_id = $('input[name=\'filter_product_id\']').val();
+
+      if (filter_product_id) {
+        url += '&filter_product_id=' + encodeURIComponent(filter_product_id);
+     }
 
 	var filter_status = $('select[name=\'filter_status\']').val();
 

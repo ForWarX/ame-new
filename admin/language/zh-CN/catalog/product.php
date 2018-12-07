@@ -28,10 +28,11 @@ $_['column_status']          = '状态';
 $_['column_action']          = '操作';
 
 // Entry
-$_['entry_name']             = '商品名称（报关名字）';
-$_['entry_description']      = '描述';
+$_['entry_product_id']        = '商品ID';
+$_['entry_name']               = '商品名称（报关名字）';
+$_['entry_description']        = '描述';
 $_['entry_meta_title'] 	     = 'Meta 标签标题';
-$_['entry_meta_keyword'] 	 = 'Meta 标记关键字';
+$_['entry_meta_keyword'] 	  = 'Meta 标记关键字';
 $_['entry_meta_description'] = 'Meta 标签说明';
 $_['entry_keyword']          = 'SEO 关键字';
 $_['entry_model']            = '模型';

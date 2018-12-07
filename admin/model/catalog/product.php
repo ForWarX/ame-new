@@ -490,6 +490,7 @@ class ModelCatalogProduct extends Model {
 
 		$this->cache->delete('product');
 	}
+
 	public function copyProduct($product_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p WHERE p.product_id = '" . (int)$product_id . "'");
 
@@ -551,26 +552,24 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row;
 	}
+
 	public function getproductforexport($product_id) {
-		//$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "') AS keyword FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.product_id = '" . $this->db->escape($product_id) . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		if ($query->num_rows) {
 			return array(
-				'product_id'                => $query->row['product_id'],
-				'name'                       => $query->row['name'],
-				'upc'                        => $query->row['upc'],
-				'price'                      => $query->row['price'],
-				'length'                     => $query->row['length'],
-				'width'                      => $query->row['width'],
-				'height'                     => $query->row['height'],
-				'weight'                     => $query->row['weight']
+				'product_id'           => $query->row['product_id'],
+				'name'                  => $query->row['name'],
+				'upc'                   => $query->row['upc'],
+				'price'                 => $query->row['price'],
+				'length'                => $query->row['length'],
+				'width'                 => $query->row['width'],
+				'height'                => $query->row['height'],
+				'weight'                => $query->row['weight']
 			);
 		}else{
 			return;
 		}
-
-		//return $query->row;
 
 	}
 
@@ -592,6 +591,10 @@ class ModelCatalogProduct extends Model {
 		}
 		if (!empty($data['filter_model'])) {
 			$sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
+		}
+
+		if (isset($data['filter_product_id']) && !is_null($data['filter_product_id'])) {
+			$sql .= " AND p.product_id = '" . (int)$data['filter_product_id'] . "'";
 		}
 
 		if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
@@ -888,6 +891,12 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
 			$sql .= " AND p.price LIKE '" . $this->db->escape($data['filter_price']) . "%'";
+		}
+		if (isset($data['filter_product_id']) && !is_null($data['filter_product_id'])) {
+			$sql .= " AND p.product_id LIKE '" . $this->db->escape($data['filter_product_id']) . "%'";
+		}
+		if (!empty($data['filter_model'])) {
+			$sql .= " AND p.model LIKE '%" . $this->db->escape($data['filter_model']) . "%'";
 		}
 
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
