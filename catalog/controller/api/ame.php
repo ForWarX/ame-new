@@ -981,55 +981,55 @@ class ControllerApiAme extends Controller {
 
 							//if($product_info) {
 
-								//$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
+							//$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
 
 							//	if($category_info){
 
-									//foreach($category_info as $category) {
+							//foreach($category_info as $category) {
 
-										//$product['category_id'] = $category["category_id"];
+							//$product['category_id'] = $category["category_id"];
 
-										//$product['weight'] = $product_info['weight'];
-										//保健品
-										if ($product['category_id'] == 61) {
-											$product_weight1 = $product_weight1 + $product['weight']*$product['quantity'];
-											$product_quantity1 = $product_quantity1 + $product['quantity'];
-										}
-										//奶粉类
-										else if ($product['category_id'] == 86) {
-											$product_weight2 = $product_weight2 + $product['weight']*$product['quantity'];
-											$product_quantity2 = $product_quantity2 + $product['quantity'];
-										}
-										//日用品
-										else if ($product['category_id'] == 65) {
-											$product_weight3 = $product_weight3 + $product['weight']*$product['quantity'];
-											$product_quantity3 = $product_quantity3 + $product['quantity'];
-										}
-										//食品类
-										else if ($product['category_id'] == 62) {
-											$product_weight4 = $product_weight4 + $product['weight']*$product['quantity'];
-											$product_quantity4 = $product_quantity4 + $product['quantity'];
-										}
-										//化妆品
-										else if ($product['category_id'] == 104) {
-											$product_weight5 = $product_weight5 + $product['weight']*$product['quantity'];
-											$product_quantity5 = $product_quantity5 + $product['quantity']*$product['quantity'];
-										}
-										//鞋子帽子类
-										else if ($product['category_id'] == 90) {
-											$product_weight6 = $product_weight6 + $product['weight']*$product['quantity'];
-											$product_quantity6 = $product_quantity6 + $product['quantity']*$product['quantity'];
+							//$product['weight'] = $product_info['weight'];
+							//保健品
+							if ($product['category_id'] == 61) {
+								$product_weight1 = $product_weight1 + $product['weight']*$product['quantity'];
+								$product_quantity1 = $product_quantity1 + $product['quantity'];
+							}
+							//奶粉类
+							else if ($product['category_id'] == 86) {
+								$product_weight2 = $product_weight2 + $product['weight']*$product['quantity'];
+								$product_quantity2 = $product_quantity2 + $product['quantity'];
+							}
+							//日用品
+							else if ($product['category_id'] == 65) {
+								$product_weight3 = $product_weight3 + $product['weight']*$product['quantity'];
+								$product_quantity3 = $product_quantity3 + $product['quantity'];
+							}
+							//食品类
+							else if ($product['category_id'] == 62) {
+								$product_weight4 = $product_weight4 + $product['weight']*$product['quantity'];
+								$product_quantity4 = $product_quantity4 + $product['quantity'];
+							}
+							//化妆品
+							else if ($product['category_id'] == 104) {
+								$product_weight5 = $product_weight5 + $product['weight']*$product['quantity'];
+								$product_quantity5 = $product_quantity5 + $product['quantity'];
+							}
+							//鞋子帽子类
+							else if ($product['category_id'] == 90) {
+								$product_weight6 = $product_weight6 + $product['weight']*$product['quantity'];
+								$product_quantity6 = $product_quantity6 + $product['quantity'];
 										}//箱包类
-										else if ($product['category_id'] == 103) {
-											$product_weight7 = $product_weight7 + $product['weight']*$product['quantity'];
-											$product_quantity7 = $product_quantity7 + $product['quantity']*$product['quantity'];
-										}else {
+							else if ($product['category_id'] == 103) {
+								$product_weight7 = $product_weight7 + $product['weight']*$product['quantity'];
+								$product_quantity7 = $product_quantity7 + $product['quantity'];
+							}else {
 
-										}
-									//}
-								//}else{
-								//	$json['success'] = 0;
-								//}
+							}
+							//}
+							//}else{
+							//	$json['success'] = 0;
+							//}
 							//}
 
 						}
@@ -1093,285 +1093,6 @@ class ControllerApiAme extends Controller {
 				}
 				$json['weight_total'] = $product_weight1 + ceil($product_quantity1 / 6)*0.6*$lbtokg;
 				$json['quantity_total'] = $product_quantity1;
-                if($product_weight2 != 0){
-                    if(($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg)>ceil($product_quantity2 / 6)*2*$lbtokg) {
-                        $category2_fee = ($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg) * $category2_price + ceil($product_quantity2 / 6);
-                    }else{
-                        $category2_fee = (ceil($product_quantity2 / 6)*2*$lbtokg) * $category2_price + ceil($product_quantity2 / 6);
-                    }
-                }else{
-                    $category2_fee = 0;
-                }
-
-				if($product_weight3 != 0){
-					if(($product_weight3 + ceil($product_quantity3 / 6)*0.6*$lbtokg)>ceil($product_quantity3 / 6)*2*$lbtokg) {
-						$category3_fee = ($product_weight3 + ceil($product_quantity3 / 6)*0.6*$lbtokg) * $category3_price + ceil($product_quantity3 / 6);
-					}else{
-						$category3_fee = (ceil($product_quantity3 / 6)*2*$lbtokg) * $category3_price + ceil($product_quantity3 / 6);
-					}
-				}else{
-					$category3_fee = 0;
-				}
-				if($product_weight4 != 0){
-					if(($product_weight4+ceil($product_quantity4 / 6)*0.6*$lbtokg)>ceil($product_quantity4/ 6)*2*$lbtokg) {
-						$category4_fee = ($product_weight4+ceil($product_quantity4 / 6)*0.6*$lbtokg) * $category4_price + ceil($product_quantity4 / 6);
-					}else{
-						$category4_fee = (ceil($product_quantity4 / 6)*2*$lbtokg) * $category4_price + ceil($product_quantity4 / 6);
-					}
-				}else{
-					$category4_fee = 0;
-				}
-				if($product_weight5 != 0){
-					if(($product_weight5+ceil($product_quantity5 / 6)*0.6*$lbtokg)>ceil($product_quantity5 / 6)*2*$lbtokg) {
-						$category5_fee = ($product_weight5+ceil($product_quantity5 / 6)*0.6*$lbtokg) * $category5_price + ceil($product_quantity5 / 6);
-					}else{
-						$category5_fee = (ceil($product_quantity5 / 6)*2*$lbtokg) * $category5_price + ceil($product_quantity5 / 6);
-					}
-				}else{
-					$category5_fee = 0;
-				}
-				if($product_weight6 != 0){
-					if(($product_weight6+ceil($product_quantity6 / 6)*0.6*$lbtokg)>ceil($product_quantity6 / 6)*2*$lbtokg) {
-						$category6_fee = ($product_weight6+ceil($product_quantity6 / 6)*0.6*$lbtokg) * $category6_price + ceil($product_quantity6 / 6);
-					}else{
-						$category6_fee = (ceil($product_quantity6 / 6)*2*$lbtokg) * $category6_price + ceil($product_quantity6 / 6);
-					}
-				}else{
-					$category6_fee = 0;
-				}
-				if($product_weight7 != 0){
-					if(($product_weight7+ceil($product_quantity7 / 6)*0.6*$lbtokg)>ceil($product_quantity7 / 6)*2*$lbtokg) {
-						$category7_fee = ($product_weight7+ceil($product_quantity7 / 6)*0.6*$lbtokg) * $category7_price + ceil($product_quantity7 / 6);
-					}else{
-						$category7_fee = (ceil($product_quantity7 / 6)*2*$lbtokg) * $category7_price + ceil($product_quantity7 / 6);
-					}
-				}else{
-					$category7_fee = 0;
-				}
-
-				$total_fee = 0;
-				$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee
-					+ $category7_fee;
-				if($total_fee != 0)  {
-					$json['shipping_fee'] = $total_fee;
-				}else{
-					$json['success'] = 0;
-				}
-
-
-				//} else {
-				//	$json['success'] = 0;
-
-				// }
-			}
-			else{
-				$json['success'] = 0;
-			}
-
-		}else{
-			$json['success'] = 0;
-		}
-
-
-
-		if (isset($this->request->server['HTTP_ORIGIN'])) {
-			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
-			$this->response->addHeader('Access-Control-Allow-Methods: POST');
-			$this->response->addHeader('Access-Control-Max-Age: 1000');
-			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-
-	public function getShippingFee_v10() {
-
-		$this->load->language('api/login');
-
-		$json = array();
-
-		$this->load->model('account/api');
-
-		// Login with API Key
-		$api_info = $this->model_account_api->getApiByKey($this->request->post['key']);
-
-		if ( $api_info ) {
-			// Check if IP is allowed
-			$ip_data = array();
-
-			$results = $this->model_account_api->getApiIps($api_info['api_id']);
-
-			foreach ( $results as $result ) {
-				$ip_data[] = trim($result['ip']);
-			}
-
-
-			if (!$json) {
-
-				$json['success'] = 1;
-				//get shipping fee information
-
-
-				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
-
-				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
-				//if (md5($products."AmeshippingFee") === $verifycode) {
-
-				$product_weight1   = 0;
-				$product_quantity1 = 0;
-				$product_weight2   = 0;
-				$product_quantity2 = 0;
-				$product_weight3   = 0;
-				$product_quantity3 = 0;
-				$product_weight4   = 0;
-				$product_quantity4 = 0;
-				$product_weight5   = 0;
-				$product_quantity5 = 0;
-				$product_weight6   = 0;
-				$product_quantity6 = 0;
-				$product_weight7   = 0;
-				$product_quantity7 = 0;
-
-				if(isset($this->request->post['products'])) {
-
-					$products = str_replace('&quot;', '"', $products);
-
-					$productArr = json_decode($products, true);
-
-					if ($productArr) {
-
-						foreach($productArr as $product) {
-
-							$this->load->model('catalog/product');
-
-							$product_info = $this->model_catalog_product -> getProduct($product['sku']);
-
-							if ( isset( $product['option'] )) {
-
-								$option = array_filter($product['option']);
-
-							} else {
-
-								$option = array();
-
-							}
-
-
-							if($product_info) {
-
-							$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
-
-								if($category_info){
-
-							foreach($category_info as $category) {
-
-							$product['category_id'] = $category["category_id"];
-
-							$product['weight'] = $product_info['weight'];
-							//保健品
-							if ($product['category_id'] == 61) {
-								$product_weight1 = $product_weight1 + $product['weight']*$product['quantity'];
-								$product_quantity1 = $product_quantity1 + $product['quantity'];
-							}
-							//奶粉类
-							else if ($product['category_id'] == 86) {
-								$product_weight2 = $product_weight2 + $product['weight']*$product['quantity'];
-								$product_quantity2 = $product_quantity2 + $product['quantity'];
-							}
-							//日用品
-							else if ($product['category_id'] == 65) {
-								$product_weight3 = $product_weight3 + $product['weight']*$product['quantity'];
-								$product_quantity3 = $product_quantity3 + $product['quantity'];
-							}
-							//食品类
-							else if ($product['category_id'] == 62) {
-								$product_weight4 = $product_weight4 + $product['weight']*$product['quantity'];
-								$product_quantity4 = $product_quantity4 + $product['quantity'];
-							}
-							//化妆品
-							else if ($product['category_id'] == 104) {
-								$product_weight5 = $product_weight5 + $product['weight']*$product['quantity'];
-								$product_quantity5 = $product_quantity5 + $product['quantity']*$product['quantity'];
-							}
-							//鞋子帽子类
-							else if ($product['category_id'] == 90) {
-								$product_weight6 = $product_weight6 + $product['weight']*$product['quantity'];
-								$product_quantity6 = $product_quantity6 + $product['quantity']*$product['quantity'];
-							}//箱包类
-							else if ($product['category_id'] == 103) {
-								$product_weight7 = $product_weight7 + $product['weight']*$product['quantity'];
-								$product_quantity7 = $product_quantity7 + $product['quantity']*$product['quantity'];
-							}else {
-
-							      }
-							    }
-							  }else{
-								$json['success'] = 0;
-							  }
-							}
-
-						}
-
-					}
-
-				}
-
-
-				//calculate the shipping fee
-
-				$lbtokg  =  0.45359237;
-
-
-				//保健品
-				$category1_price=3.8/$lbtokg;
-				//奶粉类
-				$category2_price=4/$lbtokg;
-				//日用品
-				$category3_price=4.5/$lbtokg;
-				//食品类
-				$category4_price=4.5/$lbtokg;
-				//化妆品
-				$category5_price=10/$lbtokg;
-				//鞋子帽子类
-				$category6_price=8/$lbtokg;
-				//箱包类
-				$category7_price=10/$lbtokg;
-
-
-				/*old way
-
-				if($product_weight1 != 0){
-					//商品加上包装的箱子重量
-					$product_weight1 = $product_weight1+0.45;
-					if($product_quantity1 < 7) {
-						if( $product_weight1 <= 1.3){
-							$category1_fee = 8.5;
-						}else{
-							$category1_fee = 8.5+3.5*ceil(($product_weight1-1.3)/0.465);
-						}
-					}else if( 6 < $product_quantity1 && $product_quantity1< 13){
-						if( $product_weight1 <= 2.2){
-							$category1_fee = 17.6;
-						}else{
-							$category1_fee = 17.6+3.8*ceil(($product_weight1-2.2)/0.475);
-						}
-					}
-				}else{
-					$category1_fee = 0;
-				}  */
-				//测试系统
-				if($product_weight1 != 0){
-					if(($product_weight1 + ceil($product_quantity1 / 6)*0.6*$lbtokg)>ceil($product_quantity1 / 6)*2*$lbtokg) {
-						$category1_fee = ($product_weight1 + ceil($product_quantity1 / 6)*0.6*$lbtokg) * $category1_price + ceil($product_quantity1 / 6);
-					}else{
-						$category1_fee = (ceil($product_quantity1 / 6)*2*$lbtokg) * $category1_price + ceil($product_quantity1 / 6);
-					}
-				}else{
-					$category1_fee = 0;
-				}
-
 				if($product_weight2 != 0){
 					if(($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg)>ceil($product_quantity2 / 6)*2*$lbtokg) {
 						$category2_fee = ($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg) * $category2_price + ceil($product_quantity2 / 6);
@@ -1463,6 +1184,9 @@ class ControllerApiAme extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+
+
 	public function getShippingFee_v2() {
 
 		$this->load->language('api/login');
@@ -1492,26 +1216,13 @@ class ControllerApiAme extends Controller {
 				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
 				//if (md5($products."AmeshippingFee") === $verifycode) {
 
-				$product_weight1    = 0;
-				$product_quantity1  = 0;
-				$product_quantity11 = 0;
-				$product_r          = 0;
-				$product_weight2    = 0;
-				$product_quantity2  = 0;
-				$product_weight3    = 0;
-				$product_quantity3  = 0;
-				$product_weight4    = 0;
-				$product_quantity4  = 0;
-				$product_weight5    = 0;
-				$product_quantity5  = 0;
-				$product_weight6    = 0;
-				$product_quantity6  = 0;
-				$product_weight7    = 0;
-				$product_quantity7  = 0;
+
+
 				//calculate the shipping fee
 
 				$lbtokg  =  0.45359237;
 
+                //价格
 
 				//保健品
 				$category1_price=3.8/$lbtokg;
@@ -1528,7 +1239,45 @@ class ControllerApiAme extends Controller {
 				//箱包类
 				$category7_price=10/$lbtokg;
 
+
+				$product_quantity1   = 0;
+				$product_quantity11  = 0;
+				$product_r1          = 0;
+
+				$product_quantity2  = 0;
+				$product_quantity22 = 0;
+				$product_r2         = 0;
+				$box2               = 0;
+				$every_box_weight2  = 0;
+				$product_weight2    = 0;
+
+				$product_quantity3  = 0;
+				$product_quantity33 = 0;
+				$product_r3         = 0;
+
+				$product_quantity4  = 0;
+				$product_quantity44 = 0;
+				$product_r4          = 0;
+
+				$product_quantity5  = 0;
+				$product_quantity55 = 0;
+				$product_r5         = 0;
+
+				$product_quantity6  = 0;
+				$product_quantity66 = 0;
+				$product_r6         = 0;
+
+				$product_quantity7  = 0;
+				$product_quantity77 = 0;
+				$product_r7         = 0;
+
 				$category1_fee = 0;
+				$category2_fee = 0;
+				$category3_fee = 0;
+				$category4_fee = 0;
+				$category5_fee = 0;
+				$category6_fee = 0;
+				$category7_fee = 0;
 
 				if(isset($this->request->post['products'])) {
 
@@ -1588,64 +1337,163 @@ class ControllerApiAme extends Controller {
 
 							if ($product['category_id'] == 61) {
 
-								$product_quantity1 = $product_quantity1 + $product['quantity'];
-								$product_quantity11= $product_quantity11 + $product['quantity'];
-                                if($product_quantity1 != 0){
-								while($product_quantity1 >= 6){
-									$product_weight1 = $product_weight1 + $product['weight']*(6 - $product_r);
+								$product_quantity1  = $product_quantity1  +  $product['quantity'];
+								$product_quantity11 = $product_quantity11 +  $product['quantity'];
 
-									$product_quantity1 = $product_quantity1 - 6;
+								while( $product_quantity1 >= 6){
 
-									if(($product_weight1 + 0.6*$lbtokg)>2*$lbtokg) {
-										$category1_fee = ($product_weight1 + 0.6*$lbtokg) * $category2_price;
-									}else{
-										$category1_fee = (2*$lbtokg) * $category2_price + 1;
-									}
-									$product_r = 0;
-								} if($product_quantity1 < 6){
+									     $product_weight1 =  $product['weight']*(6 - $product_r1);
 
-									$product_weight1 = $product_weight1 + $product['weight']*$product_quantity1;
+										 $category1_fee = $category1_fee + $product_weight1  * $category1_price;
 
-									$category1_fee = ($product_weight1 + 0.6*$lbtokg) * $category2_price;
+									     $product_quantity1 = $product_quantity1 - 6;
 
-									$product_r  =  $product_quantity1;
+									     $product_r1 = 0;
 
-								   }
-									$category1_fee = $category1_fee + ceil($product_quantity11 / 6);
+								}if(($product_quantity1 > 0)&&($product_quantity1 < 6)){
 
+										$product_weight1 = $product['weight'] * ($product_quantity1 - $product_r1);
+
+										$category1_fee = $category1_fee + $product_weight1 * $category1_price;
+
+										$product_r1  =  $product_quantity1;
 								}
-
-
 
 							}
 							//奶粉类
 							else if ($product['category_id'] == 86) {
 								$product_weight2 = $product_weight2 + $product['weight']*$product['quantity'];
-								$product_quantity2 = $product_quantity2 + $product['quantity'];
+								$product_quantity22 = $product_quantity22 + $product['quantity'];
 							}
 							//日用品
 							else if ($product['category_id'] == 65) {
-								$product_weight3 = $product_weight3 + $product['weight']*$product['quantity'];
-								$product_quantity3 = $product_quantity3 + $product['quantity'];
+
+								$product_quantity3  = $product_quantity3 + $product['quantity'];
+								$product_quantity33 = $product_quantity33 + $product['quantity'];
+
+								while($product_quantity3 >= 6){
+
+									$product_weight3 =  $product['weight']*(6 - $product_r3);
+
+									$category3_fee = $category3_fee + $product_weight3  * $category3_price;
+
+									$product_quantity3 = $product_quantity3 - 6;
+
+									$product_r3 = 0;
+
+								}if(($product_quantity3 > 0)&&($product_quantity3 < 6)){
+
+									$product_weight3 = $product['weight'] * ($product_quantity3 - $product_r3);
+
+									$category3_fee = $category3_fee + $product_weight3 * $category3_price;
+
+									$product_r3  =  $product_quantity3;
+								}
+
 							}
 							//食品类
 							else if ($product['category_id'] == 62) {
-								$product_weight4 = $product_weight4 + $product['weight']*$product['quantity'];
-								$product_quantity4 = $product_quantity4 + $product['quantity'];
+
+								$product_quantity4  = $product_quantity4 + $product['quantity'];
+								$product_quantity44 = $product_quantity44 + $product['quantity'];
+
+								while($product_quantity4 >= 6){
+
+									$product_weight4 =  $product['weight']*(6 - $product_r4);
+
+									$category4_fee = $category4_fee + $product_weight4  * $category4_price;
+
+									$product_quantity4 = $product_quantity4 - 6;
+
+									$product_r4 = 0;
+
+								}if(($product_quantity4 > 0)&&($product_quantity4 < 6)){
+
+									$product_weight4 = $product['weight'] * ($product_quantity4 - $product_r4);
+
+									$category4_fee = $category4_fee + $product_weight4 * $category4_price;
+
+									$product_r4  =  $product_quantity4;
+								}
+
 							}
 							//化妆品
 							else if ($product['category_id'] == 104) {
-								$product_weight5 = $product_weight5 + $product['weight']*$product['quantity'];
-								$product_quantity5 = $product_quantity5 + $product['quantity']*$product['quantity'];
+
+								$product_quantity5  = $product_quantity5 + $product['quantity'];
+								$product_quantity55 = $product_quantity55 + $product['quantity'];
+
+								while($product_quantity5 >= 6){
+
+									$product_weight5 =  $product['weight']*(6 - $product_r5);
+
+									$category5_fee = $category5_fee + $product_weight5  * $category5_price;
+
+									$product_quantity5 = $product_quantity5 - 6;
+
+									$product_r5 = 0;
+
+								}if(($product_quantity5 > 0)&&($product_quantity5 < 6)){
+
+									$product_weight5 = $product['weight'] * ($product_quantity5 - $product_r5);
+
+									$category5_fee = $category5_fee + $product_weight5 * $category5_price;
+
+									$product_r5  =  $product_quantity5;
+								}
+
 							}
 							//鞋子帽子类
 							else if ($product['category_id'] == 90) {
-								$product_weight6 = $product_weight6 + $product['weight']*$product['quantity'];
-								$product_quantity6 = $product_quantity6 + $product['quantity']*$product['quantity'];
-							}//箱包类
+
+								$product_quantity6  = $product_quantity6 + $product['quantity'];
+								$product_quantity66 = $product_quantity66 + $product['quantity'];
+
+								while($product_quantity6 >= 6){
+
+									$product_weight6 =  $product['weight']*(6 - $product_r6);
+
+									$category6_fee = $category6_fee + $product_weight6  * $category6_price;
+
+									$product_quantity6 = $product_quantity6 - 6;
+
+									$product_r6 = 0;
+
+								}if(($product_quantity6 > 0)&&($product_quantity6 < 6)){
+
+									$product_weight6 = $product['weight'] * ($product_quantity6 - $product_r6);
+
+									$category6_fee = $category6_fee + $product_weight6 * $category6_price;
+
+									$product_r6  =  $product_quantity6;
+								}
+
+							}
+						    //箱包类
 							else if ($product['category_id'] == 103) {
-								$product_weight7 = $product_weight7 + $product['weight']*$product['quantity'];
-								$product_quantity7 = $product_quantity7 + $product['quantity']*$product['quantity'];
+
+								$product_quantity7  = $product_quantity7 + $product['quantity'];
+								$product_quantity77 = $product_quantity77 + $product['quantity'];
+
+								while($product_quantity7 >= 6){
+
+									$product_weight7 =  $product['weight']*(6 - $product_r7);
+
+									$category7_fee = $category7_fee + $product_weight7  * $category7_price;
+
+									$product_quantity7 = $product_quantity7 - 6;
+
+									$product_r7 = 0;
+
+								}if(($product_quantity7 > 0)&&($product_quantity7 < 6)){
+
+									$product_weight7 = $product['weight'] * ($product_quantity7 - $product_r7);
+
+									$category7_fee = $category7_fee + $product_weight7 * $category7_price;
+
+									$product_r7  =  $product_quantity7;
+								}
+
 							}else {
 
 							}
@@ -1664,67 +1512,47 @@ class ControllerApiAme extends Controller {
 
 				//测试系统
 
-				$json['weight_total'] = $product_weight1 + ceil($product_quantity1 / 6)*0.6*$lbtokg;
-				$json['quantity_total'] = $product_quantity1;
-				if($product_weight2 != 0){
-					if(($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg)>ceil($product_quantity2 / 6)*2*$lbtokg) {
-						$category2_fee = ($product_weight2 + ceil($product_quantity2 / 6)*0.6*$lbtokg) * $category2_price + ceil($product_quantity2 / 6);
+				//物品不够两磅 添加两磅起收
+				if(($category1_fee!=0)&&($category1_fee<(2*$lbtokg *$category1_price-0.6*$lbtokg * $category1_price)*ceil($product_quantity11 / 6))){
+					$category1_fee =( 2*$lbtokg *$category1_price-0.6*$lbtokg * $category1_price)*ceil($product_quantity11 / 6);
+				}
+				/*
+				if(($category2_fee!=0)&&($category2_fee<(2*$lbtokg *$category2_price-0.6*$lbtokg * $category2_price)*ceil($product_quantity11 / 6))){
+					$category2_fee = (2*$lbtokg *$category2_price-0.6*$lbtokg * $category2_price)*ceil($product_quantity11 / 6);
+				}
+				*/
+				if($product_quantity22 != 0){
+					if($product_weight2 >(ceil($product_weight2 / 3.301)*2*$lbtokg- ceil($product_weight2 / 3.301)*0.6*$lbtokg)) {
+						$category2_fee = $product_weight2  * $category2_price ;
 					}else{
-						$category2_fee = (ceil($product_quantity2 / 6)*2*$lbtokg) * $category2_price + ceil($product_quantity2 / 6);
+						$category2_fee = (ceil($product_weight2 / 3.301)*2*$lbtokg-ceil($product_weight2 / 3.301)*2*$lbtokg*0.6) * $category2_price;
 					}
-				}else{
-					$category2_fee = 0;
 				}
 
-				if($product_weight3 != 0){
-					if(($product_weight3 + ceil($product_quantity3 / 6)*0.6*$lbtokg)>ceil($product_quantity3 / 6)*2*$lbtokg) {
-						$category3_fee = ($product_weight3 + ceil($product_quantity3 / 6)*0.6*$lbtokg) * $category3_price + ceil($product_quantity3 / 6);
-					}else{
-						$category3_fee = (ceil($product_quantity3 / 6)*2*$lbtokg) * $category3_price + ceil($product_quantity3 / 6);
-					}
-				}else{
-					$category3_fee = 0;
+				if(($category3_fee!=0)&&($category3_fee<(2*$lbtokg *$category3_price-0.6*$lbtokg * $category3_price)*ceil($product_quantity11 / 6))){
+					$category3_fee = (2*$lbtokg *$category3_price-0.6*$lbtokg * $category3_price)*ceil($product_quantity11 / 6);
 				}
-				if($product_weight4 != 0){
-					if(($product_weight4+ceil($product_quantity4 / 6)*0.6*$lbtokg)>ceil($product_quantity4/ 6)*2*$lbtokg) {
-						$category4_fee = ($product_weight4+ceil($product_quantity4 / 6)*0.6*$lbtokg) * $category4_price + ceil($product_quantity4 / 6);
-					}else{
-						$category4_fee = (ceil($product_quantity4 / 6)*2*$lbtokg) * $category4_price + ceil($product_quantity4 / 6);
-					}
-				}else{
-					$category4_fee = 0;
+				if(($category4_fee!=0)&&($category4_fee<(2*$lbtokg *$category4_price-0.6*$lbtokg * $category4_price)*ceil($product_quantity11 / 6))){
+					$category4_fee = (2*$lbtokg *$category4_price-0.6*$lbtokg * $category4_price)*ceil($product_quantity11 / 6);
 				}
-				if($product_weight5 != 0){
-					if(($product_weight5+ceil($product_quantity5 / 6)*0.6*$lbtokg)>ceil($product_quantity5 / 6)*2*$lbtokg) {
-						$category5_fee = ($product_weight5 + ceil($product_quantity5 / 6)*0.6*$lbtokg) * $category5_price + ceil($product_quantity5 / 6);
-					}else{
-						$category5_fee = (ceil($product_quantity5 / 6)*2*$lbtokg ) * $category5_price + ceil($product_quantity5 / 6);
-					}
-				}else{
-					$category5_fee = 0;
-				}
-				if($product_weight6 != 0){
-					if(($product_weight6+ceil($product_quantity6 / 6)*0.6*$lbtokg)>ceil($product_quantity6 / 6)*2*$lbtokg) {
-						$category6_fee = ($product_weight6+ceil($product_quantity6 / 6)*0.6*$lbtokg) * $category6_price + ceil($product_quantity6 / 6);
-					}else{
-						$category6_fee = (ceil($product_quantity6 / 6)*2*$lbtokg) * $category6_price + ceil($product_quantity6 / 6);
-					}
-				}else{
-					$category6_fee = 0;
-				}
-				if($product_weight7 != 0){
-					if(($product_weight7+ceil($product_quantity7 / 6)*0.6*$lbtokg)>ceil($product_quantity7 / 6)*2*$lbtokg) {
-						$category7_fee = ($product_weight7+ceil($product_quantity7 / 6)*0.6*$lbtokg) * $category7_price + ceil($product_quantity7 / 6);
-					}else{
-						$category7_fee = (ceil($product_quantity7 / 6)*2*$lbtokg) * $category7_price + ceil($product_quantity7 / 6);
-					}
-				}else{
-					$category7_fee = 0;
-				}
+
+				//add boxesfee
+				$category1_fee = $category1_fee + ceil($product_quantity11 / 6)+ceil($product_quantity11 / 6)*0.6*$lbtokg * $category1_price;
+				//$category2_fee = $category2_fee + ceil($product_quantity22 / 6)+ceil($product_quantity22 / 6)*0.6*$lbtokg * $category2_price;
+				//奶粉类特殊 3301g 分为一箱
+				$category2_fee = $category2_fee + ceil($product_weight2 /3.301)+ceil($product_weight2 /3.301)*0.6*$lbtokg * $category2_price;
+				$category3_fee = $category3_fee + ceil($product_quantity33 / 6)+ceil($product_quantity33 / 6)*0.6*$lbtokg * $category3_price;
+				$category4_fee = $category4_fee + ceil($product_quantity44 / 6)+ceil($product_quantity44 / 6)*0.6*$lbtokg * $category4_price;
+				$category5_fee = $category5_fee + ceil($product_quantity55 / 6)+ceil($product_quantity55 / 6)*0.6*$lbtokg * $category5_price;
+				$category6_fee = $category6_fee + ceil($product_quantity66 / 6)+ceil($product_quantity66 / 6)*0.6*$lbtokg * $category6_price;
+				$category7_fee = $category7_fee + ceil($product_quantity77 / 6)+ceil($product_quantity77 / 6)*0.6*$lbtokg * $category7_price;
+
+
 
 				$total_fee = 0;
 				$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee
 					+ $category7_fee;
+
 				if($total_fee != 0)  {
 					$json['shipping_fee'] = $total_fee;
 				}else{
@@ -1757,6 +1585,2001 @@ class ControllerApiAme extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function getShippingFee_v20() {
+
+		$this->load->language('api/login');
+
+		$json = array();
+
+		$this->load->model('account/api');
+
+		// Login with API Key
+		$api_info = $this->model_account_api->getApiByKey($this->request->post['key']);
+
+		if ( $api_info ) {
+			// Check if IP is allowed
+			$ip_data = array();
+
+			$results = $this->model_account_api->getApiIps($api_info['api_id']);
+
+			foreach ( $results as $result ) {
+				$ip_data[] = trim($result['ip']);
+			}
+
+
+			if (!$json) {
+				$json['success'] = 1;
+				//get shipping fee information
+				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
+				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
+				//if (md5($products."AmeshippingFee") === $verifycode) {
+
+
+
+				//calculate the shipping fee
+
+				$lbtokg  =  0.45359237;
+
+				//价格
+
+				//保健品
+				$category1_price=3.8/$lbtokg;
+				//奶粉类
+				$category2_price=4/$lbtokg;
+				//日用品
+				$category3_price=4.5/$lbtokg;
+				//食品类
+				$category4_price=4.5/$lbtokg;
+				//化妆品
+				$category5_price=10/$lbtokg;
+				//鞋子帽子类
+				$category6_price=8/$lbtokg;
+				//箱包类
+				$category7_price=10/$lbtokg;
+
+
+				$product_quantity1   = 0;
+				$product_quantity11  = 0;
+				$product_r1          = 0;
+
+				$product_quantity2  = 0;
+				$product_quantity22 = 0;
+				$product_r2         = 0;
+				$box2               = 0;
+				$every_box_weight2  = 0;
+				$product_weight2    = 0;
+
+				$product_quantity3  = 0;
+				$product_quantity33 = 0;
+				$product_r3         = 0;
+
+				$product_quantity4  = 0;
+				$product_quantity44 = 0;
+				$product_r4          = 0;
+
+				$product_quantity5  = 0;
+				$product_quantity55 = 0;
+				$product_r5         = 0;
+
+				$product_quantity6  = 0;
+				$product_quantity66 = 0;
+				$product_r6         = 0;
+
+				$product_quantity7  = 0;
+				$product_quantity77 = 0;
+				$product_r7         = 0;
+
+				$category1_fee = 0;
+				$category2_fee = 0;
+				$category3_fee = 0;
+				$category4_fee = 0;
+				$category5_fee = 0;
+				$category6_fee = 0;
+				$category7_fee = 0;
+
+				if(isset($this->request->post['products'])) {
+
+					$products = str_replace('&quot;', '"', $products);
+
+					$productArr = json_decode($products, true);
+
+					if ($productArr) {
+						//sort
+						$sortArray = array();
+
+						foreach($productArr as $pd){
+							foreach($pd as $key=>$value){
+								if(!isset($sortArray[$key])){
+									$sortArray[$key] = array();
+								}
+								$sortArray[$key][] = $value;
+							}
+						}
+
+						$orderby = "weight"; //the key you want to sort from the array
+
+						array_multisort($sortArray[$orderby],SORT_ASC,$productArr);
+
+						$json['array'] = $productArr;
+						//count
+						foreach($productArr as $product) {
+
+							$this->load->model('catalog/product');
+
+							$product_info = $this->model_catalog_product -> getProduct($product['sku']);
+
+							if ( isset( $product['option'] )) {
+
+								$option = array_filter($product['option']);
+
+							} else {
+
+								$option = array();
+
+							}
+
+
+							if($product_info) {
+
+							$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
+
+								if($category_info){
+
+							foreach($category_info as $category) {
+
+							$product['category_id'] = $category["category_id"];
+
+							$product['weight'] = $product_info['weight'];
+							//保健品
+
+
+							if ($product['category_id'] == 61) {
+
+								$product_quantity1  = $product_quantity1  +  $product['quantity'];
+								$product_quantity11 = $product_quantity11 +  $product['quantity'];
+
+								while( $product_quantity1 >= 6){
+
+									$product_weight1 =  $product['weight']*(6 - $product_r1);
+
+									$category1_fee = $category1_fee + $product_weight1  * $category1_price;
+
+									$product_quantity1 = $product_quantity1 - 6;
+
+									$product_r1 = 0;
+
+								}if(($product_quantity1 > 0)&&($product_quantity1 < 6)){
+
+									$product_weight1 = $product['weight'] * ($product_quantity1 - $product_r1);
+
+									$category1_fee = $category1_fee + $product_weight1 * $category1_price;
+
+									$product_r1  =  $product_quantity1;
+								}
+
+							}
+							//奶粉类
+							else if ($product['category_id'] == 86) {
+								$product_weight2 = $product_weight2 + $product['weight']*$product['quantity'];
+								$product_quantity22 = $product_quantity22 + $product['quantity'];
+							}
+
+							//日用品
+							else if ($product['category_id'] == 65) {
+
+								$product_quantity3  = $product_quantity3 + $product['quantity'];
+								$product_quantity33 = $product_quantity33 + $product['quantity'];
+
+								while($product_quantity3 >= 6){
+
+									$product_weight3 =  $product['weight']*(6 - $product_r3);
+
+									$category3_fee = $category3_fee + $product_weight3  * $category3_price;
+
+									$product_quantity3 = $product_quantity3 - 6;
+
+									$product_r3 = 0;
+
+								}if(($product_quantity3 > 0)&&($product_quantity3 < 6)){
+
+									$product_weight3 = $product['weight'] * ($product_quantity3 - $product_r3);
+
+									$category3_fee = $category3_fee + $product_weight3 * $category3_price;
+
+									$product_r3  =  $product_quantity3;
+								}
+
+							}
+							//食品类
+							else if ($product['category_id'] == 62) {
+
+								$product_quantity4  = $product_quantity4 + $product['quantity'];
+								$product_quantity44 = $product_quantity44 + $product['quantity'];
+
+								while($product_quantity4 >= 6){
+
+									$product_weight4 =  $product['weight']*(6 - $product_r4);
+
+									$category4_fee = $category4_fee + $product_weight4  * $category4_price;
+
+									$product_quantity4 = $product_quantity4 - 6;
+
+									$product_r4 = 0;
+
+								}if(($product_quantity4 > 0)&&($product_quantity4 < 6)){
+
+									$product_weight4 = $product['weight'] * ($product_quantity4 - $product_r4);
+
+									$category4_fee = $category4_fee + $product_weight4 * $category4_price;
+
+									$product_r4  =  $product_quantity4;
+								}
+
+							}
+							//化妆品
+							else if ($product['category_id'] == 104) {
+
+								$product_quantity5  = $product_quantity5 + $product['quantity'];
+								$product_quantity55 = $product_quantity55 + $product['quantity'];
+
+								while($product_quantity5 >= 6){
+
+									$product_weight5 =  $product['weight']*(6 - $product_r5);
+
+									$category5_fee = $category5_fee + $product_weight5  * $category5_price;
+
+									$product_quantity5 = $product_quantity5 - 6;
+
+									$product_r5 = 0;
+
+								}if(($product_quantity5 > 0)&&($product_quantity5 < 6)){
+
+									$product_weight5 = $product['weight'] * ($product_quantity5 - $product_r5);
+
+									$category5_fee = $category5_fee + $product_weight5 * $category5_price;
+
+									$product_r5  =  $product_quantity5;
+								}
+
+							}
+							//鞋子帽子类
+							else if ($product['category_id'] == 90) {
+
+								$product_quantity6  = $product_quantity6 + $product['quantity'];
+								$product_quantity66 = $product_quantity66 + $product['quantity'];
+
+								while($product_quantity6 >= 6){
+
+									$product_weight6 =  $product['weight']*(6 - $product_r6);
+
+									$category6_fee = $category6_fee + $product_weight6  * $category6_price;
+
+									$product_quantity6 = $product_quantity6 - 6;
+
+									$product_r6 = 0;
+
+								}if(($product_quantity6 > 0)&&($product_quantity6 < 6)){
+
+									$product_weight6 = $product['weight'] * ($product_quantity6 - $product_r6);
+
+									$category6_fee = $category6_fee + $product_weight6 * $category6_price;
+
+									$product_r6  =  $product_quantity6;
+								}
+
+							}
+							//箱包类
+							else if ($product['category_id'] == 103) {
+
+								$product_quantity7  = $product_quantity7 + $product['quantity'];
+								$product_quantity77 = $product_quantity77 + $product['quantity'];
+
+								while($product_quantity7 >= 6){
+
+									$product_weight7 =  $product['weight']*(6 - $product_r7);
+
+									$category7_fee = $category7_fee + $product_weight7  * $category7_price;
+
+									$product_quantity7 = $product_quantity7 - 6;
+
+									$product_r7 = 0;
+
+								}if(($product_quantity7 > 0)&&($product_quantity7 < 6)){
+
+									$product_weight7 = $product['weight'] * ($product_quantity7 - $product_r7);
+
+									$category7_fee = $category7_fee + $product_weight7 * $category7_price;
+
+									$product_r7  =  $product_quantity7;
+								}
+
+							}else {
+
+							  }
+							 }
+							}else{
+								$json['success'] = 0;
+							 }
+							}
+
+						}
+
+					}
+
+				}
+
+
+				//测试系统
+
+				$json['quantity_total'] = $product_quantity11;
+				$json['boxes'] = ceil($product_quantity11 / 6);
+				//物品不够两磅 添加两磅起收
+				if(($category1_fee!=0)&&($category1_fee<(2*$lbtokg *$category1_price-0.6*$lbtokg * $category1_price)*ceil($product_quantity11 / 6))){
+					$category1_fee =( 2*$lbtokg *$category1_price-0.6*$lbtokg * $category1_price)*ceil($product_quantity11 / 6);
+				}
+				//计算奶粉类不添加箱子之前的价格
+				if($product_quantity22 != 0){
+					if($product_weight2 >(ceil($product_weight2 / 3.301)*2*$lbtokg- ceil($product_weight2 / 3.301)*0.6*$lbtokg)) {
+						$category2_fee = $product_weight2  * $category2_price ;
+					}else{
+						$category2_fee = (ceil($product_weight2 / 3.301)*2*$lbtokg-ceil($product_weight2 / 3.301)*2*$lbtokg*0.6) * $category2_price;
+					}
+				}
+
+				if(($category3_fee!=0)&&($category3_fee<(2*$lbtokg *$category3_price-0.6*$lbtokg * $category3_price)*ceil($product_quantity11 / 6))){
+					$category3_fee = (2*$lbtokg *$category3_price-0.6*$lbtokg * $category3_price)*ceil($product_quantity11 / 6);
+				}
+				if(($category4_fee!=0)&&($category4_fee<(2*$lbtokg *$category4_price-0.6*$lbtokg * $category4_price)*ceil($product_quantity11 / 6))){
+					$category4_fee = (2*$lbtokg *$category4_price-0.6*$lbtokg * $category4_price)*ceil($product_quantity11 / 6);
+				}
+
+				//add boxesfee
+				$category1_fee = $category1_fee + ceil($product_quantity11 / 6)+ceil($product_quantity11 / 6)*0.6*$lbtokg * $category1_price;
+				//$category2_fee = $category2_fee + ceil($product_quantity22 / 6)+ceil($product_quantity22 / 6)*0.6*$lbtokg * $category2_price;
+				//奶粉类特殊 3301g 分为一箱
+				$category2_fee = $category2_fee + ceil($product_weight2 /  3.301)+ceil($product_weight2 /  3.301)*0.6*$lbtokg * $category2_price;
+				$category3_fee = $category3_fee + ceil($product_quantity33 / 6)+ceil($product_quantity33 / 6)*0.6*$lbtokg * $category3_price;
+				$category4_fee = $category4_fee + ceil($product_quantity44 / 6)+ceil($product_quantity44 / 6)*0.6*$lbtokg * $category4_price;
+				$category5_fee = $category5_fee + ceil($product_quantity55 / 6)+ceil($product_quantity55 / 6)*0.6*$lbtokg * $category5_price;
+				$category6_fee = $category6_fee + ceil($product_quantity66 / 6)+ceil($product_quantity66 / 6)*0.6*$lbtokg * $category6_price;
+				$category7_fee = $category7_fee + ceil($product_quantity77 / 6)+ceil($product_quantity77 / 6)*0.6*$lbtokg * $category7_price;
+
+
+
+				$total_fee = 0;
+				$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee
+					+ $category7_fee;
+
+				if($total_fee != 0)  {
+					$json['shipping_fee'] = $total_fee;
+				}else{
+					$json['success'] = 0;
+				}
+
+
+				//} else {
+				//	$json['success'] = 0;
+
+				// }
+			}
+			else{
+				$json['success'] = 0;
+			}
+
+		}else{
+			$json['success'] = 0;
+		}
+
+
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: POST');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function getShippingFee_v3() {
+
+		$this->load->language('api/login');
+
+		$json = array();
+
+		$this->load->model('account/api');
+
+		// Login with API Key
+		$api_info = $this->model_account_api->getApiByKey($this->request->post['key']);
+
+		if ( $api_info ) {
+			// Check if IP is allowed
+			$ip_data = array();
+
+			$results = $this->model_account_api->getApiIps($api_info['api_id']);
+
+			foreach ( $results as $result ) {
+				$ip_data[] = trim($result['ip']);
+			}
+
+
+			if (!$json) {
+
+				$json['success'] = 1;
+
+				//get shipping fee information
+
+				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
+
+				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
+
+				//if (md5($products."AmeshippingFee") === $verifycode) {
+
+				//calculate the shipping fee
+
+				$lbtokg  =  0.45359237;
+
+				//价格
+
+				//保健品
+				$category1_price=3.8;
+				//奶粉类
+				$category2_price=4;
+				//日用品
+				$category3_price=4.5;
+				//食品类
+				$category4_price=4.5;
+				//化妆品
+				$category5_price=10;
+				//鞋子帽子类
+				$category6_price=8;
+				//箱包类
+				$category7_price=10;
+				//蛋白粉类
+				$category8_price=4;
+				//人参类
+				$category9_price=15;
+
+
+				$product_quantity1   = 0;
+				$product_quantity11  = 0;
+				$product_r1          = 0;
+				$product_weight1     = 0;
+
+				//产品现有数量
+				$product_quantity2  = 0;
+				//产品总数
+				$product_quantity22 = 0;
+				//箱子现存的产品数量
+				$product_r2         = 0;
+				//箱子现存的产品重量
+				$product_rweight2   = 0;
+				//箱子数
+				$box2               = 0;
+				//每个现存的算法类暂时的重量
+				$every_box_weight2  = 0;
+				//产品现有的重量
+				$product_weight2    = 0;
+				//产品总重量
+				$product_weight22    = 0;
+
+				$product_quantity3  = 0;
+				$product_quantity33 = 0;
+				$product_r3         = 0;
+				$product_weight3     = 0;
+
+				$product_quantity4  = 0;
+				$product_quantity44 = 0;
+				$product_r4         = 0;
+				$product_weight4     = 0;
+
+				$product_quantity5  = 0;
+				$product_quantity55 = 0;
+				$product_r5         = 0;
+				$product_weight5     = 0;
+
+				$product_quantity6  = 0;
+				$product_quantity66 = 0;
+				$product_r6         = 0;
+				$product_weight6    = 0;
+
+				$product_quantity7  = 0;
+				$product_quantity77 = 0;
+				$product_r7         = 0;
+				$product_weight7     = 0;
+
+				$product_quantity8  = 0;
+				$product_quantity88 = 0;
+				$product_r8         = 0;
+				$product_weight8     = 0;
+
+				$product_quantity9  = 0;
+				$product_quantity99 = 0;
+				$product_r9         = 0;
+				$product_weight9    = 0;
+
+				$category1_fee = 0;
+				$category2_fee = 0;
+				$category3_fee = 0;
+				$category4_fee = 0;
+				$category5_fee = 0;
+				$category6_fee = 0;
+				$category7_fee = 0;
+				$category8_fee = 0;
+				$category9_fee = 0;
+
+				if(isset($this->request->post['products'])) {
+
+					$products = str_replace('&quot;', '"', $products);
+
+					$productArr = json_decode($products, true);
+
+					if ($productArr) {
+						//sort
+						$sortArray = array();
+
+						foreach($productArr as $pd){
+							foreach($pd as $key=>$value){
+								if(!isset($sortArray[$key])){
+									$sortArray[$key] = array();
+								}
+								$sortArray[$key][] = $value;
+							}
+						}
+
+						$orderby = "weight"; //the key you want to sort from the array
+
+						array_multisort($sortArray[$orderby],SORT_ASC,$productArr);
+
+						//count
+
+						foreach($productArr as $product) {
+
+							$this->load->model('catalog/product');
+
+							//$product_info = $this->model_catalog_product -> getProduct($product['sku']);
+
+							if ( isset( $product['option'] )) {
+
+								$option = array_filter($product['option']);
+
+							} else {
+
+								$option = array();
+
+							}
+
+
+							//if($product_info) {
+
+							//$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
+
+							//	if($category_info){
+
+							//foreach($category_info as $category) {
+
+							//$product['category_id'] = $category["category_id"];
+
+							//$product['weight'] = $product_info['weight'];
+
+							//保健品
+
+
+							if ($product['category_id'] == 61) {
+
+								$product_quantity1  = $product_quantity1  +  $product['quantity'];
+								$product_quantity11 = $product_quantity11 +  $product['quantity'];
+
+								while( $product_quantity1 >= 6){
+
+									$product_weight1 = $product_weight1+ $product['weight']*(6 - $product_r1);
+
+									if(($product_weight1/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6)) >= 0)&&((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6))<=0.5)){
+
+											$category1_fee = $category1_fee + floor($product_weight1/$lbtokg   + 0.6  )*$category1_price+0.5* $category1_price+ 1;
+
+										}else{
+
+											$category1_fee = $category1_fee + ceil($product_weight1/$lbtokg  + 0.6  )* $category1_price + 1;
+
+										}
+									}else{
+
+										$category1_fee = $category1_fee + 1 + 2 * $category1_price;
+
+									}
+
+									$product_quantity1 = $product_quantity1 - 6;
+
+									$product_weight1 = 0;
+
+									$product_r1 = 0;
+
+								}if(($product_quantity1 > 0)&&( $product_quantity1 < 6)){
+
+									$product_weight1  = $product_weight1 + $product['weight'] * ($product_quantity1 - $product_r1);
+
+									$product_r1  =  $product_quantity1;
+								}
+
+							}
+
+							//奶粉类
+							else if ($product['category_id'] == 86) {
+
+								$product_quantity2  = $product_quantity2 + $product['quantity'];
+								$product_quantity22 = $product_quantity22 + $product['quantity'];
+								$product_weight2    = $product_weight2 + $product['weight']*$product['quantity'];
+
+								while($product_weight2 >= 3.301){
+
+									if(floor((3.301 - $product_rweight2)/$product['weight'])==0){
+
+									    $every_box_weight2 = 0;
+
+										$product_quantity2 = $product_quantity2 - floor(3.301/$product['weight']);
+
+									    $product_rweight2 = $product_rweight2 + $every_box_weight2 ;
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+									    $product_weight2 = $product_weight2 - $product_rweight2;
+
+									    $product_rweight2 = 0;
+
+									    $product_r2 = 0;
+
+									}else if(floor((3.301-$product_rweight2)/$product['weight'])>=floor(($product_weight2 -$product_rweight2)/$product['weight'])){
+
+										$every_box_weight2 = $product['weight'] * floor(($product_weight2 -$product_rweight2)/$product['weight']);
+
+										$product_quantity2 = $product_quantity2  - floor(($product_weight2 -$product_rweight2)/$product['weight']);
+
+										$product_rweight2 = $product_rweight2 + $every_box_weight2 ;
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+
+										$product_weight2 = $product_weight2 - $product_rweight2;
+
+										$product_rweight2 = 0;
+
+										$product_r2 = 0;
+
+									}else{
+										$every_box_weight2 = $product['weight']*floor((3.301-$product_rweight2)/$product['weight']);
+
+										$product_quantity2 = $product_quantity2 - floor((3.301-$product_rweight2)/$product['weight']);
+
+										$product_rweight2 = $product_rweight2+ $every_box_weight2 ;
+
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+
+										$product_weight2 = $product_weight2 - $product_rweight2;
+
+										$product_rweight2 = 0;
+
+										$product_r2 = 0;
+
+									}
+
+								}if($product_weight2 < 3.301){
+
+									    $every_box_weight2 = $product['weight'] * ($product_quantity2 - $product_r2);
+
+									    $product_rweight2 =  $product_rweight2 + $every_box_weight2;
+
+									    $product_r2  =  $product_quantity2;
+								}
+
+							}
+
+							//日用品
+							else if ($product['category_id'] == 65) {
+
+								$product_quantity3  = $product_quantity3  +  $product['quantity'];
+								$product_quantity33 = $product_quantity33 +  $product['quantity'];
+
+								while( $product_quantity3 >= 6){
+
+									$product_weight3 = $product_weight3 + $product['weight']*(6 - $product_r3);
+
+									if(($product_weight3/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6)) >= 0)&&((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6))<=0.5)){
+
+											$category3_fee = $category3_fee + floor($product_weight3/$lbtokg   + 0.6  )*$category3_price+0.5* $category3_price+ 1;
+
+										}else{
+
+											$category3_fee = $category3_fee + ceil($product_weight3/$lbtokg  + 0.6  )* $category3_price + 1;
+
+										}
+									}else{
+
+										$category3_fee = $category3_fee + 1 + 2 * $category3_price;
+
+									}
+
+									$product_quantity3 = $product_quantity3 - 6;
+
+									$product_weight3 = 0;
+
+									$product_r3 = 0;
+
+								}if(($product_quantity3 > 0)&&( $product_quantity3 < 6)){
+
+									$product_weight3  = $product_weight3 + $product['weight'] * ($product_quantity3 - $product_r3);
+
+									$product_r3  =  $product_quantity3;
+								}
+
+							}
+							//食品类
+							else if ($product['category_id'] == 62) {
+								$product_quantity4  = $product_quantity4  +  $product['quantity'];
+								$product_quantity44 = $product_quantity44 +  $product['quantity'];
+
+								while( $product_quantity4 >= 6){
+
+									$product_weight4 = $product_weight4+ $product['weight']*(6 - $product_r4);
+
+									if(($product_weight4/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6)) >= 0)&&((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6))<=0.5)){
+
+											$category4_fee = $category4_fee + floor($product_weight4/$lbtokg   + 0.6  )*$category4_price+0.5* $category4_price+ 1;
+
+										}else{
+
+											$category4_fee = $category4_fee + ceil($product_weight4/$lbtokg  + 0.6  )* $category4_price + 1;
+
+										}
+									}else{
+
+										$category4_fee = $category4_fee + 1 + 2 * $category4_price;
+
+									}
+
+									$product_quantity4 = $product_quantity4 - 6;
+
+									$product_weight4 = 0;
+
+									$product_r4= 0;
+
+								}if(($product_quantity4 > 0)&&( $product_quantity4 < 6)){
+
+									$product_weight4  = $product_weight4 + $product['weight'] * ($product_quantity4 - $product_r4);
+
+									$product_r4  =  $product_quantity4;
+								}
+
+
+
+							}
+							//化妆品
+							else if ($product['category_id'] == 104 ) {
+
+								$product_quantity5  = $product_quantity5  +  $product['quantity'];
+								$product_quantity55 = $product_quantity55 +  $product['quantity'];
+
+								while( $product_quantity5 >= 6){
+
+									$product_weight5 = $product_weight5 + $product['weight']*(6 - $product_r5);
+
+									if(($product_weight5/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6)) >= 0)&&((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6))<=0.5)){
+
+											$category5_fee = $category5_fee + floor($product_weight5/$lbtokg   + 0.6  )*$category5_price+0.5* $category5_price+ 1;
+
+										}else{
+
+											$category5_fee = $category5_fee + ceil($product_weight5/$lbtokg  + 0.6  )* $category5_price + 1;
+
+										}
+									}else{
+
+										$category5_fee = $category5_fee + 1 + 2 * $category5_price;
+
+									}
+
+									$product_quantity5 = $product_quantity5 - 6;
+
+									$product_weight5 = 0;
+
+									$product_r5 = 0;
+
+								}if(($product_quantity5 > 0)&&( $product_quantity5 < 6)){
+
+									$product_weight5  = $product_weight5 + $product['weight'] * ($product_quantity5 - $product_r5);
+
+									$product_r5  =  $product_quantity5;
+								}
+
+
+							}
+							//鞋子帽子类
+							else if ($product['category_id'] == 90) {
+
+								$product_quantity6  = $product_quantity6  +  $product['quantity'];
+								$product_quantity66 = $product_quantity66 +  $product['quantity'];
+
+								while( $product_quantity6 >= 6){
+
+									$product_weight6 = $product_weight6 + $product['weight']*(6 - $product_r6);
+
+									if(($product_weight6/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6)) >= 0)&&((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6))<=0.5)){
+
+											$category6_fee = $category6_fee + floor($product_weight6/$lbtokg   + 0.6  )*$category6_price+0.5* $category6_price+ 1;
+
+										}else{
+
+											$category6_fee = $category6_fee + ceil($product_weight6/$lbtokg  + 0.6  )* $category6_price + 1;
+
+										}
+									}else{
+
+										$category6_fee = $category6_fee + 1 + 2 * $category6_price;
+
+									}
+
+									$product_quantity6 = $product_quantity6 - 6;
+
+									$product_weight6 = 0;
+
+									$product_r6 = 0;
+
+								}if(($product_quantity6 > 0)&&( $product_quantity6 < 6)){
+
+									$product_weight6  = $product_weight6 + $product['weight'] * ($product_quantity6 - $product_r6);
+
+									$product_r6  =  $product_quantity6;
+								}
+
+
+							}
+							//箱包类
+							else if ($product['category_id'] == 103) {
+
+								$product_quantity7  = $product_quantity7  +  $product['quantity'];
+								$product_quantity77 = $product_quantity77 +  $product['quantity'];
+
+								while( $product_quantity7 >= 6){
+
+									$product_weight7 = $product_weight7+ $product['weight']*(6 - $product_r7);
+
+									if(($product_weight7/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6)) >= 0)&&((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6))<=0.5)){
+
+											$category7_fee = $category7_fee + floor($product_weight7/$lbtokg   + 0.6  )*$category7_price+0.5* $category7_price+ 1;
+
+										}else{
+
+											$category7_fee = $category7_fee + ceil($product_weight7/$lbtokg  + 0.6  )* $category7_price + 1;
+
+										}
+									}else{
+
+										$category7_fee = $category7_fee + 1 + 2 * $category7_price;
+
+									}
+
+									$product_quantity7 = $product_quantity7 - 6;
+
+									$product_weight7 = 0;
+
+									$product_r7 = 0;
+
+								}if(($product_quantity7 > 0)&&( $product_quantity7 < 6)){
+
+									$product_weight7  = $product_weight7 + $product['weight'] * ($product_quantity7 - $product_r7);
+
+									$product_r7  =  $product_quantity7;
+								}
+								//蛋白粉 每个蛋白粉装一箱
+							}else if ($product['category_id'] == 89) {
+
+								$product_quantity8 = $product_quantity8  +  $product['quantity'];
+								$product_quantity88 = $product_quantity88 +  $product['quantity'];
+
+								while( $product_quantity8 !=0){
+
+									$product_weight8 = $product['weight'];
+
+									if(($product_weight8/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight8/$lbtokg + 0.6)-floor($product_weight8/$lbtokg + 0.6)) >= 0)&&((($product_weight8/$lbtokg + 0.6)-floor($product_weight8/$lbtokg + 0.6))<=0.5)){
+
+											$category8_fee = $category8_fee + floor($product_weight8/$lbtokg   + 0.6  )* $category8_price+0.5* $category8_price+ 1;
+
+										}else{
+
+											$category8_fee = $category8_fee + ceil($product_weight8/$lbtokg  + 0.6  )* $category8_price + 1;
+
+										}
+									}else{
+
+										$category8_fee = $category8_fee + 1 + 2 * $category8_price;
+
+									}
+
+									$product_quantity8 = $product_quantity8 - 1;
+
+
+								}
+
+							}	else if ($product['category_id'] == 163) {
+								$product_weight9 = $product_weight9 + $product['weight']*$product['quantity'];
+								$product_quantity9 = $product_quantity9 + $product['quantity'];
+							}
+
+							else {
+
+							}
+							//}
+							//}else{
+							//	$json['success'] = 0;
+							//}
+							//}
+
+						}
+
+					}
+
+				}
+
+
+				//物品不够两磅 添加两磅起收
+
+				if($product_weight1 != 0 ){
+					if(($product_weight1/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6)) >= 0)&&((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6))<=0.2)){
+
+					        $category1_fee = $category1_fee + floor($product_weight1/$lbtokg   + 0.6  )*$category1_price+0.5* $category1_price+ 1;
+
+						}else{
+
+							$category1_fee = $category1_fee + ceil($product_weight1/$lbtokg  + 0.6  )* $category1_price + 1;
+
+						}
+					}else{
+
+						$category1_fee = $category1_fee + 1 + 2 * $category1_price;
+
+					}
+
+				}
+				if($product_rweight2 != 0 ){
+					if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+							$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+						}else{
+
+							$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+						}
+					}else{
+
+						$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+					}
+
+				}
+
+
+
+				if($product_weight3 !=0 ){
+					if(($product_weight3/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6)) >= 0)&&((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6))<=0.2)){
+
+							$category3_fee = $category3_fee + floor($product_weight3/$lbtokg   + 0.6  )*$category3_price+0.5* $category3_price+ 1;
+
+						}else{
+
+							$category3_fee = $category3_fee + ceil($product_weight3/$lbtokg  + 0.6  )* $category3_price + 1;
+
+						}
+					}else{
+
+						$category3_fee = $category3_fee + 1 + 2 * $category3_price;
+
+					}
+
+				}
+				if($product_weight4 !=0 ){
+					if(($product_weight4/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6)) >= 0)&&((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6))<=0.2)){
+
+							$category4_fee = $category4_fee + floor($product_weight4/$lbtokg   + 0.6  )*$category4_price+0.5* $category4_price+ 1;
+
+						}else{
+
+							$category4_fee = $category4_fee + ceil($product_weight4/$lbtokg  + 0.6  )* $category4_price + 1;
+
+						}
+					}else{
+
+						$category4_fee = $category4_fee + 1 + 2 * $category4_price;
+
+					}
+
+				}
+				if($product_weight5 !=0 ){
+					if(($product_weight5/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6)) >= 0)&&((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6))<=0.2)){
+
+							$category5_fee = $category5_fee + floor($product_weight5/$lbtokg   + 0.6  )*$category5_price+0.5* $category5_price+ 1;
+
+						}else{
+
+							$category5_fee = $category5_fee + ceil($product_weight5/$lbtokg  + 0.6  )* $category5_price + 1;
+
+						}
+					}else{
+
+						$category5_fee = $category5_fee + 1 + 2 * $category5_price;
+
+					}
+
+				}
+				if($product_weight6 !=0 ){
+					if(($product_weight6/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6)) >= 0)&&((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6))<=0.2)){
+
+							$category6_fee = $category6_fee + floor($product_weight6/$lbtokg   + 0.6  )*$category6_price+0.5* $category6_price+ 1;
+
+						}else{
+
+							$category6_fee = $category6_fee + ceil($product_weight6/$lbtokg  + 0.6  )* $category6_price + 1;
+
+						}
+					}else{
+
+						$category6_fee = $category6_fee + 1 + 2 * $category6_price;
+
+					}
+
+				}
+				if($product_weight7 !=0 ){
+					if(($product_weight7/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6)) >= 0)&&((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6))<=0.2)){
+
+							$category7_fee = $category7_fee + floor($product_weight7/$lbtokg   + 0.6  )*$category7_price+0.5* $category7_price+ 1;
+
+						}else{
+
+							$category7_fee = $category7_fee + ceil($product_weight7/$lbtokg  + 0.6  )* $category7_price + 1;
+
+						}
+					}else{
+
+						$category7_fee = $category7_fee + 1 + 2 * $category7_price;
+
+					}
+
+				}
+				if($product_weight9 != 0 ){
+					if(($product_weight9/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight9/$lbtokg + 0.6)-floor($product_weight9/$lbtokg + 0.6)) >= 0)&&((($product_weight9/$lbtokg + 0.6)-floor($product_weight9/$lbtokg + 0.6))<=0.2)){
+
+							$category9_fee = $category9_fee + floor($product_weight9/$lbtokg   + 0.6  )*$category9_price+0.5* $category9_price+ 1;
+
+						}else{
+
+							$category9_fee = $category9_fee + ceil($product_weight9/$lbtokg  + 0.6  )* $category9_price + 1;
+
+						}
+					}else{
+
+						$category9_fee = $category9_fee + 1 + 2 * $category9_price;
+
+					}
+
+				}
+                //将几个品类的邮费加在一起
+				$total_fee = 0;
+				$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee
+					+ $category7_fee + $category8_fee+ $category9_fee;
+
+				if($total_fee != 0)  {
+					$json['shipping_fee'] = $total_fee;
+				}else{
+					$json['success'] = 0;
+				}
+
+
+				//} else {
+				//	$json['success'] = 0;
+
+				// }
+			}
+			else{
+				$json['success'] = 0;
+			}
+
+		}else{
+			$json['success'] = 0;
+		}
+
+
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: POST');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	public function getShippingFee_v30() {
+
+		$this->load->language('api/login');
+
+		$json = array();
+
+		$this->load->model('account/api');
+
+		// Login with API Key
+		$api_info = $this->model_account_api->getApiByKey($this->request->post['key']);
+
+		if ( $api_info ) {
+			// Check if IP is allowed
+			$ip_data = array();
+
+			$results = $this->model_account_api->getApiIps($api_info['api_id']);
+
+			foreach ( $results as $result ) {
+				$ip_data[] = trim($result['ip']);
+			}
+
+
+			if (!$json) {
+
+				$json['success'] = 1;
+
+				//get shipping fee information
+
+				$products = isset($this->request->post['products']) ? $this->request->post['products'] : '';
+
+				$verifycode = isset($this->request->post['verifycode']) ? $this->request->post['verifycode'] : '';
+
+				//if (md5($products."AmeshippingFee") === $verifycode) {
+
+				//calculate the shipping fee
+
+				$lbtokg  =  0.45359237;
+
+				//价格
+
+				//保健品
+				$category1_price=3.8;
+				//奶粉类
+				$category2_price=4;
+				//日用品
+				$category3_price=4.5;
+				//食品类
+				$category4_price=4.5;
+				//化妆品
+				$category5_price=10;
+				//鞋子帽子类
+				$category6_price=8;
+				//箱包类
+				$category7_price=10;
+				//蛋白粉类
+				$category8_price=4;
+				//人参类
+				$category9_price=15;
+
+
+				$product_quantity1   = 0;
+				$product_quantity11  = 0;
+				$product_r1          = 0;
+				$product_weight1     = 0;
+
+				//产品现有数量
+				$product_quantity2  = 0;
+				//产品总数
+				$product_quantity22 = 0;
+				//箱子现存的产品数量
+				$product_r2         = 0;
+				//箱子现存的产品重量
+				$product_rweight2   = 0;
+				//箱子数
+				$box2               = 0;
+				//每个现存的算法类暂时的重量
+				$every_box_weight2  = 0;
+				//产品现有的重量
+				$product_weight2    = 0;
+				//产品总重量
+				$product_weight22    = 0;
+
+				$product_quantity3  = 0;
+				$product_quantity33 = 0;
+				$product_r3         = 0;
+				$product_weight3     = 0;
+
+				$product_quantity4  = 0;
+				$product_quantity44 = 0;
+				$product_r4         = 0;
+				$product_weight4     = 0;
+
+				$product_quantity5  = 0;
+				$product_quantity55 = 0;
+				$product_r5         = 0;
+				$product_weight5     = 0;
+
+				$product_quantity6  = 0;
+				$product_quantity66 = 0;
+				$product_r6         = 0;
+				$product_weight6    = 0;
+
+				$product_quantity7  = 0;
+				$product_quantity77 = 0;
+				$product_r7         = 0;
+				$product_weight7     = 0;
+
+				$product_quantity8  = 0;
+				$product_quantity88 = 0;
+				$product_r8         = 0;
+				$product_weight8     = 0;
+
+				$product_quantity9  = 0;
+				$product_quantity99 = 0;
+				$product_r9         = 0;
+				$product_weight9    = 0;
+
+				$category1_fee = 0;
+				$category2_fee = 0;
+				$category3_fee = 0;
+				$category4_fee = 0;
+				$category5_fee = 0;
+				$category6_fee = 0;
+				$category7_fee = 0;
+				$category8_fee = 0;
+				$category9_fee = 0;
+
+				if(isset($this->request->post['products'])) {
+
+					$products = str_replace('&quot;', '"', $products);
+
+					$productArr = json_decode($products, true);
+
+					if ($productArr) {
+						//sort
+						$sortArray = array();
+
+						foreach($productArr as $pd){
+							foreach($pd as $key=>$value){
+								if(!isset($sortArray[$key])){
+									$sortArray[$key] = array();
+								}
+								$sortArray[$key][] = $value;
+							}
+						}
+
+						$orderby = "weight"; //the key you want to sort from the array
+
+						array_multisort($sortArray[$orderby],SORT_ASC,$productArr);
+
+						//count
+
+						foreach($productArr as $product) {
+
+							$this->load->model('catalog/product');
+
+							$product_info = $this->model_catalog_product -> getProduct($product['sku']);
+
+							if ( isset( $product['option'] )) {
+
+								$option = array_filter($product['option']);
+
+							} else {
+
+								$option = array();
+
+							}
+
+
+							if($product_info) {
+
+							$category_info = $this->model_catalog_product ->getCategories($product_info['product_id']);
+
+								if($category_info){
+
+							foreach($category_info as $category) {
+
+							$product['category_id'] = $category["category_id"];
+
+							$product['weight'] = $product_info['weight'];
+
+							//保健品
+
+
+							if ($product['category_id'] == 61) {
+
+								$product_quantity1  = $product_quantity1  +  $product['quantity'];
+								$product_quantity11 = $product_quantity11 +  $product['quantity'];
+
+								while( $product_quantity1 >= 6){
+
+									$product_weight1 = $product_weight1+ $product['weight']*(6 - $product_r1);
+
+									if(($product_weight1/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6)) >= 0)&&((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6))<=0.5)){
+
+											$category1_fee = $category1_fee + floor($product_weight1/$lbtokg   + 0.6  )*$category1_price+0.5* $category1_price+ 1;
+
+										}else{
+
+											$category1_fee = $category1_fee + ceil($product_weight1/$lbtokg  + 0.6  )* $category1_price + 1;
+
+										}
+									}else{
+
+										$category1_fee = $category1_fee + 1 + 2 * $category1_price;
+
+									}
+
+									$product_quantity1 = $product_quantity1 - 6;
+
+									$product_weight1 = 0;
+
+									$product_r1 = 0;
+
+								}if(($product_quantity1 > 0)&&( $product_quantity1 < 6)){
+
+									$product_weight1  = $product_weight1 + $product['weight'] * ($product_quantity1 - $product_r1);
+
+									$product_r1  =  $product_quantity1;
+								}
+
+							}
+
+							//奶粉类
+							else if ($product['category_id'] == 86) {
+
+								$product_quantity2  = $product_quantity2 + $product['quantity'];
+								$product_quantity22 = $product_quantity22 + $product['quantity'];
+								$product_weight2    = $product_weight2 + $product['weight']*$product['quantity'];
+
+								while($product_weight2 >= 3.301){
+
+									if(floor((3.301 - $product_rweight2)/$product['weight'])==0){
+
+										$every_box_weight2 = 0;
+
+										$product_quantity2 = $product_quantity2 - floor(3.301/$product['weight']);
+
+										$product_rweight2 = $product_rweight2 + $every_box_weight2 ;
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+										$product_weight2 = $product_weight2 - $product_rweight2;
+
+										$product_rweight2 = 0;
+
+										$product_r2 = 0;
+
+									}else if(floor((3.301-$product_rweight2)/$product['weight'])>=floor(($product_weight2 -$product_rweight2)/$product['weight'])){
+
+										$every_box_weight2 = $product['weight'] * floor(($product_weight2 -$product_rweight2)/$product['weight']);
+
+										$product_quantity2 = $product_quantity2  - floor(($product_weight2 -$product_rweight2)/$product['weight']);
+
+										$product_rweight2 = $product_rweight2 + $every_box_weight2 ;
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+
+										$product_weight2 = $product_weight2 - $product_rweight2;
+
+										$product_rweight2 = 0;
+
+										$product_r2 = 0;
+
+									}else{
+										$every_box_weight2 = $product['weight']*floor((3.301-$product_rweight2)/$product['weight']);
+
+										$product_quantity2 = $product_quantity2 - floor((3.301-$product_rweight2)/$product['weight']);
+
+										$product_rweight2 = $product_rweight2+ $every_box_weight2 ;
+
+
+										if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+											if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+												$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+											}else{
+
+												$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+											}
+										}else{
+
+											$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+										}
+
+
+										$product_weight2 = $product_weight2 - $product_rweight2;
+
+										$product_rweight2 = 0;
+
+										$product_r2 = 0;
+
+									}
+
+								}if($product_weight2 < 3.301){
+
+									$every_box_weight2 = $product['weight'] * ($product_quantity2 - $product_r2);
+
+									$product_rweight2 =  $product_rweight2 + $every_box_weight2;
+
+									$product_r2  =  $product_quantity2;
+								}
+
+							}
+
+							//日用品
+							else if ($product['category_id'] == 65) {
+
+								$product_quantity3  = $product_quantity3  +  $product['quantity'];
+								$product_quantity33 = $product_quantity33 +  $product['quantity'];
+
+								while( $product_quantity3 >= 6){
+
+									$product_weight3 = $product_weight3 + $product['weight']*(6 - $product_r3);
+
+									if(($product_weight3/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6)) >= 0)&&((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6))<=0.5)){
+
+											$category3_fee = $category3_fee + floor($product_weight3/$lbtokg   + 0.6  )*$category3_price+0.5* $category3_price+ 1;
+
+										}else{
+
+											$category3_fee = $category3_fee + ceil($product_weight3/$lbtokg  + 0.6  )* $category3_price + 1;
+
+										}
+									}else{
+
+										$category3_fee = $category3_fee + 1 + 2 * $category3_price;
+
+									}
+
+									$product_quantity3 = $product_quantity3 - 6;
+
+									$product_weight3 = 0;
+
+									$product_r3 = 0;
+
+								}if(($product_quantity3 > 0)&&( $product_quantity3 < 6)){
+
+									$product_weight3  = $product_weight3 + $product['weight'] * ($product_quantity3 - $product_r3);
+
+									$product_r3  =  $product_quantity3;
+								}
+
+							}
+							//食品类
+							else if ($product['category_id'] == 62) {
+								$product_quantity4  = $product_quantity4  +  $product['quantity'];
+								$product_quantity44 = $product_quantity44 +  $product['quantity'];
+
+								while( $product_quantity4 >= 6){
+
+									$product_weight4 = $product_weight4+ $product['weight']*(6 - $product_r4);
+
+									if(($product_weight4/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6)) >= 0)&&((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6))<=0.5)){
+
+											$category4_fee = $category4_fee + floor($product_weight4/$lbtokg   + 0.6  )*$category4_price+0.5* $category4_price+ 1;
+
+										}else{
+
+											$category4_fee = $category4_fee + ceil($product_weight4/$lbtokg  + 0.6  )* $category4_price + 1;
+
+										}
+									}else{
+
+										$category4_fee = $category4_fee + 1 + 2 * $category4_price;
+
+									}
+
+									$product_quantity4 = $product_quantity4 - 6;
+
+									$product_weight4 = 0;
+
+									$product_r4= 0;
+
+								}if(($product_quantity4 > 0)&&( $product_quantity4 < 6)){
+
+									$product_weight4  = $product_weight4 + $product['weight'] * ($product_quantity4 - $product_r4);
+
+									$product_r4  =  $product_quantity4;
+								}
+
+
+
+							}
+							//化妆品
+							else if ($product['category_id'] == 104 ) {
+
+								$product_quantity5  = $product_quantity5  +  $product['quantity'];
+								$product_quantity55 = $product_quantity55 +  $product['quantity'];
+
+								while( $product_quantity5 >= 6){
+
+									$product_weight5 = $product_weight5 + $product['weight']*(6 - $product_r5);
+
+									if(($product_weight5/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6)) >= 0)&&((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6))<=0.5)){
+
+											$category5_fee = $category5_fee + floor($product_weight5/$lbtokg   + 0.6  )*$category5_price+0.5* $category5_price+ 1;
+
+										}else{
+
+											$category5_fee = $category5_fee + ceil($product_weight5/$lbtokg  + 0.6  )* $category5_price + 1;
+
+										}
+									}else{
+
+										$category5_fee = $category5_fee + 1 + 2 * $category5_price;
+
+									}
+
+									$product_quantity5 = $product_quantity5 - 6;
+
+									$product_weight5 = 0;
+
+									$product_r5 = 0;
+
+								}if(($product_quantity5 > 0)&&( $product_quantity5 < 6)){
+
+									$product_weight5  = $product_weight5 + $product['weight'] * ($product_quantity5 - $product_r5);
+
+									$product_r5  =  $product_quantity5;
+								}
+
+
+							}
+							//鞋子帽子类
+							else if ($product['category_id'] == 90) {
+
+								$product_quantity6  = $product_quantity6  +  $product['quantity'];
+								$product_quantity66 = $product_quantity66 +  $product['quantity'];
+
+								while( $product_quantity6 >= 6){
+
+									$product_weight6 = $product_weight6 + $product['weight']*(6 - $product_r6);
+
+									if(($product_weight6/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6)) >= 0)&&((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6))<=0.5)){
+
+											$category6_fee = $category6_fee + floor($product_weight6/$lbtokg   + 0.6  )*$category6_price+0.5* $category6_price+ 1;
+
+										}else{
+
+											$category6_fee = $category6_fee + ceil($product_weight6/$lbtokg  + 0.6  )* $category6_price + 1;
+
+										}
+									}else{
+
+										$category6_fee = $category6_fee + 1 + 2 * $category6_price;
+
+									}
+
+									$product_quantity6 = $product_quantity6 - 6;
+
+									$product_weight6 = 0;
+
+									$product_r6 = 0;
+
+								}if(($product_quantity6 > 0)&&( $product_quantity6 < 6)){
+
+									$product_weight6  = $product_weight6 + $product['weight'] * ($product_quantity6 - $product_r6);
+
+									$product_r6  =  $product_quantity6;
+								}
+
+
+							}
+							//箱包类
+							else if ($product['category_id'] == 103) {
+
+								$product_quantity7  = $product_quantity7  +  $product['quantity'];
+								$product_quantity77 = $product_quantity77 +  $product['quantity'];
+
+								while( $product_quantity7 >= 6){
+
+									$product_weight7 = $product_weight7+ $product['weight']*(6 - $product_r7);
+
+									if(($product_weight7/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6)) >= 0)&&((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6))<=0.5)){
+
+											$category7_fee = $category7_fee + floor($product_weight7/$lbtokg   + 0.6  )*$category7_price+0.5* $category7_price+ 1;
+
+										}else{
+
+											$category7_fee = $category7_fee + ceil($product_weight7/$lbtokg  + 0.6  )* $category7_price + 1;
+
+										}
+									}else{
+
+										$category7_fee = $category7_fee + 1 + 2 * $category7_price;
+
+									}
+
+									$product_quantity7 = $product_quantity7 - 6;
+
+									$product_weight7 = 0;
+
+									$product_r7 = 0;
+
+								}if(($product_quantity7 > 0)&&( $product_quantity7 < 6)){
+
+									$product_weight7  = $product_weight7 + $product['weight'] * ($product_quantity7 - $product_r7);
+
+									$product_r7  =  $product_quantity7;
+								}
+								//蛋白粉 每个蛋白粉装一箱
+							}else if ($product['category_id'] == 89) {
+
+								$product_quantity8 = $product_quantity8  +  $product['quantity'];
+								$product_quantity88 = $product_quantity88 +  $product['quantity'];
+
+								while( $product_quantity8 !=0){
+
+									$product_weight8 = $product['weight'];
+
+									if(($product_weight8/$lbtokg + 0.6 ) > 2.0 ) {
+
+										if(((($product_weight8/$lbtokg + 0.6)-floor($product_weight8/$lbtokg + 0.6)) >= 0)&&((($product_weight8/$lbtokg + 0.6)-floor($product_weight8/$lbtokg + 0.6))<=0.5)){
+
+											$category8_fee = $category8_fee + floor($product_weight8/$lbtokg   + 0.6  )* $category8_price+0.5* $category8_price+ 1;
+
+										}else{
+
+											$category8_fee = $category8_fee + ceil($product_weight8/$lbtokg  + 0.6  )* $category8_price + 1;
+
+										}
+									}else{
+
+										$category8_fee = $category8_fee + 1 + 2 * $category8_price;
+
+									}
+
+									$product_quantity8 = $product_quantity8 - 1;
+
+
+								}
+
+							}	else if ($product['category_id'] == 163) {
+								$product_weight9 = $product_weight9 + $product['weight']*$product['quantity'];
+								$product_quantity9 = $product_quantity9 + $product['quantity'];
+							}
+
+							else {
+
+							}
+							    }
+							}else{
+								$json['success'] = 0;
+							   }
+							}
+
+						}
+
+					}
+
+				}
+
+
+				//物品不够两磅 添加两磅起收
+
+				if($product_weight1 != 0 ){
+					if(($product_weight1/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6)) >= 0)&&((($product_weight1/$lbtokg + 0.6)-floor($product_weight1/$lbtokg + 0.6))<=0.2)){
+
+							$category1_fee = $category1_fee + floor($product_weight1/$lbtokg   + 0.6  )*$category1_price+0.5* $category1_price+ 1;
+
+						}else{
+
+							$category1_fee = $category1_fee + ceil($product_weight1/$lbtokg  + 0.6  )* $category1_price + 1;
+
+						}
+					}else{
+
+						$category1_fee = $category1_fee + 1 + 2 * $category1_price;
+
+					}
+
+				}
+				if($product_rweight2 != 0 ){
+					if(($product_rweight2/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6)) >= 0)&&((($product_rweight2/$lbtokg + 0.6)-floor($product_rweight2/$lbtokg + 0.6))<=0.5)){
+
+							$category2_fee = $category2_fee + floor($product_rweight2/$lbtokg   + 0.6  )*$category2_price+0.5* $category2_price+ 1;
+
+						}else{
+
+							$category2_fee = $category2_fee + ceil($product_rweight2/$lbtokg  + 0.6  )* $category2_price + 1;
+
+						}
+					}else{
+
+						$category2_fee = $category2_fee + 1 + 2 * $category2_price;
+
+					}
+
+				}
+
+
+
+				if($product_weight3 !=0 ){
+					if(($product_weight3/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6)) >= 0)&&((($product_weight3/$lbtokg + 0.6)-floor($product_weight3/$lbtokg + 0.6))<=0.2)){
+
+							$category3_fee = $category3_fee + floor($product_weight3/$lbtokg   + 0.6  )*$category3_price+0.5* $category3_price+ 1;
+
+						}else{
+
+							$category3_fee = $category3_fee + ceil($product_weight3/$lbtokg  + 0.6  )* $category3_price + 1;
+
+						}
+					}else{
+
+						$category3_fee = $category3_fee + 1 + 2 * $category3_price;
+
+					}
+
+				}
+				if($product_weight4 !=0 ){
+					if(($product_weight4/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6)) >= 0)&&((($product_weight4/$lbtokg + 0.6)-floor($product_weight4/$lbtokg + 0.6))<=0.2)){
+
+							$category4_fee = $category4_fee + floor($product_weight4/$lbtokg   + 0.6  )*$category4_price+0.5* $category4_price+ 1;
+
+						}else{
+
+							$category4_fee = $category4_fee + ceil($product_weight4/$lbtokg  + 0.6  )* $category4_price + 1;
+
+						}
+					}else{
+
+						$category4_fee = $category4_fee + 1 + 2 * $category4_price;
+
+					}
+
+				}
+				if($product_weight5 !=0 ){
+					if(($product_weight5/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6)) >= 0)&&((($product_weight5/$lbtokg + 0.6)-floor($product_weight5/$lbtokg + 0.6))<=0.2)){
+
+							$category5_fee = $category5_fee + floor($product_weight5/$lbtokg   + 0.6  )*$category5_price+0.5* $category5_price+ 1;
+
+						}else{
+
+							$category5_fee = $category5_fee + ceil($product_weight5/$lbtokg  + 0.6  )* $category5_price + 1;
+
+						}
+					}else{
+
+						$category5_fee = $category5_fee + 1 + 2 * $category5_price;
+
+					}
+
+				}
+				if($product_weight6 !=0 ){
+					if(($product_weight6/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6)) >= 0)&&((($product_weight6/$lbtokg + 0.6)-floor($product_weight6/$lbtokg + 0.6))<=0.2)){
+
+							$category6_fee = $category6_fee + floor($product_weight6/$lbtokg   + 0.6  )*$category6_price+0.5* $category6_price+ 1;
+
+						}else{
+
+							$category6_fee = $category6_fee + ceil($product_weight6/$lbtokg  + 0.6  )* $category6_price + 1;
+
+						}
+					}else{
+
+						$category6_fee = $category6_fee + 1 + 2 * $category6_price;
+
+					}
+
+				}
+				if($product_weight7 !=0 ){
+					if(($product_weight7/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6)) >= 0)&&((($product_weight7/$lbtokg + 0.6)-floor($product_weight7/$lbtokg + 0.6))<=0.2)){
+
+							$category7_fee = $category7_fee + floor($product_weight7/$lbtokg   + 0.6  )*$category7_price+0.5* $category7_price+ 1;
+
+						}else{
+
+							$category7_fee = $category7_fee + ceil($product_weight7/$lbtokg  + 0.6  )* $category7_price + 1;
+
+						}
+					}else{
+
+						$category7_fee = $category7_fee + 1 + 2 * $category7_price;
+
+					}
+
+				}
+				if($product_weight9 != 0 ){
+					if(($product_weight9/$lbtokg + 0.6 ) > 2.0 ) {
+
+						if(((($product_weight9/$lbtokg + 0.6)-floor($product_weight9/$lbtokg + 0.6)) >= 0)&&((($product_weight9/$lbtokg + 0.6)-floor($product_weight9/$lbtokg + 0.6))<=0.2)){
+
+							$category9_fee = $category9_fee + floor($product_weight9/$lbtokg   + 0.6  )*$category9_price+0.5* $category9_price+ 1;
+
+						}else{
+
+							$category9_fee = $category9_fee + ceil($product_weight9/$lbtokg  + 0.6  )* $category9_price + 1;
+
+						}
+					}else{
+
+						$category9_fee = $category9_fee + 1 + 2 * $category9_price;
+
+					}
+
+				}
+				//将几个品类的邮费加在一起
+				$total_fee = 0;
+				$total_fee = $total_fee + $category1_fee + $category2_fee + $category3_fee + $category4_fee + $category5_fee + $category6_fee
+					+ $category7_fee + $category8_fee+ $category9_fee;
+
+				if($total_fee != 0)  {
+					$json['shipping_fee'] = $total_fee;
+				}else{
+					$json['success'] = 0;
+				}
+
+
+				//} else {
+				//	$json['success'] = 0;
+
+				// }
+			}
+			else{
+				$json['success'] = 0;
+			}
+
+		}else{
+			$json['success'] = 0;
+		}
+
+
+
+		if (isset($this->request->server['HTTP_ORIGIN'])) {
+			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+			$this->response->addHeader('Access-Control-Allow-Methods: POST');
+			$this->response->addHeader('Access-Control-Max-Age: 1000');
+			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+
+
+
+
+
 	public function addorder() {
 
 		$this->load->language('api/login');
