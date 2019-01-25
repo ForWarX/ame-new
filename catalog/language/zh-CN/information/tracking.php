@@ -13,6 +13,7 @@ $_['text_open']      = '营业时间';
 $_['text_comment']   = '评论';
 $_['text_success']   = '<p>您的查询已成功发送到商店的店主 ！</p>';
 $_['text_ame_no']   = '请您输入AME号码 查询包裹状态';
+$_['text_tips']      = '请复制您的国内单号后点击红色按钮进入邮政网站查询。';
 
 // Column
 $_['column_order_id']       = '订单 ID';

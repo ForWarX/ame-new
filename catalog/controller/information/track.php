@@ -52,6 +52,7 @@ class ControllerInformationTrack extends Controller {
 		$data['text_fax'] = $this->language->get('text_fax');
 		$data['text_open'] = $this->language->get('text_open');
 		$data['text_comment'] = $this->language->get('text_comment');
+		$data['text_tips'] = $this->language->get('text_tips');
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_email'] = $this->language->get('entry_email');

@@ -132,7 +132,11 @@
             <td class="text-left"><?php echo $order['date_added']; ?></td>
             <td class="text-left"><?php echo $order['delivery_number']; ?></td>
             <td class="text-right">
+              <!--old button
                <a href="" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" id="OrderTrackBTN" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
+                -->
+              <a href="http://intmail.11185.cn/zdxt/yjcx" data-toggle="tooltip" title="<?php echo $button_track; ?>" class="btn btn-info" data-order_no="<?php echo $order['order_no']; ?>"><i class="fa fa-plane"></i><?php echo $button_track; ?></a>
+
             </td>
           </tr>
           </tbody>
@@ -181,7 +185,7 @@
         </div>
       </form>
       -->
-      <?php echo $content_bottom; ?></div>
+      <?php echo $content_bottom; ?><br><?php echo $text_tips; ?></div>
     <?php echo $column_right; ?></div>
 </div>
 <?php echo $footer; ?>
