@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']    = 'Flat Rate';
+$_['heading_title']    = 'AME shipping';
 
 // Text
 $_['text_shipping']    = 'Shipping';
 $_['text_success']     = 'Success: You have modified flat rate shipping!';
-$_['text_edit']        = 'Edit Flat Rate Shipping';
+$_['text_edit']        = 'AME Shipping';
 
 // Entry
 $_['entry_cost']       = 'Cost';
