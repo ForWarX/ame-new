@@ -243,19 +243,22 @@ class ControllerProductSearch extends Controller {
 				} else {
 					$rating = false;
 				}
-
-				$data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
-					'price'       => $price,
-					'special'     => $special,
-					'tax'         => $tax,
-					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-					'rating'      => $result['rating'],
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
-				);
+				 $product_category = $this->model_catalog_product->getCategories($result['product_id']);
+				
+                 if($product_category) {
+					 $data['products'][] = array(
+						 'product_id' => $result['product_id'],
+						 'thumb' => $image,
+						 'name' => $result['name'],
+						 'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+						 'price' => $price,
+						 'special' => $special,
+						 'tax' => $tax,
+						 'minimum' => $result['minimum'] > 0 ? $result['minimum'] : 1,
+						 'rating' => $result['rating'],
+						 'href' => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					 );
+				 }
 			}
 
 			$url = '';
