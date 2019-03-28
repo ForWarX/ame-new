@@ -243,9 +243,9 @@ class ControllerProductSearch extends Controller {
 				} else {
 					$rating = false;
 				}
-				 $product_category = $this->model_catalog_product->getCategories($result['product_id']);
-				
-                 if($product_category) {
+
+
+                 if($result['model']!='user_added') {
 					 $data['products'][] = array(
 						 'product_id' => $result['product_id'],
 						 'thumb' => $image,
