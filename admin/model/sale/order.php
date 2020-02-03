@@ -427,9 +427,12 @@ class ModelSaleOrder extends Model {
 			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
 		}
 		if (!empty($data['filter_customer'])) {
-			//$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
-			$sql .= " AND o.customer_id > '0'";
-
+			if ($data['filter_customer']=='online') {
+				$sql .= " AND payment_code = 'ott_alipay'OR payment_code = 'ott_wechat' OR payment_code = 'pp_express'";
+			}else {
+				//$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+				$sql .= " AND o.lastname <> ''";
+			}
 		}
 
 
@@ -706,8 +709,12 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_customer'])) {
-			//$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
-			$sql .= " AND customer_id > '0'";
+			if ($data['filter_customer']=='online') {
+				$sql .= " AND payment_code = 'ott_alipay'OR payment_code = 'ott_wechat' OR payment_code = 'pp_express'";
+			}else {
+				//$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+				$sql .= " AND lastname <> ''";
+			}
 		}
 
 		if (!empty($data['filter_date_added'])) {
