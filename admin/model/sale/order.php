@@ -421,14 +421,18 @@ class ModelSaleOrder extends Model {
 		} else {
 			$sql .= " WHERE o.order_status_id > '0'";
 		}
+
         //change the id to Ame order number
 		if (!empty($data['filter_order_id'])) {
 			$sql .= " AND o.invoice_prefix LIKE '%" .$data['filter_order_id'] . "%'";
 		}
-
 		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			//$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			$sql .= " AND o.customer_id > '0'";
+
 		}
+
+
 
 		if (!empty($data['filter_date_added'])) {
 			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
@@ -702,7 +706,8 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			//$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
+			$sql .= " AND customer_id > '0'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
